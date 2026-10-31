@@ -12,9 +12,12 @@ const SITE_CONFIG = {
   // Nome da Agência
   agencyName: "Rida",
 
-  // Número do WhatsApp (somente números, com DDD e código do país 55)
+  // Número Principal do WhatsApp (somente números, com DDD e código do país 55)
   // Exemplo: "5511999998888"
   whatsappNumber: "5512974070207",
+
+  // Segundo Número de Contato (WhatsApp)
+  whatsappNumber2: "5519999118817",
 
   // Mensagem padrão ao clicar no WhatsApp
   whatsappDefaultMessage: "Olá equipe da Rida! Gostaria de um site profissional para o meu comércio.",
@@ -35,6 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initZoomModal();
   initSmoothScroll();
   initHeaderScroll();
+  initFeatureToggles();
 });
 
 /**
@@ -70,6 +74,13 @@ function applySiteConfig() {
       contactWa.textContent = formatPhoneNumber(SITE_CONFIG.whatsappNumber);
     }
     contactWa.href = waUrl;
+  }
+
+  // 3.1 Atualizar segundo link de WhatsApp no footer
+  const contactWa2 = document.querySelector(".js-contact-whatsapp2");
+  if (contactWa2 && SITE_CONFIG.whatsappNumber2) {
+    contactWa2.textContent = formatPhoneNumber(SITE_CONFIG.whatsappNumber2);
+    contactWa2.href = `https://wa.me/${SITE_CONFIG.whatsappNumber2}?text=${encodedMsg}`;
   }
 
   // 4. Atualizar link de E-mail no footer
@@ -213,5 +224,35 @@ function initHeaderScroll() {
     } else {
       header.style.boxShadow = "none";
     }
+  });
+}
+
+/**
+ * Alternador de recursos extras do plano (Botão com maiszinho "+")
+ */
+function initFeatureToggles() {
+  const toggleButtons = document.querySelectorAll(".js-toggle-features");
+  toggleButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("aria-controls");
+      const targetList = document.getElementById(targetId);
+      if (!targetList) return;
+
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      const iconSpan = btn.querySelector(".toggle-icon");
+      const textSpan = btn.querySelector(".toggle-text");
+
+      if (isExpanded) {
+        targetList.classList.add("is-collapsed");
+        btn.setAttribute("aria-expanded", "false");
+        if (iconSpan) iconSpan.textContent = "+";
+        if (textSpan) textSpan.textContent = btn.getAttribute("data-expand-text") || "Ver mais recursos inclusos";
+      } else {
+        targetList.classList.remove("is-collapsed");
+        btn.setAttribute("aria-expanded", "true");
+        if (iconSpan) iconSpan.textContent = "−";
+        if (textSpan) textSpan.textContent = btn.getAttribute("data-collapse-text") || "Mostrar menos";
+      }
+    });
   });
 }

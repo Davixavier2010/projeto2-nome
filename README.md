@@ -29,10 +29,9 @@ Um site completo, mobile-first, ultra rápido e de alta conversão para a **Rida
    - **Direto ao Ponto** (Sem enrolação, foco em conversão).
    - **Suporte "Paz de Espírito"** (Alterações feitas pela agência via WhatsApp).
 5. **Preço e Transparência (A Oferta):**
-   - Setup: **R$ 497,00** (Pago em 2x: 50% de R$ 248,50 para iniciar e 50% de R$ 248,50 na entrega).
-   - Manutenção: **R$ 47,00 / mês**.
-   - Benefícios da mensalidade (Hospedagem 24h, Proteção Hacker/SSL, Suporte).
-   - Botão: `Falar com a equipe no WhatsApp`.
+   - **Plano Essencial**: Setup **R$ 497,00** (Pago em 2x: 50% de R$ 248,50 para iniciar e 50% de R$ 248,50 na entrega) + Manutenção de **R$ 47,00 / mês**.
+   - **Plano Personalizado**: Setup **De R$ 497 até R$ 697** (Setup R$ 697,00 em 2x: 50% de R$ 348,50 para iniciar e 50% de R$ 348,50 na entrega) + Manutenção de **R$ 67,00 / mês**.
+   - Benefícios da mensalidade (Hospedagem 24h, Proteção Hacker/SSL, Suporte prioritário via WhatsApp, botão expansível de recursos extras).
 6. **Como Funciona (O Processo em 3 Passos):**
    - Passo 1: Alinhamento
    - Passo 2: Você envia o material
@@ -55,9 +54,9 @@ const SITE_CONFIG = {
   // 1. Nome da sua agência
   agencyName: "Rida",
 
-  // 2. Seu WhatsApp com DDD (apenas números)
-  // Exemplo: "5511999998888"
+  // 2. Seus números de WhatsApp com DDD (apenas números)
   whatsappNumber: "5512974070207",
+  whatsappNumber2: "5519999118817",
 
   // 3. Mensagem padrão que o cliente vai mandar
   whatsappDefaultMessage: "Olá equipe da Rida! Gostaria de um site profissional para o meu comércio.",
