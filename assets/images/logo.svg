@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
+  <!-- Icon Frame Navy -->
+  <rect x="6" y="8" width="44" height="44" rx="12" fill="#0F2942" stroke="#18181B" stroke-width="2"/>
+  <!-- Browser top dots -->
+  <circle cx="16" cy="18" r="2" fill="#FFFDF8"/>
+  <circle cx="23" cy="18" r="2" fill="#FFFDF8"/>
+  <circle cx="30" cy="18" r="2" fill="#FFFDF8"/>
+  <!-- House / Code roof symbol inside browser -->
+  <path d="M 17 38 L 28 26 L 39 38" stroke="#FFFDF8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="23" y="32" width="10" height="10" rx="1" fill="#FFFDF8" stroke="#18181B" stroke-width="1.5"/>
+
+  <!-- Logo Text -->
+  <text x="62" y="29" fill="#18181B" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="18" font-weight="900" letter-spacing="-0.5">RIDA</text>
+  <text x="62" y="44" fill="#0F2942" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" letter-spacing="1.2">SITES PROFISSIONAIS</text>
+</svg>

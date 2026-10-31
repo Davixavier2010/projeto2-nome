@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Padaria Prestígio 1986 | Sabor e tradição em cada detalhe!</title>
+  <meta name="description" content="Padaria Prestígio desde 1986 no Jardim Alvorada, São José dos Campos - SP. Pães quentinhos, cafés especiais, doces artesanais, lanches na chapa e pizzas artesanais.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            prestigio: {
+              brown: '#4B2E1E',       /* Marrom Tradicional */
+              red: '#C62828',         /* Vermelho Prestígio */
+              redHover: '#A81F1F',
+              cream: '#FFF6E6',       /* Creme Aconchego */
+              creamLight: '#FFFBF5',
+              beige: '#E7C9A6',       /* Bege Pão */
+              beigeLight: '#F3DEC5',
+              dark: '#2B1A12',        /* Marrom Escuro */
+            }
+          },
+          fontFamily: {
+            script: ['"Playball"', '"Satisfy"', 'cursive'],
+            sans: ['"Montserrat"', '"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Lora"', 'Georgia', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet with Brand Kit -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-[#FFF6E6] text-[#2B1A12] antialiased selection:bg-[#C62828] selection:text-white">
+
+  <!-- Header / Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav-cream transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo - Vector Lockup from Brand Kit -->
+      <a href="#inicio" class="flex items-center gap-3.5 group">
+        <!-- Circular Badge SVG (Brand Kit Exact Replica) -->
+        <div class="w-12 h-12 rounded-full border-2 border-[#4B2E1E] bg-[#FFF6E6] flex items-center justify-center p-0.5 group-hover:scale-105 group-hover:border-[#C62828] transition-all shadow-sm">
+          <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" stroke="#4B2E1E" stroke-width="2.5" fill="#FFF6E6" />
+            <!-- Chef Hat -->
+            <path d="M43 24 C38 21 39 15 45 15 C46 11 54 11 55 15 C61 15 62 21 57 24 Z" stroke="#4B2E1E" stroke-width="1.8" fill="#FFF6E6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M44 24 L56 24 L55 27 L45 27 Z" fill="#4B2E1E" />
+            <!-- Wheat Stalk on right arch -->
+            <g transform="translate(71, 30) rotate(35) scale(0.4)" fill="#4B2E1E">
+              <path d="M0 0 Q6 20 8 45" stroke="#4B2E1E" stroke-width="2" fill="none" />
+              <path d="M-2 8 C-7 5 -8 0 -4 -3 C0 -2 1 3 -2 8 Z" />
+              <path d="M4 14 C10 11 11 5 7 2 C3 3 2 9 4 14 Z" />
+              <path d="M0 22 C-5 19 -7 13 -3 10 C1 11 3 17 0 22 Z" />
+              <path d="M5 28 C11 25 12 19 8 16 C4 17 3 23 5 28 Z" />
+            </g>
+            <!-- "Prestígio" text in cursive style -->
+            <text x="50" y="58" text-anchor="middle" font-family="'Playball', 'Satisfy', cursive" font-size="19" font-weight="bold" fill="#C62828">Prestígio</text>
+            <!-- "PADARIA" -->
+            <text x="50" y="70" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="6.5" font-weight="900" letter-spacing="2" fill="#4B2E1E">PADARIA</text>
+            <!-- "1986" -->
+            <text x="50" y="83" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="7" font-weight="800" letter-spacing="1.5" fill="#4B2E1E">1986</text>
+          </svg>
+        </div>
+        
+        <div class="flex flex-col">
+          <span class="text-2xl font-bold tracking-tight text-[#4B2E1E] group-hover:text-[#C62828] transition-colors leading-none font-script">
+            Prestígio
+          </span>
+          <span class="text-[9px] font-black tracking-[0.25em] text-[#C62828] uppercase mt-1">
+            PADARIA • DESDE 1986
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <nav class="hidden lg:flex items-center gap-7">
+        <a href="#inicio" class="text-sm font-bold text-[#C62828] flex flex-col items-center group">
+          <span>Início</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#C62828] mt-1 shadow-sm"></span>
+        </a>
+        <a href="#cardapio" class="text-sm font-semibold text-[#4B2E1E] hover:text-[#C62828] transition-colors">
+          Cardápio &amp; Preços
+        </a>
+        <a href="#destaques" class="text-sm font-semibold text-[#4B2E1E] hover:text-[#C62828] transition-colors">
+          Tradição &amp; Banners
+        </a>
+        <a href="#diferenciais" class="text-sm font-semibold text-[#4B2E1E] hover:text-[#C62828] transition-colors">
+          Sobre Nós
+        </a>
+        <a href="#horarios" class="text-sm font-semibold text-[#4B2E1E] hover:text-[#C62828] transition-colors">
+          Horários
+        </a>
+        <a href="#contato" class="text-sm font-semibold text-[#4B2E1E] hover:text-[#C62828] transition-colors">
+          Localização
+        </a>
+      </nav>
+
+      <!-- Right Action CTA Buttons -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a href="tel:1239377095" class="hidden xl:flex items-center gap-2 text-xs font-bold text-[#4B2E1E] hover:text-[#C62828] px-3.5 py-2 rounded-xl border border-[#E7C9A6] hover:bg-white transition-all">
+          <i data-lucide="phone" class="w-3.5 h-3.5 text-[#C62828]"></i>
+          <span>(12) 3937-7095</span>
+        </a>
+        <button data-open-modal class="text-sm font-bold bg-[#C62828] hover:bg-[#A81F1F] text-white px-5 py-2.5 rounded-xl transition-all duration-300 shadow-md shadow-[#C62828]/20 active:scale-95">
+          Fale Conosco
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" aria-label="Abrir menu" class="lg:hidden text-[#4B2E1E] hover:text-[#C62828] p-2 focus:outline-none">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-[#FFF6E6] border-b border-[#E7C9A6] px-6 py-6 shadow-xl">
+      <nav class="flex flex-col gap-4 text-base">
+        <a href="#inicio" class="text-[#C62828] font-bold">Início</a>
+        <a href="#cardapio" class="text-[#4B2E1E] hover:text-[#C62828] font-semibold">Cardápio &amp; Preços</a>
+        <a href="#destaques" class="text-[#4B2E1E] hover:text-[#C62828] font-semibold">Banners &amp; Tradição</a>
+        <a href="#diferenciais" class="text-[#4B2E1E] hover:text-[#C62828] font-semibold">Sobre a Padaria</a>
+        <a href="#horarios" class="text-[#4B2E1E] hover:text-[#C62828] font-semibold">Horários de Funcionamento</a>
+        <a href="#contato" class="text-[#4B2E1E] hover:text-[#C62828] font-semibold">Contato &amp; Endereço</a>
+        
+        <div class="pt-4 border-t border-[#E7C9A6] flex flex-col gap-3">
+          <a href="https://wa.me/551239377095" target="_blank" class="w-full flex items-center justify-center gap-2 bg-[#C62828] text-white font-bold py-3 rounded-xl shadow-md">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>WhatsApp (12) 3937-7095</span>
+          </a>
+          <a href="tel:1239377095" class="w-full flex items-center justify-center gap-2 bg-white border border-[#E7C9A6] text-[#4B2E1E] font-bold py-3 rounded-xl">
+            <i data-lucide="phone" class="w-4 h-4 text-[#C62828]"></i>
+            <span>Ligar para a Padaria</span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section (Exact Composition of the Brand Kit Banner) -->
+  <section id="inicio" class="relative min-h-[90vh] flex items-center pt-28 pb-16 hero-bakery-bg overflow-hidden border-b border-[#E7C9A6]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full relative z-10">
+      
+      <!-- Main Brand Banner Card (Modeled after the Brand Kit Header) -->
+      <div class="relative bg-white/85 backdrop-blur-md rounded-3xl border border-[#E7C9A6] p-6 sm:p-10 lg:p-12 shadow-xl shadow-[#4B2E1E]/5 overflow-hidden">
+        
+        <!-- Subtle Red Ribbon Accent at top -->
+        <div class="absolute top-0 left-0 right-0 h-2 bg-[#C62828]"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          <!-- Column 1: Big Circular Official Brand Badge (from Brand Kit) -->
+          <div class="lg:col-span-4 flex flex-col items-center text-center">
+            <div class="relative w-44 sm:w-56 lg:w-64 aspect-square rounded-full border-4 border-[#4B2E1E] bg-[#FFF6E6] p-2 shadow-2xl hover:scale-105 transition-transform duration-300">
+              <svg viewBox="0 0 200 200" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Outer Border -->
+                <circle cx="100" cy="100" r="94" stroke="#4B2E1E" stroke-width="4.5" fill="#FFF6E6" />
+                
+                <!-- Chef Hat Icon at 12 o'clock -->
+                <path d="M86 48 C76 42 78 30 90 30 C92 22 108 22 110 30 C122 30 124 42 114 48 Z" stroke="#4B2E1E" stroke-width="3.5" fill="#FFF6E6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M88 48 L112 48 L110 54 L90 54 Z" fill="#4B2E1E" />
+                <line x1="95" y1="42" x2="95" y2="47" stroke="#4B2E1E" stroke-width="2"/>
+                <line x1="100" y1="40" x2="100" y2="47" stroke="#4B2E1E" stroke-width="2"/>
+                <line x1="105" y1="42" x2="105" y2="47" stroke="#4B2E1E" stroke-width="2"/>
+
+                <!-- Wheat Stalk Arching on the Right -->
+                <g transform="translate(144, 58) rotate(35) scale(0.8)" fill="#4B2E1E">
+                  <path d="M0 0 Q10 25 15 50" stroke="#4B2E1E" stroke-width="3" fill="none" />
+                  <path d="M-2 10 C-8 6 -10 0 -5 -4 C0 -3 2 4 -2 10 Z" />
+                  <path d="M5 16 C12 12 14 6 9 2 C4 3 3 10 5 16 Z" />
+                  <path d="M0 24 C-6 20 -8 14 -3 10 C2 11 4 18 0 24 Z" />
+                  <path d="M7 30 C14 26 16 20 11 16 C6 17 5 24 7 30 Z" />
+                  <path d="M2 38 C-4 34 -6 28 -1 24 C4 25 6 32 2 38 Z" />
+                  <path d="M9 44 C16 40 18 34 13 30 C8 31 7 38 9 44 Z" />
+                </g>
+
+                <!-- "Prestígio" in Signature Red Script -->
+                <text x="100" y="116" text-anchor="middle" font-family="'Playball', 'Satisfy', cursive" font-size="38" font-weight="bold" fill="#C62828">Prestígio</text>
+                
+                <!-- "PADARIA" in Bold All-Caps Sans -->
+                <text x="100" y="140" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="13" font-weight="900" letter-spacing="4" fill="#4B2E1E">PADARIA</text>
+                
+                <!-- "1986" Foundation Date -->
+                <text x="100" y="165" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="14" font-weight="800" letter-spacing="3" fill="#4B2E1E">1986</text>
+              </svg>
+            </div>
+            
+            <div class="mt-4 flex flex-col items-center gap-1.5">
+              <span class="text-xs font-black tracking-[0.25em] text-[#4B2E1E] uppercase">
+                TRADIÇÃO &amp; FAMÍLIA
+              </span>
+              <div id="hero-live-badge"></div>
+            </div>
+          </div>
+
+          <!-- Column 2: Headline, Slogan & Curved Red Swoosh from Brand Kit -->
+          <div class="lg:col-span-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+            
+            <!-- Slogan Principal do Brand Kit -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-normal text-[#4B2E1E] leading-[1.12] font-script mb-3">
+              Sabor e tradição<br class="hidden sm:inline">
+              <span class="text-[#C62828]">em cada detalhe!</span>
+            </h1>
+
+            <!-- Curved Red Swoosh Element (Exact brand element from kit) -->
+            <div class="w-56 sm:w-72 h-4 my-2 mb-4">
+              <svg viewBox="0 0 280 16" fill="none" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2 13 C80 1 200 1 278 13 C200 7 80 7 2 13 Z" fill="#C62828" />
+              </svg>
+            </div>
+
+            <!-- Subtítulo Oficial do Brand Kit -->
+            <div class="flex items-center gap-3 my-2 mb-6">
+              <span class="hidden sm:inline-block w-8 sm:w-12 h-[1.5px] bg-[#4B2E1E]/40"></span>
+              <p class="text-[#4B2E1E] text-base sm:text-lg font-medium tracking-wide">
+                Pães, doces e muito mais para deixar seu dia ainda melhor.
+              </p>
+              <span class="hidden sm:inline-block w-8 sm:w-12 h-[1.5px] bg-[#4B2E1E]/40"></span>
+            </div>
+
+            <p class="text-[#6B4E3D] text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
+              Desde 1986 servindo o melhor pão francês, cafés passados na hora, lanches na chapa caprichados, 
+              sucos naturais e saborosas <strong class="text-[#4B2E1E] font-bold">pizzas artesanais</strong> no Jardim Alvorada em São José dos Campos.
+            </p>
+
+            <!-- CTA Buttons com as Cores da Paleta -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 w-full">
+              <!-- Botão Vermelho Prestígio -->
+              <a href="#cardapio" class="inline-flex items-center gap-2.5 bg-[#C62828] hover:bg-[#A81F1F] text-white font-bold px-7 py-4 rounded-xl text-sm sm:text-base transition-all duration-300 shadow-lg shadow-[#C62828]/25 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0">
+                <span>Explorar o Cardápio</span>
+                <i data-lucide="arrow-up-right" class="w-4 h-4 stroke-[2.5]"></i>
+              </a>
+
+              <!-- Botão WhatsApp / Telefone -->
+              <a href="https://wa.me/551239377095?text=Ol%C3%A1%2C%20Padaria%20Prest%C3%ADgio!%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 bg-white hover:bg-[#FFF6E6] text-[#4B2E1E] font-bold text-sm sm:text-base py-3.5 px-6 rounded-xl border-2 border-[#4B2E1E] transition-all hover:border-[#C62828] hover:text-[#C62828] shadow-sm group">
+                <i data-lucide="message-circle" class="w-4 h-4 text-[#C62828] group-hover:scale-110 transition-transform"></i>
+                <span>WhatsApp: (12) 3937-7095</span>
+              </a>
+            </div>
+
+            <!-- Ícones Lineares do Brand Kit (Pão, Cupcake, Bolo, Café, Trigo) -->
+            <div class="mt-8 pt-6 border-t border-[#E7C9A6]/60 w-full flex flex-wrap items-center justify-center lg:justify-start gap-6 sm:gap-8 text-[#4B2E1E]">
+              <div class="flex items-center gap-2 text-xs font-bold">
+                <i data-lucide="croissant" class="w-4 h-4 text-[#C62828]"></i>
+                <span>Pães Quentinhos</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs font-bold">
+                <i data-lucide="coffee" class="w-4 h-4 text-[#C62828]"></i>
+                <span>Café Especial</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs font-bold">
+                <i data-lucide="cake" class="w-4 h-4 text-[#C62828]"></i>
+                <span>Doces Artesanais</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs font-bold">
+                <i data-lucide="pizza" class="w-4 h-4 text-[#C62828]"></i>
+                <span>Pizzas da Noite</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Seção Modelos de Banners (Destaques Oficiais do Brand Kit) -->
+  <section id="destaques" class="py-16 sm:py-20 bg-[#FFF6E6]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-black tracking-[0.25em] text-[#C62828] uppercase">
+          MODELOS DE BANNERS &amp; TRADIÇÃO
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-normal text-[#4B2E1E] font-script mt-1">
+          Nossa marca em cada momento
+        </h2>
+        <div class="w-32 h-2 mx-auto my-2">
+          <svg viewBox="0 0 160 12" fill="none" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10 C40 1 120 1 158 10 C120 5 40 5 2 10 Z" fill="#C62828" />
+          </svg>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-7">
+        
+        <!-- Banner 1: Pães fresquinhos todos os dias! -->
+        <div class="relative bg-white rounded-3xl border border-[#E7C9A6] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+          <div class="p-6 pb-2 text-center">
+            <h3 class="text-2xl sm:text-3xl font-normal text-[#4B2E1E] font-script group-hover:text-[#C62828] transition-colors">
+              Pães fresquinhos todos os dias!
+            </h3>
+            <p class="text-xs text-[#6B4E3D] mt-1 font-medium">
+              Fornadas a cada 30 minutos com casquinha crocante e miolo fofinho.
+            </p>
+          </div>
+
+          <div class="relative h-56 w-full mt-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Pães fresquinhos todos os dias" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <!-- Curved Red Bottom Wave Element (From Brand Kit) -->
+            <div class="absolute bottom-0 left-0 right-0 h-10 pointer-events-none">
+              <svg viewBox="0 0 500 60" preserveAspectRatio="none" class="w-full h-full fill-[#C62828]">
+                <path d="M0,25 C150,60 350,-10 500,30 L500,60 L0,60 Z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner 2: Doces que adoçam a vida! -->
+        <div class="relative bg-white rounded-3xl border border-[#E7C9A6] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+          <div class="p-6 pb-2 text-center">
+            <h3 class="text-2xl sm:text-3xl font-normal text-[#4B2E1E] font-script group-hover:text-[#C62828] transition-colors">
+              Doces que adoçam a vida!
+            </h3>
+            <p class="text-xs text-[#6B4E3D] mt-1 font-medium">
+              Sonhos com creme de baunilha, bolos recheados e confeitaria fina.
+            </p>
+          </div>
+
+          <div class="relative h-56 w-full mt-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Doces que adoçam a vida" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <!-- Curved Red Bottom Wave Element -->
+            <div class="absolute bottom-0 left-0 right-0 h-10 pointer-events-none">
+              <svg viewBox="0 0 500 60" preserveAspectRatio="none" class="w-full h-full fill-[#C62828]">
+                <path d="M0,25 C150,60 350,-10 500,30 L500,60 L0,60 Z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Banner 3: Qualidade e tradição desde 1986! -->
+        <div class="relative bg-white rounded-3xl border border-[#E7C9A6] overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group flex flex-col justify-between">
+          <div class="p-6 pb-2 text-center">
+            <h3 class="text-2xl sm:text-3xl font-normal text-[#4B2E1E] font-script group-hover:text-[#C62828] transition-colors">
+              Qualidade e tradição desde 1986!
+            </h3>
+            <p class="text-xs text-[#6B4E3D] mt-1 font-medium">
+              Quase 40 anos de receita de família no Jardim Alvorada em SJC.
+            </p>
+          </div>
+
+          <div class="relative h-56 w-full mt-3 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Qualidade e tradição desde 1986" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <!-- Curved Red Bottom Wave Element -->
+            <div class="absolute bottom-0 left-0 right-0 h-10 pointer-events-none">
+              <svg viewBox="0 0 500 60" preserveAspectRatio="none" class="w-full h-full fill-[#C62828]">
+                <path d="M0,25 C150,60 350,-10 500,30 L500,60 L0,60 Z"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Cardápio / Menu Section -->
+  <section id="cardapio" class="py-20 sm:py-24 bg-white border-y border-[#E7C9A6] relative">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 text-[#C62828] text-xs font-black tracking-widest uppercase mb-2">
+            <span class="w-2 h-2 rounded-full bg-[#C62828]"></span>
+            CARDÁPIO SELECIONADO &amp; PREÇOS OFICIAIS
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#4B2E1E] font-script">
+            Pão na chapa, cafés, pizzas &amp; <span class="text-[#C62828]">sucos naturais</span>
+          </h2>
+          <p class="text-[#6B4E3D] text-sm sm:text-base mt-2 max-w-2xl leading-relaxed">
+            Consulte os preços oficiais da Padaria Prestígio. Peça direto no balcão ou envie seu pedido pronto pelo WhatsApp!
+          </p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <div id="store-status-badge"></div>
+          
+          <!-- Trigger to view physical menu photos -->
+          <button data-open-menu-photo data-img-src="assets/cardapio-matinais.jpg" data-img-title="Cardápio Físico Oficial: Matinais & Cafés" class="inline-flex items-center gap-2 text-xs font-bold text-[#4B2E1E] hover:text-[#C62828] bg-[#FFF6E6] hover:bg-[#F3DEC5] px-4 py-2 rounded-full border border-[#E7C9A6] transition-all shadow-sm">
+            <i data-lucide="file-text" class="w-3.5 h-3.5 text-[#C62828]"></i>
+            <span>Ver Cardápio Físico</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Category Filters Container -->
+      <div class="mb-10 space-y-4">
+        <!-- Live Instant Search Bar -->
+        <div class="relative max-w-md">
+          <i data-lucide="search" class="w-4 h-4 text-[#8C6B55] absolute left-4 top-1/2 -translate-y-1/2"></i>
+          <input type="text" id="menu-search-input" placeholder="Buscar no cardápio (ex: requeijão, catupiry, expresso, pizza)..." class="w-full bg-[#FFFBF5] border border-[#E7C9A6] rounded-2xl pl-11 pr-4 py-3 text-sm text-[#2B1A12] placeholder:text-[#9A7D6A] focus:outline-none focus:border-[#C62828] transition-colors shadow-inner">
+        </div>
+
+        <!-- Categories Filter Tabs -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-3 scrollbar-none">
+          <button data-category="todos" class="category-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap bg-[#C62828] text-white border border-[#C62828] shadow-md shadow-[#C62828]/20">
+            Todos os Itens
+          </button>
+          <button data-category="chapa" class="category-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap bg-white text-[#4B2E1E] border border-[#E7C9A6] hover:bg-[#FFF6E6]">
+            🥪 Chapa &amp; Matinais
+          </button>
+          <button data-category="cafes" class="category-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap bg-white text-[#4B2E1E] border border-[#E7C9A6] hover:bg-[#FFF6E6]">
+            ☕ Cafés &amp; Bebidas Quentes
+          </button>
+          <button data-category="pizzas" class="category-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap bg-white text-[#4B2E1E] border border-[#E7C9A6] hover:bg-[#FFF6E6]">
+            🍕 Pizzas Artesanais
+          </button>
+          <button data-category="sucos" class="category-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap bg-white text-[#4B2E1E] border border-[#E7C9A6] hover:bg-[#FFF6E6]">
+            🥤 Sucos, Vitaminas &amp; Açaí
+          </button>
+          <button data-category="padaria" class="category-tab px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition-all whitespace-nowrap bg-white text-[#4B2E1E] border border-[#E7C9A6] hover:bg-[#FFF6E6]">
+            🥖 Pães &amp; Confeitaria
+          </button>
+        </div>
+      </div>
+
+      <!-- Menu Items Dynamic Grid -->
+      <div id="menu-items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <!-- Rendered by app.js using the Brand Kit Colors -->
+      </div>
+
+      <!-- Encomendas & Pedidos Rápidos Banner -->
+      <div class="mt-14 bg-gradient-to-r from-[#FFF6E6] via-[#FFFBF5] to-[#FFF6E6] border-2 border-[#E7C9A6] rounded-3xl p-8 sm:p-12 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-lg relative overflow-hidden">
+        <div class="space-y-3 max-w-xl text-center lg:text-left">
+          <span class="inline-block bg-[#C62828]/10 text-[#C62828] text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-lg border border-[#C62828]/30">
+            ENCOMENDAS &amp; PEDIDOS RÁPIDOS
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-normal text-[#4B2E1E] font-script">
+            Coffee break, festas e pizzas para retirar!
+          </h3>
+          <p class="text-[#6B4E3D] text-sm leading-relaxed">
+            Aceitamos encomendas de mini salgados, pães de queijo em quantidade, bolos confeitados e pizzas quentinhas com entrega ágil no Jardim Alvorada.
+          </p>
+        </div>
+
+        <a href="https://wa.me/551239377095?text=Ol%C3%A1%2C%20Padaria%20Prest%C3%ADgio!%20Gostaria%20de%20fazer%20uma%20encomenda%20%2F%20pedido." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#C62828] hover:bg-[#A81F1F] text-white font-extrabold px-8 py-4 rounded-2xl text-base shadow-xl shadow-[#C62828]/25 transition-all hover:scale-105 whitespace-nowrap active:scale-100">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          <span>Pedir no WhatsApp (12) 3937-7095</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Diferenciais / Sobre Nós ("Nossa Tradição desde 1986") -->
+  <section id="diferenciais" class="py-20 sm:py-24 bg-[#FFF6E6]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-black tracking-[0.25em] text-[#C62828] uppercase">
+          NOSSA TRADIÇÃO &amp; CARINHO
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-normal text-[#4B2E1E] font-script mt-2">
+          Por que a sua parada na <span class="text-[#C62828]">Prestígio</span> é especial?
+        </h2>
+        <div class="w-28 h-2 mx-auto my-2">
+          <svg viewBox="0 0 160 12" fill="none" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2 10 C40 1 120 1 158 10 C120 5 40 5 2 10 Z" fill="#C62828" />
+          </svg>
+        </div>
+        <p class="text-[#6B4E3D] text-sm sm:text-base mt-2">
+          Mais do que uma padaria, o ponto de encontro tradicional no Jardim Alvorada em São José dos Campos desde 1986.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Feature 1 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl hover:border-[#C62828] transition-all duration-300 group hover:-translate-y-1 shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-xl bg-[#FFF6E6] text-[#C62828] border border-[#E7C9A6] flex items-center justify-center mb-5 group-hover:bg-[#C62828] group-hover:text-white transition-all">
+            <i data-lucide="wheat" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#4B2E1E] mb-2">Fornadas o Dia Todo</h3>
+          <p class="text-[#6B4E3D] text-sm leading-relaxed">
+            Pão francês com casca dourada estalando e miolo leve. Fornada nova saindo a cada 30 minutos para você pegar quentinho.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl hover:border-[#C62828] transition-all duration-300 group hover:-translate-y-1 shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-xl bg-[#FFF6E6] text-[#C62828] border border-[#E7C9A6] flex items-center justify-center mb-5 group-hover:bg-[#C62828] group-hover:text-white transition-all">
+            <i data-lucide="coffee" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#4B2E1E] mb-2">Chapa &amp; Cafeteria</h3>
+          <p class="text-[#6B4E3D] text-sm leading-relaxed">
+            Do café coado ao pão na chapa com requeijão farto tostadinho, queijo derretido e misto quente impecável.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl hover:border-[#C62828] transition-all duration-300 group hover:-translate-y-1 shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-xl bg-[#FFF6E6] text-[#C62828] border border-[#E7C9A6] flex items-center justify-center mb-5 group-hover:bg-[#C62828] group-hover:text-white transition-all">
+            <i data-lucide="pizza" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#4B2E1E] mb-2">Pizzas Artesanais</h3>
+          <p class="text-[#6B4E3D] text-sm leading-relaxed">
+            No final da tarde e noite, nosso forno ganha vida com pizzas de massa artesanal crocante e recheio generoso.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl hover:border-[#C62828] transition-all duration-300 group hover:-translate-y-1 shadow-sm hover:shadow-md">
+          <div class="w-12 h-12 rounded-xl bg-[#FFF6E6] text-[#C62828] border border-[#E7C9A6] flex items-center justify-center mb-5 group-hover:bg-[#C62828] group-hover:text-white transition-all">
+            <i data-lucide="map-pin" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#4B2E1E] mb-2">Fácil Acesso no Alvorada</h3>
+          <p class="text-[#6B4E3D] text-sm leading-relaxed">
+            Localização privilegiada na Av. Cassiano Ricardo, 1560 com Av. da Liberdade, com estacionamento e conforto.
+          </p>
+        </div>
+      </div>
+
+      <!-- Preview do Brand Kit da Padaria -->
+      <div class="mt-14 bg-white border border-[#E7C9A6] rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-[#FFF6E6] border border-[#E7C9A6] flex items-center justify-center text-[#C62828] shrink-0">
+            <i data-lucide="palette" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-[#4B2E1E]">Manual de Identidade Visual &amp; Brand Kit 1986</h4>
+            <p class="text-xs text-[#6B4E3D]">Conheça os elementos gráficos, paleta de cores e tipografia oficial da Padaria Prestígio.</p>
+          </div>
+        </div>
+        <button data-open-menu-photo data-img-src="assets/brand-kit.jpg" data-img-title="Brand Kit Oficial - Padaria Prestígio 1986" class="px-5 py-2.5 rounded-xl bg-[#4B2E1E] hover:bg-[#2B1A12] text-white font-bold text-xs sm:text-sm transition-all whitespace-nowrap shadow-sm">
+          Visualizar Brand Kit
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Horários de Funcionamento em Destaque -->
+  <section id="horarios" class="py-20 bg-white border-y border-[#E7C9A6]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-5 space-y-4">
+          <span class="text-xs font-black tracking-[0.25em] text-[#C62828] uppercase">
+            PONTUALIDADE &amp; ATENDIMENTO
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-normal text-[#4B2E1E] font-script">
+            Horários de Funcionamento
+          </h2>
+          <p class="text-[#6B4E3D] text-sm sm:text-base leading-relaxed">
+            Abrimos bem cedinho às <strong class="text-[#4B2E1E]">06:00 da manhã</strong> todos os dias da semana para garantir o seu pão fresco e café antes do trabalho.
+          </p>
+
+          <div class="p-5 rounded-2xl bg-[#FFF6E6] border border-[#E7C9A6] space-y-3">
+            <div class="flex items-center gap-3 text-[#4B2E1E] font-bold text-sm">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>Segunda a Sábado: 06:00 às 22:00</span>
+            </div>
+            <div class="flex items-center gap-3 text-[#4B2E1E] font-bold text-sm">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>Domingos: 06:00 às 20:00</span>
+            </div>
+            <div class="flex items-center gap-3 text-[#6B4E3D] text-xs">
+              <i data-lucide="info" class="w-4 h-4 text-[#C62828]"></i>
+              <span>Feriados podem ter horários diferenciados avisados com antecedência.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="bg-[#FFFBF5] border-2 border-[#E7C9A6] rounded-3xl p-6 sm:p-8 shadow-md overflow-hidden">
+            <h3 class="text-lg font-bold text-[#4B2E1E] mb-5 flex items-center justify-between">
+              <span>Programação Semanal</span>
+              <span class="text-xs font-semibold text-[#C62828] bg-white px-3 py-1 rounded-full border border-[#E7C9A6]">São José dos Campos - SP</span>
+            </h3>
+
+            <div class="space-y-2.5">
+              <!-- Segunda -->
+              <div data-day-index="1" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Segunda-feira</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 22:00</span>
+              </div>
+
+              <!-- Terça -->
+              <div data-day-index="2" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Terça-feira</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 22:00</span>
+              </div>
+
+              <!-- Quarta -->
+              <div data-day-index="3" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Quarta-feira</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 22:00</span>
+              </div>
+
+              <!-- Quinta -->
+              <div data-day-index="4" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Quinta-feira</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 22:00</span>
+              </div>
+
+              <!-- Sexta -->
+              <div data-day-index="5" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Sexta-feira</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 22:00</span>
+              </div>
+
+              <!-- Sábado -->
+              <div data-day-index="6" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Sábado</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 22:00</span>
+              </div>
+
+              <!-- Domingo -->
+              <div data-day-index="0" class="flex items-center justify-between p-3.5 rounded-xl border border-[#E7C9A6]/50 bg-white transition-all">
+                <div class="flex items-center gap-3">
+                  <span class="text-sm font-bold text-[#4B2E1E]">Domingo</span>
+                  <span class="today-badge hidden text-[10px] font-black bg-[#C62828] text-white px-2 py-0.5 rounded-full uppercase">Hoje</span>
+                </div>
+                <span class="text-sm font-mono text-[#C62828] font-black">06:00 – 20:00</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Avaliações dos Clientes -->
+  <section class="py-20 bg-[#FFF6E6]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-14">
+        <div class="flex items-center justify-center gap-1 text-[#C62828] mb-3">
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+          <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-normal text-[#4B2E1E] font-script">
+          O que dizem sobre nossa tradição
+        </h2>
+        <p class="text-[#6B4E3D] text-sm mt-1">
+          Depoimentos de quem frequenta nosso balcão todos os dias em São José dos Campos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Review 1 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-[#C62828] mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-[#4B2E1E] text-sm leading-relaxed mb-6 italic">
+              "Melhor pão francês da região da Cassiano Ricardo. O pão de queijo com requeijão na chapa é maravilhoso e o atendimento sempre muito acolhedor!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-[#E7C9A6]/40">
+            <div class="w-9 h-9 rounded-full bg-[#FFF6E6] text-[#C62828] font-bold flex items-center justify-center text-xs border border-[#E7C9A6]">
+              MR
+            </div>
+            <div>
+              <h4 class="text-[#4B2E1E] text-sm font-bold">Marcos Ramos</h4>
+              <p class="text-xs text-[#8C6B55]">Jardim Alvorada • SJC</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-[#C62828] mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-[#4B2E1E] text-sm leading-relaxed mb-6 italic">
+              "As pizzas da Prestígio surpreendem muito! A pizza de frango com catupiry é farta e a massa é super leve. Tradição nota dez!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-[#E7C9A6]/40">
+            <div class="w-9 h-9 rounded-full bg-[#FFF6E6] text-[#C62828] font-bold flex items-center justify-center text-xs border border-[#E7C9A6]">
+              CS
+            </div>
+            <div>
+              <h4 class="text-[#4B2E1E] text-sm font-bold">Camila Silveira</h4>
+              <p class="text-xs text-[#8C6B55]">Moradora de São José dos Campos</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white border border-[#E7C9A6] p-7 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-1 text-[#C62828] mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+            <p class="text-[#4B2E1E] text-sm leading-relaxed mb-6 italic">
+              "Abrirem às 6h da manhã salva meu dia. O café expresso com leite e pão na chapa nunca falham. É um prestígio ser cliente aqui!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-[#E7C9A6]/40">
+            <div class="w-9 h-9 rounded-full bg-[#FFF6E6] text-[#C62828] font-bold flex items-center justify-center text-xs border border-[#E7C9A6]">
+              FA
+            </div>
+            <div>
+              <h4 class="text-[#4B2E1E] text-sm font-bold">Fernando Almeida</h4>
+              <p class="text-xs text-[#8C6B55]">Cliente Diário</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contato, Endereço & Localização -->
+  <section id="contato" class="py-24 bg-white border-t border-[#E7C9A6]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div>
+          <span class="text-xs font-black tracking-[0.25em] text-[#C62828] uppercase">
+            VENHA NOS VISITAR
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-normal text-[#4B2E1E] font-script mt-2 mb-6">
+            O aroma de pão quentinho espera por você.
+          </h2>
+          <p class="text-[#6B4E3D] text-base mb-8 leading-relaxed">
+            Estamos estrategicamente localizados no Jardim Alvorada, esquina com fácil acesso pela Avenida Cassiano Ricardo e Avenida da Liberdade.
+          </p>
+
+          <div class="space-y-6">
+            <!-- Endereço -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#FFF6E6] border border-[#E7C9A6] flex items-center justify-center text-[#C62828] shrink-0 shadow-sm">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-[#4B2E1E] font-bold text-base">Endereço Completo</h4>
+                <p class="text-[#4B2E1E] text-sm mt-0.5 font-medium">
+                  Av. Cassiano Ricardo, 1560, Av. da Liberdade, 812
+                </p>
+                <p class="text-[#6B4E3D] text-xs">Jardim Alvorada, São José dos Campos - SP, 12240-540</p>
+                <div class="mt-2">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Av.+Cassiano+Ricardo+1560+Jardim+Alvorada+Sao+Jose+dos+Campos+SP" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#C62828] hover:underline">
+                    <span>Abrir rota no Google Maps</span>
+                    <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Horários de Funcionamento -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#FFF6E6] border border-[#E7C9A6] flex items-center justify-center text-[#C62828] shrink-0 shadow-sm">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-[#4B2E1E] font-bold text-base">Atendimento</h4>
+                <p class="text-[#4B2E1E] text-sm mt-0.5">
+                  Segunda a Sábado: <strong class="text-[#C62828]">06:00 às 22:00</strong>
+                </p>
+                <p class="text-[#6B4E3D] text-xs">Domingos: <strong class="text-[#C62828]">06:00 às 20:00</strong></p>
+              </div>
+            </div>
+
+            <!-- Telefone & WhatsApp -->
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#FFF6E6] border border-[#E7C9A6] flex items-center justify-center text-[#C62828] shrink-0 shadow-sm">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-[#4B2E1E] font-bold text-base">Telefone Fixo &amp; WhatsApp</h4>
+                <div class="flex flex-wrap items-center gap-3 mt-1">
+                  <a href="tel:1239377095" class="text-[#4B2E1E] font-black text-base hover:text-[#C62828] transition-colors">
+                    (12) 3937-7095
+                  </a>
+                  <a href="https://wa.me/551239377095" target="_blank" class="inline-flex items-center gap-1 text-xs font-bold text-white bg-[#C62828] hover:bg-[#A81F1F] px-3.5 py-1.5 rounded-full transition-all shadow-sm">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                    <span>Conversar no WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Contact / WhatsApp Quick Dispatcher -->
+        <div class="bg-[#FFF6E6] border-2 border-[#E7C9A6] p-7 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-36 h-36 bg-[#C62828]/5 rounded-full blur-2xl pointer-events-none"></div>
+
+          <h3 class="text-2xl font-bold text-[#4B2E1E] mb-2 font-script text-3xl">Envie uma mensagem rápida</h3>
+          <p class="text-[#6B4E3D] text-sm mb-6">
+            Dúvidas sobre encomendas, cardápio, fornadas ou pedidos de pizza? Envie direto para o nosso balcão.
+          </p>
+
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <label for="form-name" class="block text-xs font-bold text-[#4B2E1E] uppercase tracking-wider mb-2">Seu Nome</label>
+              <input type="text" id="form-name" required placeholder="Como podemos te chamar?" class="w-full bg-white border border-[#E7C9A6] rounded-xl px-4 py-3 text-[#2B1A12] text-sm focus:outline-none focus:border-[#C62828] transition-colors placeholder:text-[#9A7D6A]">
+            </div>
+
+            <div>
+              <label for="form-motive" class="block text-xs font-bold text-[#4B2E1E] uppercase tracking-wider mb-2">Assunto / Pedido</label>
+              <select id="form-motive" class="w-full bg-white border border-[#E7C9A6] rounded-xl px-4 py-3 text-[#2B1A12] text-sm focus:outline-none focus:border-[#C62828] transition-colors">
+                <option value="Fazer Pedido pelo Cardápio">Fazer Pedido pelo Cardápio</option>
+                <option value="Encomenda de Salgados e Pães">Encomenda de Salgados / Pães de Queijo</option>
+                <option value="Pedido de Pizza para a Noite">Pedido de Pizza Noturna</option>
+                <option value="Encomenda de Bolo / Confeitaria">Encomenda de Bolo de Aniversário</option>
+                <option value="Outras Dúvidas e Informações">Outras Dúvidas e Informações</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="form-message" class="block text-xs font-bold text-[#4B2E1E] uppercase tracking-wider mb-2">Detalhes da Mensagem</label>
+              <textarea id="form-message" rows="3" required placeholder="Escreva o que você precisa ou quais itens gostaria de pedir..." class="w-full bg-white border border-[#E7C9A6] rounded-xl px-4 py-3 text-[#2B1A12] text-sm focus:outline-none focus:border-[#C62828] transition-colors placeholder:text-[#9A7D6A]"></textarea>
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2.5 bg-[#C62828] hover:bg-[#A81F1F] text-white font-extrabold py-4 rounded-xl transition-all shadow-lg shadow-[#C62828]/25 hover:scale-[1.01] active:scale-100">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Enviar via WhatsApp da Padaria</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer (Exact Replica of "ASSINATURA DIGITAL / RODAPÉ" from Brand Kit) -->
+  <footer class="bg-[#2B1A12] text-white py-12 border-t-4 border-[#C62828]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      
+      <!-- Assinatura Digital do Brand Kit: Logo + Vertical Line + Script Name + Slogan + Social Icons -->
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-white/10">
+        
+        <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+          <!-- Circular Badge Logo (White/Cream Variant) -->
+          <div class="w-16 h-16 rounded-full border-2 border-white/80 bg-[#FFF6E6] p-1 flex items-center justify-center shrink-0 shadow-lg">
+            <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="46" stroke="#4B2E1E" stroke-width="2.5" fill="#FFF6E6" />
+              <path d="M43 24 C38 21 39 15 45 15 C46 11 54 11 55 15 C61 15 62 21 57 24 Z" stroke="#4B2E1E" stroke-width="1.8" fill="#FFF6E6"/>
+              <path d="M44 24 L56 24 L55 27 L45 27 Z" fill="#4B2E1E" />
+              <text x="50" y="58" text-anchor="middle" font-family="'Playball', 'Satisfy', cursive" font-size="19" font-weight="bold" fill="#C62828">Prestígio</text>
+              <text x="50" y="70" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="6.5" font-weight="900" letter-spacing="2" fill="#4B2E1E">PADARIA</text>
+              <text x="50" y="83" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="7" font-weight="800" letter-spacing="1.5" fill="#4B2E1E">1986</text>
+            </svg>
+          </div>
+
+          <!-- Vertical Divider -->
+          <div class="hidden sm:block w-[1.5px] h-12 bg-white/20"></div>
+
+          <!-- Script Title and Subtitle from Brand Kit -->
+          <div>
+            <span class="text-3xl font-normal text-white font-script block leading-none">
+              Prestígio Padaria
+            </span>
+            <span class="text-xs text-[#E7C9A6] tracking-wider uppercase font-semibold mt-1 block">
+              Sabor e tradição desde 1986
+            </span>
+          </div>
+        </div>
+
+        <!-- Social Icons from Brand Kit -->
+        <div class="flex items-center gap-5 text-white/90">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#C62828] flex items-center justify-center transition-colors">
+            <i data-lucide="instagram" class="w-5 h-5"></i>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#C62828] flex items-center justify-center transition-colors">
+            <i data-lucide="facebook" class="w-5 h-5"></i>
+          </a>
+          <a href="https://wa.me/551239377095" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-white/10 hover:bg-[#C62828] flex items-center justify-center transition-colors">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Footer Bottom Info -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60 text-center sm:text-left">
+        <p>
+          &copy; 2026 Padaria Prestígio 1986. Todos os direitos reservados. Av. Cassiano Ricardo, 1560 - Jardim Alvorada, São José dos Campos - SP.
+        </p>
+        <p class="text-white/80">
+          Telefone: <strong class="text-white">(12) 3937-7095</strong>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Action Button -->
+  <a href="https://wa.me/551239377095?text=Ol%C3%A1%2C%20Padaria%20Prest%C3%ADgio!%20Gostaria%20de%20atendimento." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Padaria Prestígio" class="fixed bottom-6 right-6 z-40 bg-[#C62828] hover:bg-[#A81F1F] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group border-2 border-white/50">
+    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white pulse-badge"></span>
+    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.288.043.088.072.19.014.305-.058.115-.087.187-.173.289l-.26.309c-.087.086-.179.18-.077.355.101.174.449.741.964 1.2.662.591 1.221.774 1.394.861.174.086.275.072.376-.044.102-.115.434-.506.55-.679.115-.174.231-.145.39-.087s1.011.477 1.184.564.289.13.332.203c.044.072.044.419-.1.824z"/>
+    </svg>
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 ease-in-out text-sm font-bold pl-0 group-hover:pl-2">
+      WhatsApp Prestígio
+    </span>
+  </a>
+
+  <!-- Cookie Consent Banner (Brand Kit Styled) -->
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 md:max-w-xl z-50 transition-all duration-500">
+    <div class="bg-white/95 backdrop-blur-xl border border-[#E7C9A6] rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-center sm:text-left">
+        <h4 class="text-sm font-bold text-[#4B2E1E] flex items-center gap-1.5 justify-center sm:justify-start">
+          <i data-lucide="cookie" class="w-4 h-4 text-[#C62828]"></i>
+          <span>Privacidade &amp; Experiência</span>
+        </h4>
+        <p class="text-xs text-[#6B4E3D] mt-1">
+          Utilizamos cookies para otimizar sua navegação no site da Padaria Prestígio 1986.
+        </p>
+      </div>
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" class="px-3.5 py-2 text-xs font-bold text-[#4B2E1E] hover:bg-[#FFF6E6] rounded-xl transition-all border border-[#E7C9A6]">
+          Necessários
+        </button>
+        <button type="button" class="px-5 py-2 text-xs font-bold text-white bg-[#C62828] hover:bg-[#A81F1F] rounded-xl transition-all shadow-sm">
+          Aceitar todos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Fale Conosco -->
+  <div id="contact-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/75 backdrop-blur-sm"></div>
+    <div class="modal-box relative bg-white border border-[#E7C9A6] w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl scale-95 transition-transform duration-300 z-10">
+      
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#FFF6E6] border border-[#E7C9A6] text-[#C62828] flex items-center justify-center">
+            <i data-lucide="phone-call" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-[#4B2E1E] font-script text-2xl leading-none">Fale com a Prestígio</h3>
+            <span class="text-xs text-[#8C6B55]">Desde 1986 • Jardim Alvorada</span>
+          </div>
+        </div>
+        <button id="close-modal-btn" class="text-[#8C6B55] hover:text-[#C62828] p-1 rounded-lg hover:bg-[#FFF6E6] transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-sm text-[#6B4E3D] mb-6 leading-relaxed">
+        Fale diretamente com nossa equipe para pedidos, encomendas de fornadas e pizzas artesanais:
+      </p>
+
+      <div class="space-y-3">
+        <a href="https://wa.me/551239377095?text=Ol%C3%A1%2C%20gostaria%20de%20fazer%20um%20pedido%20na%20Padaria%20Prest%C3%ADgio!" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#C62828] hover:bg-[#A81F1F] text-white font-extrabold py-3.5 rounded-xl transition-all shadow-md">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Conversar no WhatsApp</span>
+        </a>
+
+        <a href="tel:1239377095" class="w-full flex items-center justify-center gap-2.5 bg-[#FFF6E6] hover:bg-[#F3DEC5] text-[#4B2E1E] font-bold py-3.5 rounded-xl border border-[#E7C9A6] transition-all">
+          <i data-lucide="phone" class="w-4 h-4 text-[#C62828]"></i>
+          <span>Ligar (12) 3937-7095</span>
+        </a>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Cassiano+Ricardo+1560+Jardim+Alvorada+Sao+Jose+dos+Campos+SP" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-white hover:bg-[#FFF6E6] text-[#4B2E1E] font-medium py-3 rounded-xl border border-[#E7C9A6] text-xs transition-all">
+          <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#C62828]"></i>
+          <span>Ver Localização no Google Maps</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Visualizador de Imagens (Cardápios & Brand Kit) -->
+  <div id="menu-photo-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-3 sm:p-6">
+    <div id="menu-photo-backdrop" class="absolute inset-0 bg-black/85 backdrop-blur-md"></div>
+    <div class="photo-modal-box relative bg-white border border-[#E7C9A6] w-full max-w-4xl max-h-[92vh] rounded-3xl p-4 sm:p-6 shadow-2xl scale-95 transition-transform duration-300 z-10 flex flex-col">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-[#E7C9A6] mb-3">
+        <h3 id="photo-modal-title" class="text-base sm:text-lg font-bold text-[#4B2E1E] flex items-center gap-2">
+          <i data-lucide="book-open" class="w-4 h-4 text-[#C62828]"></i>
+          <span>Padaria Prestígio 1986</span>
+        </h3>
+        <button id="close-photo-modal-btn" class="text-[#8C6B55] hover:text-[#C62828] p-1 rounded-lg hover:bg-[#FFF6E6]">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="overflow-auto flex-1 rounded-xl bg-[#FFF6E6] flex items-center justify-center p-2 border border-[#E7C9A6]">
+        <img id="photo-modal-img" src="" alt="Visualização" class="max-w-full max-h-[72vh] object-contain rounded-lg shadow-md">
+      </div>
+
+      <div class="pt-3 flex flex-wrap items-center justify-between gap-2 text-xs text-[#6B4E3D]">
+        <span>Padaria Prestígio • Sabor e tradição desde 1986</span>
+        <a href="https://wa.me/551239377095" target="_blank" class="text-[#C62828] font-bold hover:underline flex items-center gap-1">
+          <span>Falar com o balcão no WhatsApp</span>
+          <i data-lucide="arrow-up-right" class="w-3 h-3"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icon Renderer -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

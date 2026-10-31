@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glacy • Café & Bistrô | Limeira - SP</title>
+  <meta name="description" content="Do almoço à pausa para o café. Pratos feitos, marmitex e opções especiais de cafeteria em Limeira, SP.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              300: '#fde68a',
+              400: '#fcd34d',
+              500: '#f5b324',
+              600: '#d99712',
+            },
+            dark: {
+              950: '#090a0d',
+              900: '#0c0e12',
+              850: '#11141a',
+              800: '#161922',
+              700: '#222735',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            grotesk: ['"Space Grotesk"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-dark-900 text-gray-100 antialiased selection:bg-[#f5b324] selection:text-black">
+
+  <!-- Left Side Vertical Brand Indicator -->
+  <div class="fixed left-3 top-1/2 -translate-y-1/2 z-40 hidden xl:flex items-center justify-center pointer-events-none opacity-40 hover:opacity-100 transition-opacity">
+    <span class="vertical-text text-[11px] tracking-[0.35em] font-semibold text-gray-400">
+      GLACY • LIMEIRA - CAFÉ &amp; BISTRÔ
+    </span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full border border-[#f5b324]/80 flex items-center justify-center text-[#f5b324] bg-[#f5b324]/5 group-hover:scale-105 group-hover:bg-[#f5b324]/10 transition-all">
+          <i data-lucide="coffee" class="w-5 h-5 text-[#f5b324]"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-bold tracking-tight text-white group-hover:text-[#f5b324] transition-colors leading-none">
+            Glacy
+          </span>
+          <span class="text-[9px] font-semibold tracking-widest text-[#f5b324] uppercase mt-1">
+            CAFÉ &amp; BISTRÔ
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <nav class="hidden md:flex items-center gap-9">
+        <a href="#inicio" class="text-sm font-medium text-white flex flex-col items-center group">
+          <span>Início</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#f5b324] mt-1 shadow-[0_0_8px_#f5b324]"></span>
+        </a>
+        <a href="#cardapio" class="text-sm font-medium text-gray-300 hover:text-[#f5b324] transition-colors">
+          Cardápio
+        </a>
+        <a href="#diferenciais" class="text-sm font-medium text-gray-300 hover:text-[#f5b324] transition-colors">
+          Sobre
+        </a>
+        <a href="#galeria" class="text-sm font-medium text-gray-300 hover:text-[#f5b324] transition-colors">
+          Galeria
+        </a>
+        <a href="#contato" class="text-sm font-medium text-gray-300 hover:text-[#f5b324] transition-colors">
+          Contato
+        </a>
+      </nav>
+
+      <!-- Right Action CTA Button -->
+      <div class="hidden md:flex items-center gap-4">
+        <button data-open-modal class="text-sm font-medium text-gray-200 border border-white/20 hover:border-[#f5b324] hover:text-[#f5b324] px-5 py-2.5 rounded-xl transition-all duration-300 hover:bg-white/5 shadow-sm active:scale-95">
+          Fale conosco
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" aria-label="Abrir menu" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-dark-950/95 border-b border-white/10 px-6 py-5 backdrop-blur-xl">
+      <nav class="flex flex-col gap-4 text-base">
+        <a href="#inicio" class="text-[#f5b324] font-medium">Início</a>
+        <a href="#cardapio" class="text-gray-300 hover:text-[#f5b324]">Cardápio</a>
+        <a href="#diferenciais" class="text-gray-300 hover:text-[#f5b324]">Sobre</a>
+        <a href="#galeria" class="text-gray-300 hover:text-[#f5b324]">Galeria</a>
+        <a href="#contato" class="text-gray-300 hover:text-[#f5b324]">Contato</a>
+        <div class="pt-3 border-t border-white/10">
+          <button data-open-modal class="w-full text-center text-sm font-semibold bg-[#f5b324] text-black py-3 rounded-xl">
+            Fale conosco
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="relative min-h-screen flex items-center pt-24 pb-20 hero-chalk-bg overflow-hidden">
+    <!-- Chalk Illustration Background Decor -->
+    <div class="chalkboard-art"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full relative z-10">
+      <div class="max-w-2xl">
+        
+        <!-- Badge / Subtitle -->
+        <div class="inline-flex items-center gap-2 mb-6">
+          <span class="w-2.5 h-2.5 bg-[#f5b324] inline-block rounded-[1px]"></span>
+          <span class="text-xs md:text-sm font-bold tracking-[0.22em] text-[#f5b324] uppercase">
+            SUA PAUSA TEM LUGAR AQUI
+          </span>
+        </div>
+
+        <!-- Main Display Headline (with styled serif accent) -->
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.08] mb-6">
+          Seu dia pede<br>
+          uma <span class="font-serif italic font-normal text-[#f5b324] drop-shadow-sm">boa refeição.</span>
+        </h1>
+
+        <!-- Subheading Paragraph -->
+        <p class="text-gray-300 text-lg sm:text-xl font-normal leading-relaxed mb-10 max-w-xl">
+          Do almoço à pausa para o café.<br class="hidden sm:inline">
+          Pratos feitos, marmitex e opções de cafeteria<br class="hidden sm:inline">
+          para acompanhar o seu dia.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-5">
+          <!-- Primary Golden Button -->
+          <a href="#cardapio" class="inline-flex items-center gap-2.5 bg-[#f5b324] hover:bg-[#e09f16] text-black font-bold px-7 py-4 rounded-xl text-base transition-all duration-300 shadow-lg shadow-[#f5b324]/20 hover:shadow-[#f5b324]/40 hover:-translate-y-0.5 active:translate-y-0">
+            <span>Explorar o cardápio</span>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 stroke-[2.5]"></i>
+          </a>
+
+          <!-- WhatsApp Direct Link Button -->
+          <a href="https://wa.me/5512974070207?text=Ol%C3%A1%2C%20Glacy%20Caf%C3%A9!%20Vim%20pelo%20site%20e%20gostaria%20de%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-gray-200 hover:text-[#f5b324] font-medium text-base py-3 px-4 rounded-xl hover:bg-white/5 transition-all group">
+            <i data-lucide="message-circle" class="w-5 h-5 text-[#f5b324] group-hover:scale-110 transition-transform"></i>
+            <span>WhatsApp: <strong class="font-semibold text-white group-hover:text-[#f5b324] transition-colors">(12) 97407-0207</strong></span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4 text-gray-400 group-hover:text-[#f5b324] transition-colors"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Bottom Indicators -->
+    <div class="absolute bottom-8 left-0 right-0 max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-end pointer-events-none">
+      
+      <!-- Scroll Indicator (Bottom Left) -->
+      <a href="#cardapio" class="pointer-events-auto inline-flex items-center gap-2 text-[12px] font-bold tracking-[0.2em] text-gray-400 hover:text-[#f5b324] transition-colors uppercase">
+        <i data-lucide="arrow-down" class="w-4 h-4 text-[#f5b324] animate-bounce"></i>
+        <span>TEM MAIS SABOR POR AQUI</span>
+      </a>
+
+      <!-- Location Badge (Bottom Right) -->
+      <div class="flex items-center gap-2 text-xs font-semibold tracking-wider text-gray-400 uppercase">
+        <i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#f5b324]"></i>
+        <span>Limeira, SP</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Cardápio / Menu Section -->
+  <section id="cardapio" class="py-24 bg-dark-950 border-t border-white/5 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 text-[#f5b324] text-xs font-bold tracking-widest uppercase mb-2">
+            <span class="w-2 h-2 rounded-full bg-[#f5b324]"></span>
+            CARDÁPIO SELECIONADO
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
+            Pratos feitos, marmitex &amp; <span class="text-[#f5b324] font-serif italic">cafés especiais</span>
+          </h2>
+          <p class="text-gray-400 text-base mt-2 max-w-xl">
+            Ingredientes frescos e tempero artesanal com o aconchego que seu almoço e café da tarde merecem.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <div id="store-status-badge"></div>
+        </div>
+      </div>
+
+      <!-- Categories Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none mb-10">
+        <button data-category="todos" class="category-tab px-5 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap bg-[#f5b324] text-black border border-[#f5b324]">
+          Todos os Itens
+        </button>
+        <button data-category="almoco" class="category-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap bg-white/5 text-gray-300 border border-white/10 hover:border-white/30">
+          🍽️ Pratos Executivos
+        </button>
+        <button data-category="marmitex" class="category-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap bg-white/5 text-gray-300 border border-white/10 hover:border-white/30">
+          🍱 Marmitex do Dia
+        </button>
+        <button data-category="cafes" class="category-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap bg-white/5 text-gray-300 border border-white/10 hover:border-white/30">
+          ☕ Cafeteria &amp; Bebidas
+        </button>
+        <button data-category="lanches" class="category-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap bg-white/5 text-gray-300 border border-white/10 hover:border-white/30">
+          🥐 Lanches &amp; Salgados
+        </button>
+        <button data-category="sobremesas" class="category-tab px-5 py-2.5 rounded-full text-sm font-semibold transition-all whitespace-nowrap bg-white/5 text-gray-300 border border-white/10 hover:border-white/30">
+          🍰 Sobremesas
+        </button>
+      </div>
+
+      <!-- Menu Items Dynamic Grid -->
+      <div id="menu-items-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- Custom Delivery Banner -->
+      <div class="mt-16 bg-gradient-to-r from-dark-850 via-[#191d26] to-dark-850 border border-white/10 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="space-y-3 max-w-xl text-center md:text-left">
+          <span class="inline-block bg-[#f5b324]/20 text-[#f5b324] text-xs font-bold uppercase tracking-wider px-3.5 py-1.5 rounded-lg border border-[#f5b324]/30">
+            ENTREGA EM LIMEIRA - SP
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white">
+            Prefere receber seu marmitex quentinho em casa ou no trabalho?
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Entregamos com agilidade em toda a região central e bairros vizinhos de Limeira. Monte seu pedido direto pelo WhatsApp.
+          </p>
+        </div>
+        <a href="https://wa.me/5512974070207?text=Ol%C3%A1!%20Gostaria%20de%20pedir%20o%20Marmitex%20de%20hoje." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-[#f5b324] hover:bg-[#e09f16] text-black font-bold px-8 py-4 rounded-2xl text-base shadow-lg shadow-[#f5b324]/20 transition-all hover:scale-105 whitespace-nowrap">
+          <i data-lucide="truck" class="w-5 h-5"></i>
+          <span>Pedir Delivery no WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Diferenciais / Sobre Nós -->
+  <section id="diferenciais" class="py-24 bg-dark-900 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold tracking-[0.25em] text-[#f5b324] uppercase">
+          NOSSA PROPOSTA
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">
+          Por que a pausa na <span class="text-[#f5b324] font-serif italic">Glacy</span> é especial?
+        </h2>
+        <p class="text-gray-400 text-sm mt-3">
+          Unimos o acolhimento do bistrô tradicional com a praticidade de pratos nutritivos preparados no capricho.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Feature 1 -->
+        <div class="bg-[#14171e] border border-white/5 p-7 rounded-2xl hover:border-[#f5b324]/40 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-[#f5b324]/10 text-[#f5b324] flex items-center justify-center mb-5 group-hover:bg-[#f5b324] group-hover:text-black transition-all">
+            <i data-lucide="coffee" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Café 100% Especial</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Grãos colhidos em altitudes nobres, moídos na hora em métodos filtrados ou espresso aveludado.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-[#14171e] border border-white/5 p-7 rounded-2xl hover:border-[#f5b324]/40 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-[#f5b324]/10 text-[#f5b324] flex items-center justify-center mb-5 group-hover:bg-[#f5b324] group-hover:text-black transition-all">
+            <i data-lucide="utensils" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Comida de Verdade</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Sem temperos ultraprocessados. Receitas artesanais com caldo caseiro, ervas frescas e amor em cada garfada.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-[#14171e] border border-white/5 p-7 rounded-2xl hover:border-[#f5b324]/40 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-[#f5b324]/10 text-[#f5b324] flex items-center justify-center mb-5 group-hover:bg-[#f5b324] group-hover:text-black transition-all">
+            <i data-lucide="clock" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Agilidade no Almoço</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Sabemos que o tempo da sua pausa é valioso. Seu prato sai quentinho e rápido para você desfrutar sem pressa.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="bg-[#14171e] border border-white/5 p-7 rounded-2xl hover:border-[#f5b324]/40 transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-xl bg-[#f5b324]/10 text-[#f5b324] flex items-center justify-center mb-5 group-hover:bg-[#f5b324] group-hover:text-black transition-all">
+            <i data-lucide="wifi" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-2">Ambiente &amp; Wi-Fi</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Espaço climatizado com tomadas, iluminação acolhedora e conexão de alta velocidade para trabalhar ou relaxar.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Galeria de Fotos -->
+  <section id="galeria" class="py-24 bg-dark-950 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="text-xs font-bold tracking-[0.25em] text-[#f5b324] uppercase">
+            NOSSO ESPAÇO &amp; PRATOS
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">
+            Galeria de Momentos na <span class="text-[#f5b324] font-serif italic">Glacy</span>
+          </h2>
+        </div>
+        <p class="text-gray-400 text-sm max-w-sm">
+          Siga nosso Instagram <strong class="text-white">@glacycafebistro</strong> para novidades do cardápio e bastidores.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="relative group overflow-hidden rounded-2xl aspect-square">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=600&q=80" alt="Café Bistrô" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-sm">
+            Ambiente Aconchegante
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl aspect-square">
+          <img src="https://images.unsplash.com/photo-1517256064527-09c73fc73e38?auto=format&fit=crop&w=600&q=80" alt="Espresso Barista" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-sm">
+            Arte no Café
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl aspect-square">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="Prato Saudável" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-sm">
+            Almoço Fresco
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-2xl aspect-square">
+          <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Doces Artesanais" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-semibold text-sm">
+            Confeitaria Fina
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contato & Localização -->
+  <section id="contato" class="py-24 bg-dark-900 border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <div>
+          <span class="text-xs font-bold tracking-[0.25em] text-[#f5b324] uppercase">
+            VENHA NOS VISITAR
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2 mb-6">
+            Onde o aroma de café encontra a melhor conversa.
+          </h2>
+          <p class="text-gray-400 text-base mb-8 leading-relaxed">
+            Estamos bem localizados em Limeira - SP, prontos para receber você para o café da manhã, almoço executivo, reunião de negócios ou aquela pausa merecida à tarde.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f5b324] shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold text-base">Endereço</h4>
+                <p class="text-gray-400 text-sm">Rua Barão de Campinas, Centro - Limeira, SP</p>
+                <p class="text-xs text-[#f5b324] mt-1 font-medium">Estacionamento conveniado no local</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f5b324] shrink-0">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold text-base">Horário de Funcionamento</h4>
+                <p class="text-gray-400 text-sm">Segunda a Sexta: <strong>07:00 às 19:00</strong></p>
+                <p class="text-gray-400 text-sm">Sábado: <strong>08:00 às 16:00</strong> (Domingo: Fechado)</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#f5b324] shrink-0">
+                <i data-lucide="phone" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="text-white font-semibold text-base">WhatsApp &amp; Encomendas</h4>
+                <a href="https://wa.me/5512974070207" target="_blank" class="text-[#f5b324] hover:underline font-bold text-sm">
+                  (12) 97407-0207
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Contact / Reservation Card -->
+        <div class="bg-gradient-to-b from-[#171a23] to-[#12141a] border border-white/10 p-8 sm:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-[#f5b324]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <h3 class="text-2xl font-bold text-white mb-2">Envie uma mensagem rápida</h3>
+          <p class="text-gray-400 text-sm mb-6">
+            Dúvidas sobre o cardápio, reservas de mesas ou marmitex corporativo? Fale conosco instantaneamente.
+          </p>
+
+          <form id="contact-form" class="space-y-4">
+            <div>
+              <label for="form-name" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Seu Nome</label>
+              <input type="text" id="form-name" required placeholder="Como podemos te chamar?" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#f5b324] transition-colors placeholder:text-gray-600">
+            </div>
+
+            <div>
+              <label for="form-motive" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Motivo do Contato</label>
+              <select id="form-motive" class="w-full bg-[#181b22] border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#f5b324] transition-colors">
+                <option value="Fazer um Pedido">Fazer um Pedido de Marmitex / Café</option>
+                <option value="Reserva de Mesa">Reservar Mesa para Almoço / Reunião</option>
+                <option value="Eventos e Coffee Break">Encomenda para Coffee Break / Empresa</option>
+                <option value="Outras Informações">Outras Dúvidas</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="form-message" class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Mensagem</label>
+              <textarea id="form-message" rows="3" required placeholder="Escreva os detalhes ou o que gostaria..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-[#f5b324] transition-colors placeholder:text-gray-600"></textarea>
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 bg-[#f5b324] hover:bg-[#e09f16] text-black font-bold py-3.5 rounded-xl transition-all shadow-md shadow-[#f5b324]/20 hover:scale-[1.01] active:scale-100">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Enviar via WhatsApp</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark-950 border-t border-white/5 py-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full border border-[#f5b324]/70 flex items-center justify-center text-[#f5b324]">
+          <i data-lucide="coffee" class="w-4 h-4 text-[#f5b324]"></i>
+        </div>
+        <span class="text-base font-bold text-white tracking-wide">Glacy Café &amp; Bistrô</span>
+      </div>
+
+      <p class="text-xs text-gray-500">
+        © 2026 Glacy Café &amp; Bistrô. Todos os direitos reservados. Limeira - SP.
+      </p>
+
+      <div class="flex items-center gap-5 text-gray-400">
+        <a href="#inicio" class="hover:text-[#f5b324] text-xs transition-colors">Voltar ao topo ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie Consent Banner (Exact Replica from Screenshot) -->
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-8 md:max-w-3xl z-50 transition-all duration-500">
+    <div class="bg-[#171a21]/95 backdrop-blur-xl border border-white/10 rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-4">
+      <div class="text-center lg:text-left">
+        <h4 class="text-sm font-bold text-white">Sua privacidade importa.</h4>
+        <p class="text-xs text-gray-400 mt-0.5 max-w-xl">
+          Usamos cookies necessários para o site funcionar. Os opcionais só são utilizados com sua permissão.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-2 shrink-0">
+        <button type="button" class="px-4 py-2 text-xs font-semibold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all border border-white/5">
+          Só necessários
+        </button>
+        <button type="button" class="px-3 py-2 text-xs font-semibold text-gray-400 hover:text-white transition-colors">
+          Personalizar
+        </button>
+        <button type="button" class="px-5 py-2 text-xs font-bold text-black bg-[#f5b324] hover:bg-[#e09f16] rounded-xl transition-all shadow-sm">
+          Aceitar todos
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Fale Conosco -->
+  <div id="contact-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="modal-box relative bg-dark-850 border border-white/10 w-full max-w-md rounded-3xl p-6 sm:p-8 shadow-2xl scale-95 transition-transform duration-300 z-10">
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-full bg-[#f5b324]/10 text-[#f5b324] flex items-center justify-center">
+            <i data-lucide="phone-call" class="w-4 h-4"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white">Fale com a Glacy</h3>
+        </div>
+        <button id="close-modal-btn" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-sm text-gray-400 mb-6">
+        Fale diretamente com nossa equipe para reservas, pedidos ou encomendas para empresas.
+      </p>
+
+      <div class="space-y-3">
+        <a href="https://wa.me/5512974070207?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20o%20Glacy%20Caf%C3%A9!" target="_blank" class="w-full flex items-center justify-center gap-2.5 bg-[#f5b324] hover:bg-[#e09f16] text-black font-bold py-3.5 rounded-xl transition-all shadow-md">
+          <i data-lucide="message-square" class="w-4 h-4"></i>
+          <span>Conversar no WhatsApp</span>
+        </a>
+        <a href="tel:+5512974070207" class="w-full flex items-center justify-center gap-2.5 bg-white/5 hover:bg-white/10 text-white font-semibold py-3.5 rounded-xl border border-white/10 transition-all">
+          <i data-lucide="phone" class="w-4 h-4 text-gray-400"></i>
+          <span>Ligar (12) 97407-0207</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lucide Icon Renderer -->
+  <script>
+    lucide.createIcons();
+  </script>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
+
