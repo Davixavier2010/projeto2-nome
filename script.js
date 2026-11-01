@@ -34,6 +34,7 @@ const SITE_CONFIG = {
 // ==============================================================================
 document.addEventListener("DOMContentLoaded", () => {
   applySiteConfig();
+  initThemeToggle();
   initMobileMenu();
   initZoomModal();
   initSmoothScroll();
@@ -103,6 +104,58 @@ function formatPhoneNumber(num) {
     return `(${clean.slice(0,2)}) ${clean.slice(2,7)}-${clean.slice(7)}`;
   }
   return num;
+}
+
+/**
+ * Alternador de Modo Escuro / Claro (Preto / Creme)
+ * Suporta persistência via localStorage e sincronização entre os botões
+ */
+function initThemeToggle() {
+  const THEME_KEY = "rida_theme_mode";
+  const themeToggleBtn = document.getElementById("themeToggleBtn");
+  const mobileNavThemeBtn = document.getElementById("mobileNavThemeBtn");
+  const buttons = [themeToggleBtn, mobileNavThemeBtn].filter(Boolean);
+
+  function updateThemeUI(isDark) {
+    if (isDark) {
+      document.documentElement.classList.add("dark-mode");
+      document.body.classList.add("dark-mode");
+    } else {
+      document.documentElement.classList.remove("dark-mode");
+      document.body.classList.remove("dark-mode");
+    }
+
+    buttons.forEach(btn => {
+      const textSpan = btn.querySelector(".theme-toggle-text, .mobile-theme-text");
+      if (textSpan) {
+        textSpan.textContent = isDark ? "Modo Claro" : "Modo Escuro";
+      }
+      btn.setAttribute("aria-label", isDark ? "Mudar para modo claro (creme)" : "Mudar para modo escuro (preto)");
+      btn.setAttribute("title", isDark ? "Desativar Modo Escuro (Voltar ao Creme)" : "Ativar Modo Escuro (Fundo Preto)");
+    });
+  }
+
+  // Verificar preferência salva no localStorage
+  const savedTheme = localStorage.getItem(THEME_KEY);
+  const initialIsDark = savedTheme === "dark";
+
+  updateThemeUI(initialIsDark);
+
+  function toggleTheme() {
+    const isCurrentlyDark = document.body.classList.contains("dark-mode");
+    const newIsDark = !isCurrentlyDark;
+    try {
+      localStorage.setItem(THEME_KEY, newIsDark ? "dark" : "light");
+    } catch(e) {}
+    updateThemeUI(newIsDark);
+  }
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleTheme();
+    });
+  });
 }
 
 /**
