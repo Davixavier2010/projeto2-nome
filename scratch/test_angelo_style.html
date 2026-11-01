@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste Estilo Angelo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0F2942;
+      --creme: #FAF6EE;
+      --creme-card: #FFFFFF;
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      --glass-border: rgba(255, 255, 255, 0.85);
+      --glass-shadow: 0 20px 50px -10px rgba(15, 41, 66, 0.12);
+    }
+    body {
+      margin: 0;
+      padding: 60px 20px;
+      background: radial-gradient(circle at 50% 20%, #FAF6EE 0%, #F0EAE1 100%);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #0F2942;
+    }
+    .angelo-container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .angelo-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .angelo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(15, 41, 66, 0.12);
+      padding: 6px 18px;
+      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--navy);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      margin-bottom: 16px;
+    }
+    .angelo-title {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 0 0 12px 0;
+      color: var(--navy);
+    }
+    .angelo-subtitle {
+      font-size: 1.15rem;
+      color: #5A6A7E;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Floating Orbs Cluster (Angelo Signature) */
+    .orbs-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      margin: 40px 0 60px 0;
+      padding: 30px;
+      position: relative;
+    }
+    .orb-item {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .orb-item:hover {
+      transform: translateY(-8px) scale(1.05);
+    }
+    .orb-sphere {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 
+        0 20px 40px -10px rgba(15, 41, 66, 0.3),
+        0 10px 20px -5px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+      animation: floatOrb 5s ease-in-out infinite;
+    }
+    .orb-item:nth-child(2) .orb-sphere { animation-delay: -1.5s; width: 140px; height: 140px; }
+    .orb-item:nth-child(3) .orb-sphere { animation-delay: -3s; }
+    .orb-item:nth-child(4) .orb-sphere { animation-delay: -4.5s; }
+
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(1.5deg); }
+    }
+
+    .orb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.1) brightness(1.02);
+      transition: transform 0.5s ease;
+    }
+    .orb-item:hover .orb-img {
+      transform: scale(1.1);
+    }
+
+    /* Glossy Specular Glass Overlay */
+    .orb-glass-gloss {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle at 35% 25%, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.2) 30%, transparent 60%),
+                  radial-gradient(circle at 70% 80%, rgba(15,41,66,0.35) 0%, transparent 50%);
+      box-shadow: 
+        inset 0 4px 8px rgba(255, 255, 255, 0.8),
+        inset 0 -8px 16px rgba(0, 0, 0, 0.35);
+    }
+    .orb-label {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--navy);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      padding: 4px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(15,41,66,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      white-space: nowrap;
+    }
+
+    /* Glass Cards Grid */
+    .angelo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .angelo-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      border-radius: 32px;
+      box-shadow: 
+        0 24px 60px -15px rgba(15, 41, 66, 0.1),
+        0 0 0 1px rgba(15, 41, 66, 0.06),
+        inset 0 1px 2px rgba(255, 255, 255, 1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    .angelo-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 32px 70px -15px rgba(15, 41, 66, 0.16),
+        0 0 0 1px rgba(15, 41, 66, 0.12),
+        inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .card-visual-stage {
+      position: relative;
+      background: radial-gradient(circle at 50% 30%, #FFFFFF 0%, #F5EFE6 100%);
+      padding: 30px 20px 20px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid rgba(15, 41, 66, 0.08);
+      overflow: hidden;
+    }
+
+    /* Floating Miniature Sphere Badge */
+    .card-orb-badge {
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      padding: 4px 12px 4px 6px;
+      border-radius: 100px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+      z-index: 2;
+    }
+    .mini-sphere {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, #0F2942 90%);
+      box-shadow: inset -2px -2px 4px rgba(0,0,0,0.4), 0 2px 6px rgba(15,41,66,0.3);
+    }
+    .mini-sphere.sphere-gold {
+      background: radial-gradient(circle at 35% 30%, #FFE9B3 0%, #B8860B 90%);
+      box-shadow: inset -2px -2px 4px rgba(0,0,0,0.4), 0 2px 6px rgba(184,134,11,0.4);
+    }
+    .mini-sphere.sphere-blue {
+      background: radial-gradient(circle at 35% 30%, #D4E8FF 0%, #1E40AF 90%);
+      box-shadow: inset -2px -2px 4px rgba(0,0,0,0.4), 0 2px 6px rgba(30,64,175,0.4);
+    }
+    .card-orb-badge span {
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Device frame with soft glass shadow */
+    .device-stage-inner {
+      width: 100%;
+      max-width: 220px;
+      border-radius: 26px;
+      background: #000;
+      border: 3px solid #161618;
+      box-shadow: 
+        0 20px 40px -10px rgba(0,0,0,0.25),
+        0 0 30px rgba(15,41,66,0.08);
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.4s ease;
+    }
+    .angelo-card:hover .device-stage-inner {
+      transform: scale(1.03);
+    }
+    .device-screen-img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .card-body {
+      padding: 26px 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    .card-niche {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #7A899C;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 900;
+      color: var(--navy);
+      margin: 0 0 10px 0;
+      letter-spacing: -0.02em;
+    }
+    .card-desc {
+      font-size: 0.92rem;
+      color: #4A5568;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .card-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+      margin-top: auto;
+    }
+    .feature-pill {
+      background: rgba(15, 41, 66, 0.05);
+      border: 1px solid rgba(15, 41, 66, 0.08);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(15, 41, 66, 0.08);
+    }
+    .btn-glass-primary {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--navy);
+      color: #FFFFFF;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 800;
+      box-shadow: 0 4px 15px rgba(15, 41, 66, 0.2);
+      transition: all 0.3s ease;
+    }
+    .btn-glass-primary:hover {
+      background: #183C60;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 41, 66, 0.28);
+    }
+    .btn-glass-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(15, 41, 66, 0.12);
+      color: var(--navy);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      transition: all 0.3s ease;
+    }
+    .btn-glass-secondary:hover {
+      background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+<body>
+  <div class="angelo-container">
+    <div class="angelo-header">
+      <div class="angelo-pill">✦ Vitrine Interativa Estilo Angelo</div>
+      <h2 class="angelo-title">Projetos em Destaque</h2>
+      <p class="angelo-subtitle">Modelos de alta conversão criados sob medida para transformar comércios locais em referências na internet.</p>
+    </div>
+
+    <!-- Cluster de Esferas 3D Flutuantes (Assinatura Angelo.so) -->
+    <div class="orbs-showcase">
+      <a href="#modelo-padaria" class="orb-item">
+        <div class="orb-sphere">
+          <img src="assets/images/mockup-padaria.png" alt="Padaria" class="orb-img">
+          <div class="orb-glass-gloss"></div>
+        </div>
+        <span class="orb-label">Padaria Prestígio</span>
+      </a>
+
+      <a href="#modelo-bistro" class="orb-item">
+        <div class="orb-sphere">
+          <img src="assets/images/mockup-bistro.png" alt="Bistrô" class="orb-img">
+          <div class="orb-glass-gloss"></div>
+        </div>
+        <span class="orb-label">Glacy Bistrô</span>
+      </a>
+
+      <a href="#modelo-clinica" class="orb-item">
+        <div class="orb-sphere">
+          <img src="assets/images/mockup-oficina-clinica.svg" alt="Clínica" class="orb-img">
+          <div class="orb-glass-gloss"></div>
+        </div>
+        <span class="orb-label">Clínica &amp; Serviços</span>
+      </a>
+    </div>
+
+    <!-- Grid de Cards Glassmórficos Estilo Angelo -->
+    <div class="angelo-grid">
+      <!-- Card 1 -->
+      <article class="angelo-card" id="modelo-padaria">
+        <div class="card-visual-stage">
+          <div class="card-orb-badge">
+            <div class="mini-sphere"></div>
+            <span>Modelo 01</span>
+          </div>
+          <div class="device-stage-inner">
+            <img src="assets/images/mockup-padaria.png" alt="Padaria Prestígio 1986" class="device-screen-img">
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-niche">Panificação &amp; Confeitaria</span>
+          <h3 class="card-title">Padaria Prestígio 1986</h3>
+          <p class="card-desc">Cardápio digital completo com fotos reais de fornadas, seção de tradição desde 1986 e botão direto de pedidos no WhatsApp.</p>
+          <div class="card-pills-row">
+            <span class="feature-pill">✓ Cardápio com fotos reais</span>
+            <span class="feature-pill">✓ Tradição &amp; História</span>
+            <span class="feature-pill">✓ Pedidos via WhatsApp</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://padaria-prestigio.vercel.app/" target="_blank" class="btn-glass-primary">
+              <span>Visitar Site ao Vivo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button class="btn-glass-secondary" title="Ampliar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="angelo-card" id="modelo-bistro">
+        <div class="card-visual-stage">
+          <div class="card-orb-badge">
+            <div class="mini-sphere sphere-gold"></div>
+            <span>Modelo 02 • Destaque</span>
+          </div>
+          <div class="device-stage-inner">
+            <img src="assets/images/mockup-bistro.png" alt="Glacy Bistrô" class="device-screen-img">
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-niche">Cafeteria &amp; Bistrô</span>
+          <h3 class="card-title">Glacy • Café &amp; Bistrô</h3>
+          <p class="card-desc">Identidade visual refinada para restaurantes e bistrôs, cardápio executivo, marmitex, cafeteria de cafés especiais e contato imediato.</p>
+          <div class="card-pills-row">
+            <span class="feature-pill">✓ Cardápio executivo</span>
+            <span class="feature-pill">✓ Galeria refinada</span>
+            <span class="feature-pill">✓ Contato imediato</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://glacy-bistro.vercel.app/" target="_blank" class="btn-glass-primary">
+              <span>Visitar Site ao Vivo</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button class="btn-glass-secondary" title="Ampliar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="angelo-card" id="modelo-clinica">
+        <div class="card-visual-stage">
+          <div class="card-orb-badge">
+            <div class="mini-sphere sphere-blue"></div>
+            <span>Modelo 03</span>
+          </div>
+          <div class="device-stage-inner">
+            <img src="assets/images/mockup-oficina-clinica.svg" alt="Clínica / Oficina" class="device-screen-img">
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-niche">Saúde &amp; Serviços Técnicos</span>
+          <h3 class="card-title">Clínica / Oficina</h3>
+          <p class="card-desc">Credibilidade máxima com selos de garantia, catálogo de serviços especializados, localização no mapa e botão de agendamento.</p>
+          <div class="card-pills-row">
+            <span class="feature-pill">✓ Selo de confiança</span>
+            <span class="feature-pill">✓ Localização no mapa</span>
+            <span class="feature-pill">✓ Agendamento online</span>
+          </div>
+          <div class="card-actions">
+            <a href="https://wa.me/5512974070207" target="_blank" class="btn-glass-primary">
+              <span>Solicitar Demonstração</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            </a>
+            <button class="btn-glass-secondary" title="Ampliar">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</body>
+</html>
+

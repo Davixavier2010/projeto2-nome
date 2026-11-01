@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSmoothScroll();
   initHeaderScroll();
   initFeatureToggles();
+  initMathiasGallery();
 });
 
 /**
@@ -254,5 +255,342 @@ function initFeatureToggles() {
         if (textSpan) textSpan.textContent = btn.getAttribute("data-collapse-text") || "Mostrar menos";
       }
     });
+  });
+}
+
+/**
+ * ==============================================================================
+ * GALERIA 3D ESTILO MATHIAS ADOLFSSON (MATHIASADOLFSSON.DEV)
+ * ==============================================================================
+ */
+function initMathiasGallery() {
+  const modal = document.getElementById("mathiasGalleryModal");
+  if (!modal) return;
+
+  const cylinder = document.getElementById("mathiasCylinder");
+  const stageWrapper = document.getElementById("mathiasStageWrapper");
+  const bottomTitle = document.getElementById("mathiasBottomTitle");
+  const btnClose = document.getElementById("btnCloseMathiasGallery");
+  const btnPrev = document.getElementById("mathiasBtnPrev");
+  const btnNext = document.getElementById("mathiasBtnNext");
+
+  // Dados oficiais dos sites nos planos Essencial e Personalizado
+  const projects = [
+    {
+      id: 'glacy',
+      name: 'Glacy • Café & Bistrô',
+      niche: 'Cafeteria & Restaurante Executivo',
+      plan: 'essencial',
+      planLabel: 'Plano Essencial',
+      price: 'Setup R$ 497 (2x R$ 248,50)',
+      monthly: 'R$ 47/mês',
+      url: 'https://glacy.vercel.app/',
+      displayUrl: 'glacy.vercel.app',
+      image: 'assets/images/gallery/site-glacy.jpg'
+    },
+    {
+      id: 'academia',
+      name: 'Academia VoltFit',
+      niche: 'Fitness, Musculação & Aulas',
+      plan: 'essencial',
+      planLabel: 'Plano Essencial',
+      price: 'Setup R$ 497 (2x R$ 248,50)',
+      monthly: 'R$ 47/mês',
+      url: 'https://academiarida-ashen.vercel.app/',
+      displayUrl: 'academiarida-ashen.vercel.app',
+      image: 'assets/images/gallery/site-academia.jpg'
+    },
+    {
+      id: 'salao',
+      name: 'Aura & Blush • Atelier de Beleza',
+      niche: 'Salão de Beleza, Spa & Estética',
+      plan: 'essencial',
+      planLabel: 'Plano Essencial',
+      price: 'Setup R$ 497 (2x R$ 248,50)',
+      monthly: 'R$ 47/mês',
+      url: 'https://salaorida.vercel.app/#inicio',
+      displayUrl: 'salaorida.vercel.app',
+      image: 'assets/images/gallery/site-salao.jpg'
+    },
+    {
+      id: 'petshop',
+      name: 'Dálmata Pet Spa & Boutique',
+      niche: 'Pet Shop, Banho, Tosa & Veterinária',
+      plan: 'essencial',
+      planLabel: 'Plano Essencial',
+      price: 'Setup R$ 497 (2x R$ 248,50)',
+      monthly: 'R$ 47/mês',
+      url: 'https://petshoprida.vercel.app/',
+      displayUrl: 'petshoprida.vercel.app',
+      image: 'assets/images/gallery/site-petshop.jpg'
+    },
+    {
+      id: 'doceria',
+      name: 'Doralice Confeitaria & Café',
+      niche: 'Doceria Gourmet & Confeitaria Fina',
+      plan: 'personalizado',
+      planLabel: 'Plano Personalizado',
+      price: 'Setup R$ 697 (2x R$ 348,50)',
+      monthly: 'R$ 67/mês',
+      url: 'https://doceriarida.vercel.app/',
+      displayUrl: 'doceriarida.vercel.app',
+      image: 'assets/images/gallery/site-doceria.jpg'
+    },
+    {
+      id: 'padaria',
+      name: 'Padaria Prestígio 1986',
+      niche: 'Panificação Tradicional & Fornadas',
+      plan: 'personalizado',
+      planLabel: 'Plano Personalizado',
+      price: 'Setup R$ 697 (2x R$ 348,50)',
+      monthly: 'R$ 67/mês',
+      url: 'https://padaria-prestigio.vercel.app/',
+      displayUrl: 'padaria-prestigio.vercel.app',
+      image: 'assets/images/gallery/site-padaria.jpg'
+    },
+    {
+      id: 'jornalismo',
+      name: 'Ruptura • Portal de Jornalismo',
+      niche: 'Investigação, Notícias & Dossiês',
+      plan: 'personalizado',
+      planLabel: 'Plano Personalizado',
+      price: 'Setup R$ 697 (2x R$ 348,50)',
+      monthly: 'R$ 67/mês',
+      url: 'https://jornalismo-rida.vercel.app/',
+      displayUrl: 'jornalismo-rida.vercel.app',
+      image: 'assets/images/gallery/site-jornalismo.jpg'
+    }
+  ];
+
+  let currentFilter = 'all';
+  let filteredProjects = [...projects];
+  let currentIndex = 0;
+  let cylinderRadius = 780;
+
+  function calculateRadius() {
+    const cardWidth = window.innerWidth <= 768 ? 320 : 620;
+    const count = Math.max(filteredProjects.length, 4);
+    const angle = (Math.PI * 2) / count;
+    cylinderRadius = Math.round((cardWidth / 2) / Math.tan(angle / 2));
+    if (cylinderRadius < 450) cylinderRadius = 450;
+  }
+
+  function renderCylinder() {
+    if (!cylinder) return;
+    cylinder.innerHTML = '';
+    const count = filteredProjects.length;
+    if (count === 0) return;
+
+    calculateRadius();
+    const angleStep = 360 / count;
+
+    filteredProjects.forEach((p, idx) => {
+      const cardAngle = idx * angleStep;
+      const card = document.createElement('article');
+      card.className = `project-card-3d ${idx === currentIndex ? 'is-active' : ''}`;
+      card.dataset.index = idx;
+      card.style.transform = `rotateY(${cardAngle}deg) translateZ(${cylinderRadius}px)`;
+
+      const planBadgeClass = p.plan === 'essencial' ? 'plan-tag-essencial' : 'plan-tag-personalizado';
+      const waNumber = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.whatsappNumber) ? SITE_CONFIG.whatsappNumber : '5512974070207';
+      const waText = encodeURIComponent(`Olá! Gostei muito do modelo "${p.name}" (${p.planLabel}) na galeria de vocês. Como podemos começar?`);
+
+      card.innerHTML = `
+        <div class="card-browser-bar">
+          <div class="browser-dots">
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+            <span class="browser-dot"></span>
+          </div>
+          <div class="browser-url-pill">${p.displayUrl}</div>
+          <span class="card-plan-tag ${planBadgeClass}">${p.planLabel}</span>
+        </div>
+        <div class="card-screen-wrap">
+          <img src="${p.image}" alt="${p.name}" class="card-screen-img" loading="lazy">
+          <div class="card-info-overlay">
+            <div class="card-info-meta">
+              <div class="card-title-group">
+                <h3>${p.name}</h3>
+                <p>${p.niche}</p>
+              </div>
+              <div class="card-price-info">
+                <div class="card-price-badge">${p.price}</div>
+                <div class="card-price-sub">${p.monthly}</div>
+              </div>
+            </div>
+            <div class="card-actions-row">
+              <a href="${p.url}" target="_blank" rel="noopener noreferrer" class="btn-card-visit">
+                <span>Visitar Site ao Vivo</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+              </a>
+              <a href="https://wa.me/${waNumber}?text=${waText}" target="_blank" rel="noopener noreferrer" class="btn-card-whatsapp js-whatsapp-link">
+                <span>Quero Este Modelo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        if (idx !== currentIndex) {
+          goToIndex(idx);
+        }
+      });
+
+      cylinder.appendChild(card);
+    });
+
+    updateCylinderPosition();
+  }
+
+  function updateCylinderPosition() {
+    const count = filteredProjects.length;
+    if (count === 0 || !cylinder) return;
+    const angleStep = 360 / count;
+    const targetRotation = -currentIndex * angleStep;
+
+    cylinder.style.transform = `translateZ(-${cylinderRadius}px) rotateY(${targetRotation}deg)`;
+
+    const cards = cylinder.querySelectorAll('.project-card-3d');
+    cards.forEach((card, idx) => {
+      let diff = Math.abs(idx - currentIndex);
+      if (diff > count / 2) diff = count - diff;
+
+      if (diff === 0) {
+        card.classList.add('is-active');
+        card.style.filter = 'brightness(1) saturate(1)';
+      } else {
+        card.classList.remove('is-active');
+        const brightness = Math.max(0.32, 1 - diff * 0.35);
+        card.style.filter = `brightness(${brightness}) saturate(0.85)`;
+      }
+    });
+
+    const activeProject = filteredProjects[currentIndex];
+    if (activeProject && bottomTitle) {
+      bottomTitle.textContent = `${activeProject.name} • ${activeProject.planLabel}`;
+    }
+  }
+
+  function goToIndex(idx) {
+    const count = filteredProjects.length;
+    if (count === 0) return;
+    currentIndex = (idx + count) % count;
+    updateCylinderPosition();
+  }
+
+  function openModal() {
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
+    requestAnimationFrame(() => {
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      calculateRadius();
+      renderCylinder();
+    });
+  }
+
+  function closeModal() {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 350);
+  }
+
+  // Event Listeners para abrir a galeria
+  document.querySelectorAll(".js-open-mathias-gallery").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // Fechar Galeria
+  if (btnClose) {
+    btnClose.addEventListener("click", closeModal);
+  }
+  document.querySelectorAll(".js-close-mathias-gallery").forEach(btn => {
+    btn.addEventListener("click", closeModal);
+  });
+
+  if (btnPrev) btnPrev.addEventListener("click", () => goToIndex(currentIndex - 1));
+  if (btnNext) btnNext.addEventListener("click", () => goToIndex(currentIndex + 1));
+
+  // Teclado
+  document.addEventListener("keydown", (e) => {
+    if (!modal.classList.contains("is-open")) return;
+    if (e.key === "Escape") closeModal();
+    if (e.key === "ArrowLeft") goToIndex(currentIndex - 1);
+    if (e.key === "ArrowRight") goToIndex(currentIndex + 1);
+  });
+
+  // Drag physics
+  let isDragging = false;
+  let startX = 0;
+  let dragDistance = 0;
+
+  if (stageWrapper) {
+    stageWrapper.addEventListener("pointerdown", (e) => {
+      if (e.target.closest("a") || e.target.closest("button")) return;
+      isDragging = true;
+      startX = e.clientX;
+      dragDistance = 0;
+      cylinder.classList.add("dragging");
+      stageWrapper.setPointerCapture(e.pointerId);
+    });
+
+    stageWrapper.addEventListener("pointermove", (e) => {
+      if (!isDragging) return;
+      const delta = e.clientX - startX;
+      dragDistance = delta;
+      const count = filteredProjects.length;
+      const angleStep = 360 / count;
+      const currentRot = -currentIndex * angleStep;
+      const dragAngle = delta * 0.15;
+      cylinder.style.transform = `translateZ(-${cylinderRadius}px) rotateY(${currentRot + dragAngle}deg)`;
+    });
+
+    stageWrapper.addEventListener("pointerup", () => {
+      if (!isDragging) return;
+      isDragging = false;
+      cylinder.classList.remove("dragging");
+      if (Math.abs(dragDistance) > 35) {
+        if (dragDistance < 0) goToIndex(currentIndex + 1);
+        else goToIndex(currentIndex - 1);
+      } else {
+        updateCylinderPosition();
+      }
+    });
+  }
+
+  // Filtros
+  document.querySelectorAll(".mathias-filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".mathias-filter-btn").forEach(b => {
+        b.classList.remove("active");
+        b.setAttribute("aria-selected", "false");
+      });
+      btn.classList.add("active");
+      btn.setAttribute("aria-selected", "true");
+      currentFilter = btn.dataset.filter;
+
+      if (currentFilter === "all") {
+        filteredProjects = [...projects];
+      } else {
+        filteredProjects = projects.filter(p => p.plan === currentFilter);
+      }
+      currentIndex = 0;
+      renderCylinder();
+    });
+  });
+
+  window.addEventListener("resize", () => {
+    if (modal.classList.contains("is-open")) {
+      calculateRadius();
+      renderCylinder();
+    }
   });
 }

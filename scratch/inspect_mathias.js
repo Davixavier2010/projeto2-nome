@@ -1,0 +1,96 @@
+const { spawn } = require('child_process');
+const http = require('http');
+const fs = require('fs');
+
+async function inspectMathiasInteractive() {
+  const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
+  const port = 9655;
+  const userDir = `C:\\Users\\davix\\AppData\\Local\\Temp\\chrome_mathias3_${Date.now()}`;
+
+  const proc = spawn(chromePath, [
+    'https://mathiasadolfsson.dev/?ref=onepagelove',
+    `--remote-debugging-port=${port}`,
+    '--headless=new',
+    `--user-data-dir=${userDir}`,
+    '--disable-gpu',
+    '--window-size=1440,960',
+    '--no-first-run'
+  ]);
+
+  let tabs = null;
+  for (let i = 0; i < 40; i++) {
+    await new Promise(r => setTimeout(r, 200));
+    try {
+      tabs = await new Promise((res, rej) => {
+        http.get(`http://localhost:${port}/json/list`, r => {
+          let d = '';
+          r.on('data', c => d += c);
+          r.on('end', () => res(JSON.parse(d)));
+        }).on('error', rej);
+      });
+      if (tabs && tabs[0]?.webSocketDebuggerUrl) break;
+    } catch (e) {}
+  }
+
+  const tab = tabs.find(t => t.url.includes('mathias')) || tabs[0];
+  const ws = new WebSocket(tab.webSocketDebuggerUrl);
+
+  let id = 1;
+  const pending = new Map();
+  function send(method, params = {}) {
+    return new Promise((resolve, reject) => {
+      const myId = id++;
+      pending.set(myId, { resolve, reject });
+      ws.send(JSON.stringify({ id: myId, method, params }));
+    });
+  }
+  ws.onmessage = (e) => {
+    const msg = JSON.parse(e.data);
+    if (msg.id && pending.has(msg.id)) {
+      const { resolve, reject } = pending.get(msg.id);
+      pending.delete(msg.id);
+      if (msg.error) reject(msg.error);
+      else resolve(msg.result);
+    }
+  };
+
+  await new Promise(r => ws.onopen = r);
+  await send('Page.enable');
+  await send('Runtime.enable');
+
+  // Wait 7 seconds for animation to complete
+  await new Promise(r => setTimeout(r, 7000));
+
+  const shot = await send('Page.captureScreenshot', { format: 'png' });
+  const shotPath = 'C:/Users/davix/.gemini/antigravity/brain/a8fe456c-e461-4da0-b4d2-f5596bcaac55/mathias-main.png';
+  fs.writeFileSync(shotPath, Buffer.from(shot.data, 'base64'));
+  console.log(`Saved screenshot to ${shotPath}!`);
+
+  // Inspect the UI elements
+  const info = await send('Runtime.evaluate', {
+    expression: `
+      JSON.stringify({
+        html: document.body.innerHTML.slice(0, 5000),
+        activeElements: [...document.querySelectorAll('*')].filter(el => {
+          const rect = el.getBoundingClientRect();
+          return rect.width > 50 && rect.height > 20 && window.getComputedStyle(el).opacity !== '0' && window.getComputedStyle(el).display !== 'none';
+        }).map(el => ({
+          tag: el.tagName,
+          className: el.className,
+          text: el.innerText ? el.innerText.slice(0, 100) : ''
+        })).slice(0, 25)
+      })
+    `,
+    returnByValue: true
+  });
+  fs.writeFileSync('scratch/mathias_dom.json', info.result.value);
+
+  ws.close();
+  proc.kill();
+  process.exit(0);
+}
+
+inspectMathiasInteractive().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
