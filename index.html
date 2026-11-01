@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3.4">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
   <script>
@@ -27,7 +27,7 @@
   <!-- ================= TOP ANNOUNCEMENT BANNER ================= -->
   <div class="top-bar">
     <div class="container top-bar-content">
-      <span>Oferta especial para comércios locais: <strong>Setup em 2x a partir de R$ 248,50</strong> (50% na entrega)!</span>
+      <span>Oferta para empresas &amp; comércios: <strong>Setup em 2x a partir de R$ 248,50</strong> (50% na entrega)!</span>
       <a href="#preco" class="top-bar-link">Ver detalhes →</a>
     </div>
   </div>
@@ -50,11 +50,10 @@
       <nav class="main-nav" id="mainNav">
         <ul class="nav-list">
           <li><a href="#portfolio" class="nav-link">Nossos Projetos</a></li>
-          <li><a href="#preco" class="nav-link">Nossos Planos</a></li>
-          <li><a href="#promessa" class="nav-link">Por que Nós?</a></li>
-          <li><a href="#problema" class="nav-link">O Problema</a></li>
+          <li><a href="#preco" class="nav-link">Planos &amp; Preços</a></li>
           <li><a href="#como-funciona" class="nav-link">Como Funciona</a></li>
-          <li><a href="#faq" class="nav-link">Dúvidas</a></li>
+          <li><a href="#mais-informacoes" class="nav-link">Mais Informações</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
           <li class="mobile-only-theme-item">
             <button type="button" class="mobile-theme-btn" id="mobileNavThemeBtn" aria-label="Alternar modo escuro">
               <span class="theme-toggle-icon-wrap" aria-hidden="true">
@@ -121,124 +120,112 @@
     </div>
   </header>
 
-  <main>
-    <!-- ================= 1. CABEÇALHO (HERO SECTION) ================= -->
-    <section class="hero-section" id="inicio">
+  <main id="mainContent">
+<section class="hero-section" id="inicio">
       <div class="container hero-grid">
         <div class="hero-content">
           
-          <!-- Logo e Identidade no Início do Site -->
           <div class="hero-brand-top">
             <div class="hero-logo-box">
               <img src="assets/images/logo-rida.png" alt="Logo Rida" class="hero-logo-img">
             </div>
             <div class="hero-brand-meta">
               <span class="hero-brand-title">RIDA</span>
-              <span class="hero-brand-badge">Criação de Sites Profissionais</span>
+              <span class="hero-brand-badge">Sites Profissionais</span>
             </div>
           </div>
 
           <div class="badge-pill">
             <span class="badge-dot"></span>
-            <span>Especialistas em Sites para Pequenos e Médios Comércios</span>
+            <span>Sites para Comércios e Empresas</span>
           </div>
 
-          <!-- Título Principal -->
+          <!-- Título Ultrarresumido e Direto -->
           <h1 class="hero-title">
-            O seu negócio precisa de uma <span class="highlight-title">"casa própria"</span> na internet.
+            Sites profissionais com <span class="highlight-title">clientes no WhatsApp</span>.
           </h1>
 
-          <!-- Subtítulo -->
+          <!-- Subtítulo de 1 linha -->
           <p class="hero-subtitle">
-            Chega de morar de aluguel no Instagram. Criamos sites profissionais, rápidos e focados em atrair clientes para o seu comércio. Nós fazemos todo o trabalho técnico e você foca apenas em atender seus clientes.
+            Presença oficial no Google e estrutura completa para seu negócio vender mais.
           </p>
 
-          <!-- Botão Principal (CTA) -->
+          <!-- Botões de Ação Imediata -->
           <div class="hero-actions">
-            <a href="https://wa.me/5512974070207?text=Ol%C3%A1!%20Quero%20um%20site%20para%20o%20meu%20neg%C3%B3cio.%20Podemos%20conversar?" target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-lg js-whatsapp-link">
+            <a href="https://wa.me/5512974070207?text=Ol%C3%A1!%20Gostaria%20de%20um%20site%20profissional%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-lg js-whatsapp-link">
               <span class="whatsapp-icon-circle">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                   <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/>
                 </svg>
               </span>
-              <span>Quero um site para meu negócio</span>
+              <span>Falar no WhatsApp</span>
             </a>
             
-            <a href="#portfolio" class="btn-secondary js-open-mathias-gallery">
-              <span>Ver Modelos Prontos</span>
+            <a href="#portfolio" class="btn-secondary">
+              <span>Ver Projetos</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <polyline points="19 12 12 19 5 12"></polyline>
               </svg>
             </a>
           </div>
 
-          <!-- Provas Rápidas / Destaques -->
+          <!-- Destaques Curtos -->
           <div class="hero-trust-row">
             <div class="trust-item">
               <span class="trust-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
               </span>
               <div class="trust-text">
                 <strong>Entrega Ágil</strong>
-                <span>Seu site no ar em poucos dias</span>
+                <span>Poucos dias</span>
               </div>
             </div>
             <div class="trust-item">
               <span class="trust-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                  <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                </svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
               </span>
               <div class="trust-text">
                 <strong>100% Mobile</strong>
-                <span>Perfeito em qualquer celular</span>
+                <span>Celular e PC</span>
               </div>
             </div>
             <div class="trust-item">
               <span class="trust-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                  <line x1="1" y1="10" x2="23" y2="10"></line>
-                </svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
               </span>
               <div class="trust-text">
-                <strong>Setup a partir de R$ 497</strong>
-                <span>Pago em 2x (50% na entrega)</span>
+                <strong>A partir de R$ 497</strong>
+                <span>Em 2x sem juros</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Hero Visual Showcase -->
+        <!-- Visual Hero (Celular) -->
         <div class="hero-visual">
           <div class="phone-frame-container">
             <div class="floating-bubble bubble-google">
               <span class="google-logo">G</span>
               <div>
-                <strong>Apareça no Google</strong>
-                <small>Quando buscarem seu serviço na cidade</small>
+                <strong>Google</strong>
+                <small>Destaque na sua cidade</small>
               </div>
             </div>
 
             <div class="phone-mockup-main">
               <div class="phone-inner">
-                <img src="assets/images/mockup-oficina-clinica.svg" alt="Modelo 03 - Clínica e Serviços Especializados" class="phone-mockup-img" id="heroPreviewImg">
+                <img src="assets/images/mockup-oficina-clinica.svg" alt="Modelo Profissional" class="phone-mockup-img" id="heroPreviewImg">
               </div>
             </div>
 
             <div class="floating-bubble bubble-whatsapp">
               <span class="wa-badge">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="#16A34A">
-                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/>
-                </svg>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#16A34A"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/></svg>
               </span>
               <div>
-                <strong>Direto pro WhatsApp</strong>
-                <small>Sem formulários chatos ou perda de leads</small>
+                <strong>WhatsApp</strong>
+                <small>Contato e vendas imediatas</small>
               </div>
             </div>
           </div>
@@ -246,19 +233,18 @@
       </div>
     </section>
 
-    <!-- ================= 2. O PORTFÓLIO (A VITRINE) ================= -->
-    <section class="section portfolio-section" id="portfolio">
+<section class="section portfolio-section" id="portfolio">
       <div class="container">
         <div class="section-header text-center">
-          <span class="section-tag">A Vitrine Interativa</span>
+          <span class="section-tag">Vitrine de Projetos</span>
           <h2 class="section-title">Nossos Projetos</h2>
           <p class="section-description">
-            Explore nossos modelos com design moderno, alta conversão e experiência imersiva.
+            Modelos de alta conversão para empresas e comércios locais.
           </p>
         </div>
 
-        <!-- Botão Destaque: Galeria 3D Estilo Mathias Adolfsson -->
-        <div class="portfolio-mathias-banner">
+        <!-- Botão Destaque: Galeria 3D (VISÍVEL APENAS NO COMPUTADOR / DESKTOP) -->
+        <div class="portfolio-mathias-banner desktop-only-feature">
           <button type="button" class="btn-mathias-open js-open-mathias-gallery" id="btnOpenMathiasGallery" aria-label="Abrir galeria interativa 3D de projetos">
             <div class="mathias-btn-glow"></div>
             <div class="mathias-btn-icon-wrap">
@@ -269,9 +255,9 @@
               </svg>
             </div>
             <div class="mathias-btn-content">
-              <span class="mathias-btn-badge">✦ EXPERIÊNCIA 3D IMERSIVA</span>
+              <span class="mathias-btn-badge">EXPERIÊNCIA 3D</span>
               <span class="mathias-btn-title">Ver Nossos Projetos</span>
-              <span class="mathias-btn-sub">Galeria curva 3D com 7 modelos reais • Planos Essencial &amp; Personalizado</span>
+              <span class="mathias-btn-sub">Galeria curva interativa com 7 modelos reais</span>
             </div>
             <div class="mathias-btn-arrow">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -282,10 +268,10 @@
           </button>
         </div>
 
-        <!-- Vitrine de Esferas 3D Flutuantes (Inspirada no Angelo.so) -->
+        <!-- Vitrine de Esferas 3D Flutuantes (Direcionam para Preço, Como Funciona e Contato) -->
         <div class="orbs-showcase" aria-label="Vitrine de Esferas Interativas">
           <!-- Bola 1: Área de Preço (Azul Claro) -->
-          <a href="#preco" class="orb-item" title="Ir para Área de Preço e Planos">
+          <a href="#preco" class="orb-item js-trigger-preco" title="Abrir Área de Preço e Planos">
             <div class="orb-sphere orb-sphere-azul-claro">
               <div class="orb-glass-gloss"></div>
             </div>
@@ -293,7 +279,7 @@
           </a>
 
           <!-- Bola 2: Como Funciona (Azul Violeta) -->
-          <a href="#como-funciona" class="orb-item" title="Ir para Como Funciona o Passo a Passo">
+          <a href="#como-funciona" class="orb-item js-trigger-como-funciona" title="Abrir Passo a Passo de Como Funciona">
             <div class="orb-sphere orb-sphere-azul-violeta orb-sphere-featured">
               <div class="orb-glass-gloss"></div>
             </div>
@@ -301,7 +287,7 @@
           </a>
 
           <!-- Bola 3: Contato (Violeta) -->
-          <a href="#contato" class="orb-item" title="Ir para Contato e WhatsApp">
+          <a href="#contato" class="orb-item js-trigger-contato" title="Ir para Contato e WhatsApp">
             <div class="orb-sphere orb-sphere-violeta">
               <div class="orb-glass-gloss"></div>
             </div>
@@ -309,126 +295,128 @@
           </a>
         </div>
 
-        <!-- Grid de Modelos em Destaque: 1 do Plano Essencial e 1 do Plano Personalizado -->
-        <div class="portfolio-grid">
-          
-          <!-- Modelo 01: Plano Essencial (Glacy Café & Bistrô) -->
-          <article class="portfolio-card" id="modelo-essencial">
-            <div class="portfolio-mockup-wrapper">
-              <div class="card-orb-badge badge-essencial">
-                <div class="mini-sphere sphere-blue"></div>
-                <span>Plano Essencial</span>
+        <!-- ÁREA DE CARDS VISÍVEL APENAS NO CELULAR (MOBILE-ONLY SHOWCASE) -->
+        <!-- Substituído Glacy pela Academia VoltFit conforme solicitado -->
+        <div class="mobile-only-showcase">
+          <div class="portfolio-grid">
+            
+            <!-- Modelo 01: Plano Essencial (Academia VoltFit) -->
+            <article class="portfolio-card" id="modelo-essencial">
+              <div class="portfolio-mockup-wrapper">
+                <div class="card-orb-badge badge-essencial">
+                  <div class="mini-sphere sphere-blue"></div>
+                  <span>Plano Essencial</span>
+                </div>
+                <div class="phone-device-frame">
+                  <img src="assets/images/mockup-academia.png" alt="Site Academia VoltFit - Exemplo Plano Essencial" class="phone-device-screen">
+                </div>
+                <button class="btn-preview-zoom js-zoom-trigger" data-target="assets/images/mockup-academia.png" data-title="Academia VoltFit (Exemplo do Plano Essencial)" aria-label="Ampliar Modelo Academia VoltFit">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  <span>Ver em Tela Cheia</span>
+                </button>
               </div>
-              <div class="phone-device-frame">
-                <img src="assets/images/mockup-glacy.png" alt="Site Glacy Café e Bistrô - Exemplo Plano Essencial" class="phone-device-screen">
+              <div class="portfolio-info">
+                <div class="portfolio-plan-pill plan-pill-essencial">
+                  <span class="plan-pill-title">Plano Essencial</span>
+                  <span class="plan-pill-price">Setup R$ 497 (ou 2x R$ 248,50) • R$ 47/mês</span>
+                </div>
+                <div class="portfolio-niche">Academia, Musculação &amp; Fitness</div>
+                <h3 class="portfolio-item-title">Academia VoltFit</h3>
+                <p class="portfolio-item-focus">
+                  <strong>Modelo do Plano Essencial:</strong> Estrutura moderna, rápida e focada em apresentar planos, modalidades e converter matrículas direto no WhatsApp.
+                </p>
+                <div class="portfolio-features">
+                  <span>✓ Site One-Page de Alta Conversão</span>
+                  <span>✓ Botão Direto para o WhatsApp</span>
+                  <span>✓ Grade de Aulas &amp; Modalidades</span>
+                  <span>✓ Hospedagem 24h &amp; SSL Seguro</span>
+                  <span>✓ Suporte para Pequenos Ajustes</span>
+                </div>
+                <a href="https://academiarida-ashen.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
+                  <span>Visitar Site ao Vivo</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
               </div>
-              <button class="btn-preview-zoom js-zoom-trigger" data-target="assets/images/mockup-glacy.png" data-title="Glacy • Café &amp; Bistrô (Exemplo do Plano Essencial)" aria-label="Ampliar Modelo Glacy Bistrô">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  <line x1="11" y1="8" x2="11" y2="14"></line>
-                  <line x1="8" y1="11" x2="14" y2="11"></line>
-                </svg>
-                <span>Ver em Tela Cheia</span>
-              </button>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-plan-pill plan-pill-essencial">
-                <span class="plan-pill-title">Plano Essencial</span>
-                <span class="plan-pill-price">Setup R$ 497 (ou 2x R$ 248,50) • R$ 47/mês</span>
-              </div>
-              <div class="portfolio-niche">Cafeteria &amp; Restaurante Bistrô</div>
-              <h3 class="portfolio-item-title">Glacy • Café &amp; Bistrô</h3>
-              <p class="portfolio-item-focus">
-                <strong>Modelo do Plano Essencial:</strong> Estrutura one-page rápida, clean e focada em resultados. Ideal para comércios locais que querem sair do aluguel das redes sociais e ter presença oficial no Google com botão direto pro WhatsApp.
-              </p>
-              <div class="portfolio-features">
-                <span>✓ Site One-Page de Alta Conversão</span>
-                <span>✓ Botão Direto para o WhatsApp</span>
-                <span>✓ Cardápio Digital &amp; Pratos</span>
-                <span>✓ Hospedagem 24h &amp; SSL Seguro</span>
-                <span>✓ Suporte para Pequenos Ajustes</span>
-              </div>
-              <a href="https://glacy.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
-                <span>Visitar Site ao Vivo</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </div>
-          </article>
+            </article>
 
-          <!-- Modelo 02: Plano Personalizado (Doceria Gourmet Doralice) -->
-          <article class="portfolio-card featured-project" id="modelo-personalizado">
-            <div class="portfolio-mockup-wrapper">
-              <div class="card-orb-badge badge-destaque">
-                <div class="mini-sphere sphere-gold"></div>
-                <span>Plano Personalizado • Destaque</span>
+            <!-- Modelo 02: Plano Personalizado (Doceria Gourmet Doralice) -->
+            <article class="portfolio-card featured-project" id="modelo-personalizado">
+              <div class="portfolio-mockup-wrapper">
+                <div class="card-orb-badge badge-destaque">
+                  <div class="mini-sphere sphere-gold"></div>
+                  <span>Plano Personalizado • Destaque</span>
+                </div>
+                <div class="phone-device-frame">
+                  <img src="assets/images/mockup-doceria.png" alt="Site Doceria Gourmet Doralice - Exemplo Plano Personalizado" class="phone-device-screen">
+                </div>
+                <button class="btn-preview-zoom js-zoom-trigger" data-target="assets/images/mockup-doceria.png" data-title="Doceria Gourmet Doralice (Exemplo do Plano Personalizado)" aria-label="Ampliar Modelo Doceria Doralice">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    <line x1="11" y1="8" x2="11" y2="14"></line>
+                    <line x1="8" y1="11" x2="14" y2="11"></line>
+                  </svg>
+                  <span>Ver em Tela Cheia</span>
+                </button>
               </div>
-              <div class="phone-device-frame">
-                <img src="assets/images/mockup-doceria.png" alt="Site Doceria Gourmet Doralice - Exemplo Plano Personalizado" class="phone-device-screen">
+              <div class="portfolio-info">
+                <div class="portfolio-plan-pill plan-pill-personalizado">
+                  <span class="plan-pill-title">Plano Personalizado</span>
+                  <span class="plan-pill-price">Setup R$ 697 (ou 2x R$ 348,50) • R$ 67/mês</span>
+                </div>
+                <div class="portfolio-niche">Confeitaria Artesanal &amp; Doceria Gourmet</div>
+                <h3 class="portfolio-item-title">Doceria Gourmet Doralice</h3>
+                <p class="portfolio-item-focus">
+                  <strong>Modelo do Plano Personalizado:</strong> Projeto sob medida com design exclusivo, galeria imersiva de produtos com fotos em alta definição, catálogo de encomendas e <strong>tudo do Plano Essencial e muito mais</strong>.
+                </p>
+                <div class="portfolio-features">
+                  <span>✓ Tudo Incluso no Plano Essencial</span>
+                  <span>✓ Design Exclusivo Sob Medida</span>
+                  <span>✓ Galeria Interativa com Fotos em HD</span>
+                  <span>✓ Catálogo Completo de Encomendas</span>
+                  <span>✓ Otimização de SEO Local Google</span>
+                </div>
+                <a href="https://doceriarida.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
+                  <span>Visitar Site ao Vivo</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                </a>
               </div>
-              <button class="btn-preview-zoom js-zoom-trigger" data-target="assets/images/mockup-doceria.png" data-title="Doceria Gourmet Doralice (Exemplo do Plano Personalizado)" aria-label="Ampliar Modelo Doceria Doralice">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  <line x1="11" y1="8" x2="11" y2="14"></line>
-                  <line x1="8" y1="11" x2="14" y2="11"></line>
-                </svg>
-                <span>Ver em Tela Cheia</span>
-              </button>
-            </div>
-            <div class="portfolio-info">
-              <div class="portfolio-plan-pill plan-pill-personalizado">
-                <span class="plan-pill-title">Plano Personalizado</span>
-                <span class="plan-pill-price">Setup R$ 697 (ou 2x R$ 348,50) • R$ 67/mês</span>
-              </div>
-              <div class="portfolio-niche">Confeitaria Artesanal &amp; Doceria Gourmet</div>
-              <h3 class="portfolio-item-title">Doceria Gourmet Doralice</h3>
-              <p class="portfolio-item-focus">
-                <strong>Modelo do Plano Personalizado:</strong> Projeto sob medida com design exclusivo, galeria imersiva de produtos com fotos em alta definição, catálogo de encomendas e <strong>tudo do Plano Essencial e muito mais</strong>.
-              </p>
-              <div class="portfolio-features">
-                <span>✓ Tudo Incluso no Plano Essencial</span>
-                <span>✓ Design Exclusivo Sob Medida</span>
-                <span>✓ Galeria Interativa com Fotos em HD</span>
-                <span>✓ Catálogo Completo de Encomendas</span>
-                <span>✓ Otimização de SEO Local Google</span>
-              </div>
-              <a href="https://doceriarida.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
-                <span>Visitar Site ao Vivo</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-              </a>
-            </div>
-          </article>
+            </article>
 
-        </div>
-
-        <!-- Nota abaixo das imagens -->
-        <div class="portfolio-note-box">
-          <div class="note-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
           </div>
-          <div class="note-content">
-            <p class="note-quote">
-              "Seu negócio é de outro ramo? Sem problemas! Nós personalizamos 100% para a sua marca."
-            </p>
-            <div class="niche-tags">
-              <span>Petshops</span>
-              <span>Academias & Personal</span>
-              <span>Salões de Beleza</span>
-              <span>Autônomos & Advogados</span>
-              <span>Imobiliárias</span>
-              <span>Lojas de Roupas</span>
-              <span>E muito mais!</span>
+
+          <!-- Nota abaixo das imagens no celular -->
+          <div class="portfolio-note-box">
+            <div class="note-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <div class="note-content">
+              <p class="note-quote">
+                "Seu negócio é de outro ramo? Sem problemas! Nós personalizamos 100% para a sua marca."
+              </p>
+              <div class="niche-tags">
+                <span>Petshops</span>
+                <span>Academias</span>
+                <span>Padarias</span>
+                <span>Salões de Beleza</span>
+                <span>Clínicas</span>
+                <span>Comércios em Geral</span>
+              </div>
             </div>
           </div>
         </div>
@@ -436,8 +424,8 @@
       </div>
     </section>
 
-    <!-- ================= 3. NOSSOS PLANOS (A OFERTA) ================= -->
-    <section class="section pricing-section" id="preco">
+<section class="section pricing-section sphere-panel" id="preco" style="display: none;">
+        <div class="panel-header-close-bar text-right container"><button type="button" class="btn-hide-sphere-panel js-close-preco">✕ Fechar Área de Preço</button></div>
       <div class="container">
         <div class="section-header text-center">
           <span class="section-tag">Transparência Total</span>
@@ -687,10 +675,153 @@
         </div>
 
       </div>
-    </section>
+    
+        <div class="panel-bottom-close-bar text-center">
+          <button type="button" class="btn-hide-sphere-panel js-close-preco">▲ Ocultar Área de Preço</button>
+        </div>
+      </section>
 
-    <!-- ================= 4. A NOSSA PROMESSA (OS BENEFÍCIOS) ================= -->
-    <section class="section benefits-section" id="promessa">
+<section class="section process-section sphere-panel" id="como-funciona" style="display: none;">
+        <div class="panel-header-close-bar text-right container"><button type="button" class="btn-hide-sphere-panel js-close-como-funciona">✕ Fechar Como Funciona</button></div>
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Passo a Passo</span>
+          <h2 class="section-title">Seu site no ar em 3 passos simples</h2>
+          <p class="section-description">
+            Zero complicação. Você não precisa entender de código, servidores ou design.
+          </p>
+        </div>
+
+        <!-- 3 Passos -->
+        <div class="process-steps-grid">
+          
+          <!-- Passo 1 -->
+          <div class="step-card">
+            <div class="step-badge">1</div>
+            <div class="step-icon-header">
+              <span class="step-label-top">Passo 1</span>
+            </div>
+            <h3 class="step-title">Alinhamento</h3>
+            <p class="step-text">
+              Você clica no botão, nos chama no WhatsApp e entendemos a necessidade do seu negócio.
+            </p>
+            <div class="step-footer">
+              <span>Bate-papo rápido e direto de 5 a 10 min</span>
+            </div>
+          </div>
+
+          <!-- Passo 2 -->
+          <div class="step-card">
+            <div class="step-badge">2</div>
+            <div class="step-icon-header">
+              <span class="step-label-top">Passo 2</span>
+            </div>
+            <h3 class="step-title">Você envia o material</h3>
+            <p class="step-text">
+              Nos mande suas fotos, logotipo, preços e informações básicas. O trabalho pesado é nosso.
+            </p>
+            <div class="step-footer">
+              <span>Nós organizamos e criamos o visual</span>
+            </div>
+          </div>
+
+          <!-- Passo 3 -->
+          <div class="step-card">
+            <div class="step-badge">3</div>
+            <div class="step-icon-header">
+              <span class="step-label-top">Passo 3</span>
+            </div>
+            <h3 class="step-title">Entrega Rápida</h3>
+            <p class="step-text">
+              Em poucos dias, apresentamos o seu site pronto, testado e funcionando.
+            </p>
+            <div class="step-footer">
+              <span>Você aprova, paga a 2ª parte e começa a divulgar</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Call to Action no final do processo -->
+        <div class="process-cta-banner">
+          <div class="cta-banner-content">
+            <h3>Pronto para transformar seu negócio em uma referência local?</h3>
+            <p>Garanta a sua vaga de produção desta semana diretamente pelo WhatsApp.</p>
+          </div>
+          <a href="https://wa.me/5512974070207?text=Ol%C3%A1!%20Quero%20dar%20o%20Passo%201%20e%20fazer%20o%20alinhamento%20do%20meu%20site." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-lg js-whatsapp-link">
+            <span>Iniciar Passo 1 no WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    
+        <div class="panel-bottom-close-bar text-center">
+          <button type="button" class="btn-hide-sphere-panel js-close-como-funciona">▲ Ocultar Como Funciona</button>
+        </div>
+      </section>
+
+    <!-- ================= 5. CENTRAL DE INFORMAÇÕES ADICIONAIS (ON DEMAND) ================= -->
+    <section class="section extra-hub-section" id="mais-informacoes">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">Informações Detalhadas</span>
+          <h2 class="section-title">Deseja saber mais antes de contratar?</h2>
+          <p class="section-description">
+            Clique no assunto de seu interesse para ver todos os detalhes e diferenciais da nossa agência:
+          </p>
+        </div>
+
+        <!-- 3 Botões de Acesso Rápido -->
+        <div class="extra-tabs-nav" role="tablist">
+          <button type="button" class="btn-extra-tab" data-target="panel-promessa" role="tab" aria-selected="false" aria-controls="panel-promessa">
+            <div class="extra-tab-badge">Diferenciais</div>
+            <div class="extra-tab-icon-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg></div>
+            <div class="extra-tab-content">
+              <strong>Por Que Nos Escolher?</strong>
+              <span>Foco total em vendas pelo WhatsApp, velocidade e suporte sem dor de cabeça</span>
+            </div>
+            <div class="extra-tab-action">
+              <span class="tab-action-text">Ver detalhes</span>
+              <span class="tab-action-arrow">↓</span>
+            </div>
+          </button>
+
+          <button type="button" class="btn-extra-tab" data-target="panel-problema" role="tab" aria-selected="false" aria-controls="panel-problema">
+            <div class="extra-tab-badge badge-warning-tab">Análise de Mercado</div>
+            <div class="extra-tab-icon-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
+            <div class="extra-tab-content">
+              <strong>A Realidade do Mercado</strong>
+              <span>Por que só redes sociais não bastam e a importância de ter sua "casa própria" no Google</span>
+            </div>
+            <div class="extra-tab-action">
+              <span class="tab-action-text">Ver comparativo</span>
+              <span class="tab-action-arrow">↓</span>
+            </div>
+          </button>
+
+          <button type="button" class="btn-extra-tab" data-target="panel-faq" role="tab" aria-selected="false" aria-controls="panel-faq">
+            <div class="extra-tab-badge">Tire Dúvidas</div>
+            <div class="extra-tab-icon-svg"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
+            <div class="extra-tab-content">
+              <strong>Dúvidas Frequentes (FAQ)</strong>
+              <span>Prazos de entrega, forma de pagamento em 2x, manutenção mensal e suporte</span>
+            </div>
+            <div class="extra-tab-action">
+              <span class="tab-action-text">Ver perguntas</span>
+              <span class="tab-action-arrow">↓</span>
+            </div>
+          </button>
+        </div>
+
+        <!-- Painéis de Conteúdo On-Demand -->
+        <div class="extra-panels-wrapper">
+          <!-- Painel 1: Promessa / Diferenciais -->
+          <div class="extra-panel" id="panel-promessa" style="display: none;">
+            <div class="panel-inner-box">
+              <div class="panel-close-top">
+                <span class="panel-notice-tag">Nossos Diferenciais</span>
+                <button type="button" class="btn-panel-close js-close-extra-panel" aria-label="Fechar painel">✕ Fechar</button>
+              </div>
+              <section class="section benefits-section" id="promessa">
       <div class="container">
         <div class="section-header text-center">
           <span class="section-tag">Nossos Diferenciais</span>
@@ -758,9 +889,22 @@
         </div>
       </div>
     </section>
+              <div class="panel-close-bottom text-center">
+                <button type="button" class="btn-panel-hide js-close-extra-panel">
+                  <span>▲ Ocultar Diferenciais</span>
+                </button>
+              </div>
+            </div>
+          </div>
 
-    <!-- ================= 5. A REALIDADE DO MERCADO (O PROBLEMA) ================= -->
-    <section class="section problem-section" id="problema">
+          <!-- Painel 2: Problema / Realidade do Mercado -->
+          <div class="extra-panel" id="panel-problema" style="display: none;">
+            <div class="panel-inner-box">
+              <div class="panel-close-top">
+                <span class="panel-notice-tag">A Realidade do Mercado</span>
+                <button type="button" class="btn-panel-close js-close-extra-panel" aria-label="Fechar painel">✕ Fechar</button>
+              </div>
+              <section class="section problem-section" id="problema">
       <div class="container">
         <div class="section-header text-center">
           <span class="section-tag">A Realidade do Mercado</span>
@@ -858,83 +1002,22 @@
         </div>
       </div>
     </section>
-
-    <!-- ================= 6. COMO FUNCIONA (O PROCESSO) ================= -->
-    <section class="section process-section" id="como-funciona">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">Passo a Passo</span>
-          <h2 class="section-title">Seu site no ar em 3 passos simples</h2>
-          <p class="section-description">
-            Zero complicação. Você não precisa entender de código, servidores ou design.
-          </p>
-        </div>
-
-        <!-- 3 Passos -->
-        <div class="process-steps-grid">
-          
-          <!-- Passo 1 -->
-          <div class="step-card">
-            <div class="step-badge">1</div>
-            <div class="step-icon-header">
-              <span class="step-label-top">Passo 1</span>
-            </div>
-            <h3 class="step-title">Alinhamento</h3>
-            <p class="step-text">
-              Você clica no botão, nos chama no WhatsApp e entendemos a necessidade do seu negócio.
-            </p>
-            <div class="step-footer">
-              <span>Bate-papo rápido e direto de 5 a 10 min</span>
+              <div class="panel-close-bottom text-center">
+                <button type="button" class="btn-panel-hide js-close-extra-panel">
+                  <span>▲ Ocultar Análise de Mercado</span>
+                </button>
+              </div>
             </div>
           </div>
 
-          <!-- Passo 2 -->
-          <div class="step-card">
-            <div class="step-badge">2</div>
-            <div class="step-icon-header">
-              <span class="step-label-top">Passo 2</span>
-            </div>
-            <h3 class="step-title">Você envia o material</h3>
-            <p class="step-text">
-              Nos mande suas fotos, logotipo, preços e informações básicas. O trabalho pesado é nosso.
-            </p>
-            <div class="step-footer">
-              <span>Nós organizamos e criamos o visual</span>
-            </div>
-          </div>
-
-          <!-- Passo 3 -->
-          <div class="step-card">
-            <div class="step-badge">3</div>
-            <div class="step-icon-header">
-              <span class="step-label-top">Passo 3</span>
-            </div>
-            <h3 class="step-title">Entrega Rápida</h3>
-            <p class="step-text">
-              Em poucos dias, apresentamos o seu site pronto, testado e funcionando.
-            </p>
-            <div class="step-footer">
-              <span>Você aprova, paga a 2ª parte e começa a divulgar</span>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Call to Action no final do processo -->
-        <div class="process-cta-banner">
-          <div class="cta-banner-content">
-            <h3>Pronto para transformar seu negócio em uma referência local?</h3>
-            <p>Garanta a sua vaga de produção desta semana diretamente pelo WhatsApp.</p>
-          </div>
-          <a href="https://wa.me/5512974070207?text=Ol%C3%A1!%20Quero%20dar%20o%20Passo%201%20e%20fazer%20o%20alinhamento%20do%20meu%20site." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-lg js-whatsapp-link">
-            <span>Iniciar Passo 1 no WhatsApp</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= SEÇÃO BÔNUS: PERGUNTAS FREQUENTES (FAQ) ================= -->
-    <section class="section faq-section" id="faq">
+          <!-- Painel 3: FAQ / Perguntas Frequentes -->
+          <div class="extra-panel" id="panel-faq" style="display: none;">
+            <div class="panel-inner-box">
+              <div class="panel-close-top">
+                <span class="panel-notice-tag">Perguntas Frequentes</span>
+                <button type="button" class="btn-panel-close js-close-extra-panel" aria-label="Fechar painel">✕ Fechar</button>
+              </div>
+              <section class="section faq-section" id="faq">
       <div class="container">
         <div class="section-header text-center">
           <span class="section-tag">Tire Suas Dúvidas</span>
@@ -1000,7 +1083,17 @@
         </div>
       </div>
     </section>
-  </main>
+              <div class="panel-close-bottom text-center">
+                <button type="button" class="btn-panel-hide js-close-extra-panel">
+                  <span>▲ Ocultar Perguntas Frequentes</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+</main>
 
   <!-- ================= 7. RODAPÉ (FOOTER) / CONTATO ================= -->
   <footer class="site-footer" id="contato">
@@ -1156,14 +1249,26 @@
         <p class="mathias-brand-sub">Modelos Reais • Experiência 3D</p>
       </div>
 
-      <!-- Filtros de Planos (Essencial e Personalizado) -->
-      <div class="mathias-filter-pills" role="tablist">
-        <button type="button" class="mathias-filter-btn active" data-filter="all" role="tab" aria-selected="true">Todos (7)</button>
-        <button type="button" class="mathias-filter-btn" data-filter="essencial" role="tab" aria-selected="false">Plano Essencial (4)</button>
-        <button type="button" class="mathias-filter-btn" data-filter="personalizado" role="tab" aria-selected="false">Plano Personalizado (3)</button>
+      <!-- Menu Dropdown de Categorias (Sem emojis, fecha automaticamente ao escolher) -->
+      <div class="mathias-category-dropdown" id="mathiasCategoryDropdown">
+        <button type="button" class="btn-category-trigger" id="btnCategoryTrigger" aria-expanded="false" aria-haspopup="true">
+          <span class="trigger-label">Categoria:</span>
+          <span class="trigger-current" id="currentCategoryText">Todos</span>
+          <svg class="trigger-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="category-dropdown-list" id="categoryDropdownList" style="display: none;">
+          <button type="button" class="category-select-item active" data-category="all">Todos (7 modelos)</button>
+          <button type="button" class="category-select-item" data-category="petshop">Pet Shop</button>
+          <button type="button" class="category-select-item" data-category="padaria">Padaria</button>
+          <button type="button" class="category-select-item" data-category="academia">Academia</button>
+          <button type="button" class="category-select-item" data-category="doceria">Doceria</button>
+          <button type="button" class="category-select-item" data-category="salao">Salão de Beleza</button>
+          <button type="button" class="category-select-item" data-category="jornalismo">Jornalismo</button>
+          <button type="button" class="category-select-item" data-category="cafeteria">Cafeteria</button>
+        </div>
       </div>
 
-      <!-- Botão Fechar (Estilo Mathias Adolfsson) -->
+      <!-- Botão Fechar -->
       <button type="button" class="btn-close-gallery js-close-mathias-gallery" id="btnCloseMathiasGallery" aria-label="Fechar Galeria">
         <span>Fechar</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -1189,6 +1294,6 @@
     </footer>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3.4"></script>
 </body>
 </html>
