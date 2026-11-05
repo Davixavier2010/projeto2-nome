@@ -4871,3 +4871,247 @@ body.dark-mode .btn-hide-sphere-panel {
   color: #FFFFFF;
   border-color: #EF4444;
 }
+
+
+/* ==============================================================================
+   BANNER DE CONSULTORIA FINAL NA SEÇÃO DE PREÇOS
+   ============================================================================== */
+.pricing-consult-box {
+  margin-top: 40px;
+  background: var(--bg-cream-card);
+  border: var(--border-black);
+  border-radius: 20px;
+  box-shadow: var(--shadow-neo);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  transition: all 0.25s ease;
+}
+
+body.dark-mode .pricing-consult-box {
+  background: #151b26;
+  border-color: #283344;
+  box-shadow: 4px 4px 0px #030712;
+}
+
+.consult-box-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--navy-primary);
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+body.dark-mode .consult-box-title {
+  color: #F8FAFC;
+}
+
+.consult-box-desc {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.45;
+}
+
+body.dark-mode .consult-box-desc {
+  color: #94A3B8;
+}
+
+
+
+
+/* ==============================================================================
+   ABERTURA DE ENTRADA DO SITE (MÁXIMO 1.5 SEGUNDOS - LOGO CHEGANDO ROLANDO)
+   ============================================================================== */
+/* ==============================================================================
+   ABERTURA DE ENTRADA DO SITE (1.8 SEGUNDOS - LOGO CHEGANDO ROLANDO COMO ESFERA)
+   ============================================================================== */
+.site-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 999999;
+  background: radial-gradient(circle at 50% 45%, #101726 0%, #07090e 75%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.site-splash.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  user-select: none;
+}
+
+/* Trilha e Conteiner da Esfera */
+.splash-roll-track {
+  position: relative;
+  width: 104px;
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-sphere-wrap {
+  width: 92px;
+  height: 92px;
+  position: relative;
+  animation: splashSphereRollIn 0.92s cubic-bezier(0.16, 0.95, 0.3, 1) forwards;
+  will-change: transform;
+}
+
+.splash-sphere-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.7));
+}
+
+/* Brilho radial pulsando quando para no centro */
+.splash-sphere-halo {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(37, 99, 235, 0.18) 45%, transparent 70%);
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+  animation: splashHaloPulse 0.5s ease-out 0.86s forwards;
+}
+
+/* Sombra de contato no chão da esfera */
+.splash-sphere-shadow {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  width: 76px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 75%);
+  transform: translateX(-50%) scaleX(0.2);
+  animation: splashShadowIn 0.92s cubic-bezier(0.16, 0.95, 0.3, 1) forwards;
+}
+
+/* Revelação suave do texto RIDA */
+.splash-brand-text {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: splashTextFadeIn 0.42s ease-out 0.9s forwards;
+}
+
+.splash-title {
+  font-family: 'Space Grotesk', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: 5px;
+  color: #FFFFFF;
+  text-shadow: 0 2px 14px rgba(255, 255, 255, 0.25);
+}
+
+.splash-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-top: 3px;
+}
+
+/* Animação: Esfera rolando da esquerda para o centro */
+@keyframes splashSphereRollIn {
+  0% {
+    transform: translateX(calc(-55vw - 110px)) rotate(-720deg);
+    opacity: 0.5;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+/* Animação: Sombra acompanhando a esfera */
+@keyframes splashShadowIn {
+  0% {
+    transform: translateX(calc(-55vw - 110px)) scaleX(0.2);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 0.85;
+  }
+}
+
+/* Animação: Pulso de brilho após a chegada */
+@keyframes splashHaloPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.35);
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(1.15);
+  }
+}
+
+/* Animação: Fade-in do texto da marca */
+@keyframes splashTextFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .splash-roll-track {
+    width: 84px;
+    height: 84px;
+  }
+  .splash-sphere-wrap {
+    width: 76px;
+    height: 76px;
+  }
+  .splash-title {
+    font-size: 1.6rem;
+    letter-spacing: 4px;
+  }
+}

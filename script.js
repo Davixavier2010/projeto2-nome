@@ -33,6 +33,7 @@ const SITE_CONFIG = {
 // INICIALIZAÇÃO E APLICAÇÃO DAS CONFIGURAÇÕES
 // ==============================================================================
 document.addEventListener("DOMContentLoaded", () => {
+  initSiteSplash();
   applySiteConfig();
   initThemeToggle();
   initMobileMenu();
@@ -353,8 +354,8 @@ function initMathiasGallery() {
       niche: 'Panificação Tradicional & Fornadas',
       plan: 'personalizado',
       planLabel: 'Plano Personalizado',
-      price: 'Setup R$ 697 (2x R$ 348,50)',
-      monthly: 'R$ 67/mês',
+      price: 'Setup R$ 797 (2x R$ 398,50)',
+      monthly: 'R$ 77/mês',
       url: 'https://padaria-prestigio.vercel.app/',
       displayUrl: 'padaria-prestigio.vercel.app',
       image: 'assets/images/gallery/site-padaria.jpg'
@@ -381,8 +382,8 @@ function initMathiasGallery() {
       niche: 'Doceria Fina & Encomendas Artesanais',
       plan: 'personalizado',
       planLabel: 'Plano Personalizado',
-      price: 'Setup R$ 697 (2x R$ 348,50)',
-      monthly: 'R$ 67/mês',
+      price: 'Setup R$ 797 (2x R$ 398,50)',
+      monthly: 'R$ 77/mês',
       url: 'https://doceriarida.vercel.app/',
       displayUrl: 'doceriarida.vercel.app',
       image: 'assets/images/gallery/site-doceria.jpg'
@@ -423,8 +424,8 @@ function initMathiasGallery() {
       niche: 'Investigação, Notícias & Reportagens',
       plan: 'personalizado',
       planLabel: 'Plano Personalizado',
-      price: 'Setup R$ 697 (2x R$ 348,50)',
-      monthly: 'R$ 67/mês',
+      price: 'Setup R$ 797 (2x R$ 398,50)',
+      monthly: 'R$ 77/mês',
       url: 'https://jornalismo-rida.vercel.app/',
       displayUrl: 'jornalismo-rida.vercel.app',
       image: 'assets/images/gallery/site-jornalismo.jpg'
@@ -948,4 +949,37 @@ function initExtraHub() {
 
   checkHash();
   window.addEventListener("hashchange", checkHash);
+}
+
+
+// ==============================================================================
+// ABERTURA DE ENTRADA (MÁXIMO 1.5s - LOGO ROLANDO COMO ESFERA)
+// ==============================================================================
+// ==============================================================================
+// ABERTURA DE ENTRADA (1.8s - LOGO ROLANDO COMO ESFERA)
+// ==============================================================================
+function initSiteSplash() {
+  const splash = document.getElementById("siteSplash");
+  if (!splash) return;
+
+  let isDismissed = false;
+
+  function dismissSplash() {
+    if (isDismissed) return;
+    isDismissed = true;
+
+    splash.classList.add("is-hidden");
+    setTimeout(() => {
+      splash.style.display = "none";
+    }, 400);
+  }
+
+  // Duração total de 1.8 segundos cravados (1400ms animação + 400ms fade-out = 1800ms)
+  const timer = setTimeout(dismissSplash, 1400);
+
+  // Toque ou clique em qualquer lugar adianta e fecha imediatamente
+  splash.addEventListener("click", () => {
+    clearTimeout(timer);
+    dismissSplash();
+  }, { once: true });
 }
