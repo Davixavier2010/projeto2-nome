@@ -30,7 +30,7 @@ Um site completo, mobile-first, ultra rápido e de alta conversão para a **Rida
    - **Suporte "Paz de Espírito"** (Alterações feitas pela agência via WhatsApp).
 5. **Preço e Transparência (A Oferta):**
    - **Plano Essencial**: Setup **R$ 497,00** (Pago em 2x: 50% de R$ 248,50 para iniciar e 50% de R$ 248,50 na entrega) + Manutenção de **R$ 47,00 / mês**.
-   - **Plano Personalizado**: Setup **De R$ 497 até R$ 697** (Setup R$ 697,00 em 2x: 50% de R$ 348,50 para iniciar e 50% de R$ 348,50 na entrega) + Manutenção de **R$ 67,00 / mês**.
+   - **Plano Personalizado**: Setup **R$ 797** (Setup R$ 797,00 em 2x: 50% de R$ 398,50 para iniciar e 50% de R$ 398,50 na entrega) + Manutenção de **R$ 77,00 / mês**.
    - Benefícios da mensalidade (Hospedagem 24h, Proteção Hacker/SSL, Suporte prioritário via WhatsApp, botão expansível de recursos extras).
 6. **Como Funciona (O Processo em 3 Passos):**
    - Passo 1: Alinhamento
