@@ -429,6 +429,34 @@ function initMathiasGallery() {
       url: 'https://jornalismo-rida.vercel.app/',
       displayUrl: 'jornalismo-rida.vercel.app',
       image: 'assets/images/gallery/site-jornalismo.jpg'
+    },
+    {
+      id: 'bistro',
+      name: 'Le Petit Bleu • Café & Bistrô Francês',
+      category: 'cafeteria',
+      categoryName: 'Café & Bistrô Francês',
+      niche: 'Viennoiserie Artesanal, Brunch & Gastronomia',
+      plan: 'personalizado',
+      planLabel: 'Plano Personalizado',
+      price: 'Setup R$ 797 (2x R$ 398,50)',
+      monthly: 'R$ 77/mês',
+      url: 'http://localhost:5177/',
+      displayUrl: 'lepetitbleu.vercel.app',
+      image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'
+    },
+    {
+      id: 'tenis',
+      name: 'RIDANIS LAB • Tênis de Alta Performance',
+      category: 'ecommerce',
+      categoryName: 'Calçados & Esportes 3D',
+      niche: 'Biomecânica de Propulsão & Vitrine 3D',
+      plan: 'personalizado',
+      planLabel: 'Plano Personalizado',
+      price: 'Setup R$ 797 (2x R$ 398,50)',
+      monthly: 'R$ 77/mês',
+      url: 'http://localhost:5178/',
+      displayUrl: 'ridanis.vercel.app',
+      image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop'
     }
   ];
 
