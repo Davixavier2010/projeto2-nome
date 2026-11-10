@@ -333,20 +333,6 @@ function initMathiasGallery() {
   // Dados oficiais dos sites por nicho e categoria
   const projects = [
     {
-      id: 'glacy',
-      name: 'Glacy • Café & Bistrô',
-      category: 'cafeteria',
-      categoryName: 'Cafeteria & Bistrô',
-      niche: 'Cafeteria, Restaurante Executivo & Pratos',
-      plan: 'essencial',
-      planLabel: 'Plano Essencial',
-      price: 'Setup R$ 497 (2x R$ 248,50)',
-      monthly: 'R$ 47/mês',
-      url: 'https://glacy.vercel.app/',
-      displayUrl: 'glacy.vercel.app',
-      image: 'assets/images/gallery/site-glacy.jpg'
-    },
-    {
       id: 'padaria',
       name: 'Padaria Prestígio 1986',
       category: 'padaria',
@@ -440,9 +426,9 @@ function initMathiasGallery() {
       planLabel: 'Plano Personalizado',
       price: 'Setup R$ 797 (2x R$ 398,50)',
       monthly: 'R$ 77/mês',
-      url: 'http://localhost:5177/',
-      displayUrl: 'lepetitbleu.vercel.app',
-      image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop'
+      url: 'https://rida-cafeteria.vercel.app/',
+      displayUrl: 'rida-cafeteria.vercel.app',
+      image: 'assets/images/gallery/site-bistro.jpg'
     },
     {
       id: 'tenis',
@@ -454,9 +440,23 @@ function initMathiasGallery() {
       planLabel: 'Plano Personalizado',
       price: 'Setup R$ 797 (2x R$ 398,50)',
       monthly: 'R$ 77/mês',
-      url: 'http://localhost:5178/',
-      displayUrl: 'ridanis.vercel.app',
-      image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000&auto=format&fit=crop'
+      url: 'https://rida-tenis.vercel.app/',
+      displayUrl: 'rida-tenis.vercel.app',
+      image: 'assets/images/gallery/site-tenis.jpg'
+    },
+    {
+      id: 'sorveteria',
+      name: 'RIDA GELATO • Sorvetes Artesanais',
+      category: 'sorveteria',
+      categoryName: 'Sorveteria & Gelato',
+      niche: 'Sorvetes Artesanais, Potes 473ml & Frutas Tropicais',
+      plan: 'personalizado',
+      planLabel: 'Plano Personalizado',
+      price: 'Setup R$ 797 (2x R$ 398,50)',
+      monthly: 'R$ 77/mês',
+      url: 'https://rida-sorveteria.vercel.app/',
+      displayUrl: 'rida-sorveteria.vercel.app',
+      image: 'assets/images/gallery/site-sorveteria.jpg'
     }
   ];
 
