@@ -40,11 +40,24 @@ document.addEventListener("DOMContentLoaded", () => {
   initZoomModal();
   initSmoothScroll();
   initHeaderScroll();
+  initPricingDrawers();
   initFeatureToggles();
   initMathiasGallery();
   initSpherePanels();
   initExtraHub();
+  initHeroInteractiveLogo();
 });
+
+/**
+ * Animação da logo interativa no Hero (gira no lugar e revela RIDA)
+ */
+function initHeroInteractiveLogo() {
+  const logoWrap = document.getElementById("heroInteractiveLogo");
+  if (!logoWrap) return;
+  logoWrap.addEventListener("click", () => {
+    logoWrap.classList.toggle("is-active");
+  });
+}
 
 /**
  * Atualiza todos os elementos marcados com as informações da configuração
@@ -281,6 +294,36 @@ function initHeaderScroll() {
     } else {
       header.style.boxShadow = "none";
     }
+  });
+}
+
+/**
+ * Alternador de recursos inclusos nos planos (Gaveta elegante sob demanda)
+ * Conforme diretrizes-de-design: sem emojis, foco em microinterações, acessível com aria-expanded
+ */
+function initPricingDrawers() {
+  const toggleButtons = document.querySelectorAll(".js-toggle-includes");
+  toggleButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const targetId = btn.getAttribute("aria-controls");
+      const targetContent = document.getElementById(targetId);
+      if (!targetContent) return;
+
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      const textSpan = btn.querySelector(".toggle-btn-text");
+
+      if (isExpanded) {
+        btn.setAttribute("aria-expanded", "false");
+        btn.classList.remove("is-open");
+        targetContent.hidden = true;
+        if (textSpan) textSpan.textContent = "Ver o que está incluso no plano";
+      } else {
+        btn.setAttribute("aria-expanded", "true");
+        btn.classList.add("is-open");
+        targetContent.hidden = false;
+        if (textSpan) textSpan.textContent = "Ocultar o que está incluso";
+      }
+    });
   });
 }
 

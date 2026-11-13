@@ -7,22 +7,22 @@
   <meta name="description" content="Criamos sites profissionais, rápidos e focados em atrair clientes para o seu comércio. Destaque-se no Google e venda pelo WhatsApp. Setup R$ 497.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=9.4">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=10.1">
   <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <link rel="apple-touch-icon" href="assets/images/favicon.png">
   <script>
     (function() {
       try {
         var theme = localStorage.getItem('rida_theme_mode');
-        if (theme === 'dark') {
+        if (theme === 'dark' || !theme) {
           document.documentElement.classList.add('dark-mode');
         }
       } catch(e) {}
     })();
   </script>
 </head>
-<body>
+<body class="dark-mode">
 
   <!-- ================= ABERTURA DE ENTRADA (MÁXIMO 1.5s - LOGO ROLANDO COMO ESFERA) ================= -->
   <div id="siteSplash" class="site-splash" role="status" aria-label="Abertura Rida">
@@ -139,113 +139,63 @@
   </header>
 
   <main id="mainContent">
-<section class="hero-section" id="inicio">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          
-          <div class="hero-brand-top">
-            <div class="hero-logo-box">
-              <img src="assets/images/logo-rida.png" alt="Logo Rida" class="hero-logo-img">
+    <section class="hero-section hero-clean-showcase" id="inicio">
+      <div class="container hero-clean-container">
+        <!-- Coluna da Marca: Logo Interativa + Título Sora 400 -->
+        <div class="hero-brand-col">
+          <!-- Logo Interativa (Desktop: ao lado e maior; Mobile: embaixo da escrita) -->
+          <div class="hero-interactive-logo-wrap" id="heroInteractiveLogo" tabindex="0" role="button" aria-label="Rida Sites Profissionais">
+            <div class="hero-logo-spin-wrap">
+              <img src="assets/images/logo-rida-transparent.png" alt="Logo Rida" class="hero-rida-logo-img logo-light-ver">
+              <img src="assets/images/logo-rida-white.png" alt="Logo Rida" class="hero-rida-logo-img logo-dark-ver">
             </div>
-            <div class="hero-brand-meta">
-              <span class="hero-brand-title">RIDA</span>
-              <span class="hero-brand-badge">Sites Profissionais</span>
+            <div class="hero-logo-brand-reveal">
+              <span class="hero-brand-name">RIDA</span>
+              <span class="hero-brand-sub">Sites Profissionais</span>
             </div>
           </div>
 
-          <div class="badge-pill">
-            <span class="badge-dot"></span>
-            <span>Sites para Comércios e Empresas</span>
-          </div>
+          <!-- Texto Hero (Sora 400 + Subtítulo e Informações Básicas) -->
+          <div class="hero-clean-text-wrap">
+            <h1 class="hero-title-sora">
+              <span class="hero-line-block">Sites profissionais</span>
+              <span class="hero-line-block">com <span class="highlight-sora">clientes no WhatsApp.</span></span>
+            </h1>
 
-          <!-- Título Ultrarresumido e Direto -->
-          <h1 class="hero-title">
-            Sites profissionais com <span class="highlight-title">clientes no WhatsApp</span>.
-          </h1>
+            <!-- Parágrafo com informações básicas sem negrito -->
+            <p class="hero-clean-subtitle">
+              Tenha um site moderno com atendimento ágil, planos facilitados em 2x de R$ 248,50 e suporte direto no WhatsApp para vender todos os dias.
+            </p>
 
-          <!-- Subtítulo de 1 linha -->
-          <p class="hero-subtitle">
-            Tenha um site profissional para apresentar seu negócio e facilitar o contato com novos clientes.
-          </p>
-
-          <!-- Botões de Ação Imediata -->
-          <div class="hero-actions">
-            <a href="https://wa.me/5512974070207?text=Ol%C3%A1!%20Gostaria%20de%20um%20site%20profissional%20para%20o%20meu%20neg%C3%B3cio." target="_blank" rel="noopener noreferrer" class="btn-whatsapp btn-whatsapp-lg js-whatsapp-link">
-              <span class="whatsapp-icon-circle">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <!-- Pílulas de Destaque no padrão do site -->
+            <div class="hero-clean-highlights">
+              <div class="hero-highlight-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <span>Atendimento Ágil</span>
+              </div>
+              <div class="hero-highlight-pill">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+                <span>2x de R$ 248,50</span>
+              </div>
+              <div class="hero-highlight-pill highlight-wa">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/>
                 </svg>
-              </span>
-              <span>Falar no WhatsApp</span>
-            </a>
-            
-            <a href="#portfolio" class="btn-secondary">
-              <span>Ver Projetos</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" y1="5" x2="12" y2="19"></line>
-                <polyline points="19 12 12 19 5 12"></polyline>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Destaques Curtos -->
-          <div class="hero-trust-row">
-            <div class="trust-item">
-              <span class="trust-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-              </span>
-              <div class="trust-text">
-                <strong>Prazo Ágil</strong>
-                <span>Até 5 dias úteis*</span>
-              </div>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg>
-              </span>
-              <div class="trust-text">
-                <strong>Pensado p/ Celular</strong>
-                <span>100% responsivo</span>
-              </div>
-            </div>
-            <div class="trust-item">
-              <span class="trust-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
-              </span>
-              <div class="trust-text">
-                <strong>A partir de R$ 497</strong>
-                <span>Em 2x sem juros</span>
+                <span>Suporte WhatsApp</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Visual Hero (Celular) -->
-        <div class="hero-visual">
-          <div class="phone-frame-container">
-            <div class="floating-bubble bubble-google">
-              <span class="google-logo">G</span>
-              <div>
-                <strong>Presença Digital</strong>
-                <small>Sua empresa na internet</small>
-              </div>
-            </div>
-
-            <div class="phone-mockup-main">
-              <div class="phone-inner">
-                <img src="assets/images/mockup-oficina-clinica.svg" alt="Modelo Profissional" class="phone-mockup-img" id="heroPreviewImg">
-              </div>
-            </div>
-
-            <div class="floating-bubble bubble-whatsapp">
-              <span class="wa-badge">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="#16A34A"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/></svg>
-              </span>
-              <div>
-                <strong>WhatsApp</strong>
-                <small>Contato e vendas imediatas</small>
-              </div>
-            </div>
+        <!-- Coluna do Celular: Mockup Simplificado (Garante presença e altura na primeira dobra) -->
+        <div class="hero-phone-col">
+          <div class="hero-phone-device">
+            <img src="assets/images/mockup-hero-clean.svg" alt="Demonstração de Site Profissional no Celular" class="hero-phone-img" loading="eager">
           </div>
         </div>
       </div>
@@ -622,7 +572,7 @@
                 </div>
                 <div class="payment-terms">
                   <span class="badge-terms">Condição Facilitada</span>
-                  <p>Pago em 2x: <strong>50% para iniciar (R$ 248,50)</strong> e <strong>50% na entrega (R$ 248,50)</strong> com tudo aprovado por você.</p>
+                  <p>50% na entrada e 50% na entrega do site.</p>
                 </div>
               </div>
 
@@ -644,8 +594,20 @@
               </div>
             </div>
 
+            <!-- Botão Ver o que está incluso no plano -->
+            <div class="pricing-drawer-toggle-wrap">
+              <button type="button" class="btn-toggle-includes js-toggle-includes" aria-expanded="false" aria-controls="includes-essencial" id="btn-toggle-essencial">
+                <span class="toggle-btn-text">Ver o que está incluso no plano</span>
+                <span class="toggle-btn-icon" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
+            </div>
+
             <!-- O que inclui? -->
-            <div class="pricing-includes">
+            <div class="pricing-includes pricing-drawer-content" id="includes-essencial" hidden>
               <div class="text-center" style="margin-bottom: 12px;">
                 <span class="includes-plus-badge">Recursos Inclusos no Plano</span>
                 <h4 class="includes-title" style="margin-bottom: 0;">O que está incluso:</h4>
@@ -732,7 +694,7 @@
                 </div>
                 <div class="payment-terms">
                   <span class="badge-terms">Condição Facilitada</span>
-                  <p>Pago em 2x: <strong>50% para iniciar (R$ 398,50)</strong> e <strong>50% na entrega (R$ 398,50)</strong> com tudo aprovado por você.</p>
+                  <p>50% na entrada e 50% na entrega do site.</p>
                 </div>
               </div>
 
@@ -754,8 +716,20 @@
               </div>
             </div>
 
+            <!-- Botão Ver o que está incluso no plano -->
+            <div class="pricing-drawer-toggle-wrap">
+              <button type="button" class="btn-toggle-includes js-toggle-includes" aria-expanded="false" aria-controls="includes-personalizado" id="btn-toggle-personalizado">
+                <span class="toggle-btn-text">Ver o que está incluso no plano</span>
+                <span class="toggle-btn-icon" aria-hidden="true">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </span>
+              </button>
+            </div>
+
             <!-- O que inclui? -->
-            <div class="pricing-includes">
+            <div class="pricing-includes pricing-drawer-content" id="includes-personalizado" hidden>
               <div class="text-center" style="margin-bottom: 12px;">
                 <span class="includes-plus-badge">Recursos Inclusos no Plano</span>
                 <h4 class="includes-title" style="margin-bottom: 0;">O que está incluso:</h4>
@@ -1485,6 +1459,6 @@
     </footer>
   </div>
 
-  <script src="script.js?v=9.4"></script>
+  <script src="script.js?v=9.5"></script>
 </body>
 </html>

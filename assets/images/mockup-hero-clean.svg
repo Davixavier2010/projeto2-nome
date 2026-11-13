@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 780" width="100%" height="100%">
+  <defs>
+    <!-- Gradiente de Fundo do Card -->
+    <linearGradient id="cleanHeroCardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+
+    <!-- Gradiente do Botão WhatsApp -->
+    <linearGradient id="waBtnGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#25D366"/>
+      <stop offset="100%" stop-color="#1EBE5D"/>
+    </linearGradient>
+
+    <!-- Sombra Suave de Elevação -->
+    <filter id="cleanCardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-opacity="0.08"/>
+    </filter>
+
+    <filter id="glowWa" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#25D366" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Chassis Externo do Celular (iPhone Titanium Estilo Apple) -->
+  <rect x="5" y="5" width="370" height="770" rx="44" fill="#0C1017" stroke="#1F2937" stroke-width="3"/>
+  <rect x="7" y="7" width="366" height="766" rx="42" fill="none" stroke="#374151" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- Área da Tela -->
+  <g clip-path="url(#screenMask)">
+    <clipPath id="screenMask">
+      <rect x="14" y="14" width="352" height="752" rx="36" fill="#fff"/>
+    </clipPath>
+
+    <!-- Fundo da Tela (Off-white linho elegante) -->
+    <rect x="14" y="14" width="352" height="752" fill="#F8FAFC"/>
+
+    <!-- Barra de Status do iOS -->
+    <text x="44" y="42" fill="#0F172A" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">09:41</text>
+    
+    <!-- Dynamic Island -->
+    <rect x="135" y="27" width="110" height="26" rx="13" fill="#000000"/>
+    <circle cx="228" cy="40" r="4.5" fill="#18202C"/>
+    <circle cx="152" cy="40" r="3" fill="#0D2E1A"/>
+
+    <!-- Ícones de Bateria e Conexão -->
+    <path d="M 312 32 h 15 a 2 2 0 0 1 2 2 v 9 a 2 2 0 0 1 -2 2 h -15 a 2 2 0 0 1 -2 -2 v -9 a 2 2 0 0 1 2 -2 z" fill="none" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="314" y="34" width="11" height="9" rx="1" fill="#0F172A"/>
+    <path d="M 330 36 h 2 v 5 h -2 z" fill="#0F172A"/>
+
+    <!-- Header do Site Demo (Minimalista e Elegante) -->
+    <rect x="14" y="66" width="352" height="64" fill="#FFFFFF"/>
+    <line x1="14" y1="130" x2="366" y2="130" stroke="#E2E8F0" stroke-width="1"/>
+
+    <!-- Logo / Marca do Negócio no Mockup -->
+    <circle cx="44" cy="98" r="14" fill="#0F2942"/>
+    <path d="M 40 98 L 44 94 L 48 98 L 44 102 Z" fill="#FFFFFF"/>
+    <text x="68" y="95" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="800" letter-spacing="-0.3">SEU NEGÓCIO</text>
+    <circle cx="72" cy="108" r="3" fill="#25D366"/>
+    <text x="80" y="111" fill="#16A34A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="700">Online agora</text>
+
+    <!-- Botão Contato no Topo -->
+    <rect x="282" y="85" width="68" height="26" rx="7" fill="#E0F2FE"/>
+    <text x="316" y="102" text-anchor="middle" fill="#0369A1" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10.5" font-weight="800">CONTATO</text>
+
+    <!-- Card Principal (Super Limpo e Direto) -->
+    <g transform="translate(30, 154)">
+      <rect x="0" y="0" width="320" height="240" rx="20" fill="url(#cleanHeroCardGrad)" stroke="#E2E8F0" stroke-width="1.2" filter="url(#cleanCardShadow)"/>
+      
+      <!-- Pílula de Nicho -->
+      <rect x="18" y="18" width="128" height="22" rx="11" fill="#F1F5F9"/>
+      <text x="82" y="33" text-anchor="middle" fill="#475569" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9.5" font-weight="800" letter-spacing="0.4">SITE INSTITUCIONAL</text>
+
+      <!-- Título de Conversão -->
+      <text x="18" y="72" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="19" font-weight="800">Atraia Mais Clientes</text>
+      <text x="18" y="96" fill="#0F2942" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="19" font-weight="800">no WhatsApp Todos os Dias</text>
+
+      <!-- Subtítulo Enxuto -->
+      <text x="18" y="124" fill="#64748B" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="500">Apresente seus produtos e facilite o contato.</text>
+
+      <!-- Botão Verde WhatsApp de Alta Conversão -->
+      <g transform="translate(18, 156)" filter="url(#glowWa)">
+        <rect x="0" y="0" width="284" height="52" rx="14" fill="url(#waBtnGrad)"/>
+        <!-- Ícone Oficial WhatsApp -->
+        <g transform="translate(26, 17) scale(0.8)">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z" fill="#FFFFFF"/>
+        </g>
+        <text x="156" y="32" text-anchor="middle" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="800" letter-spacing="0.3">FALAR NO WHATSAPP</text>
+      </g>
+    </g>
+
+    <!-- Prova Social Limpa (Google 5.0) -->
+    <g transform="translate(30, 418)">
+      <rect x="0" y="0" width="320" height="52" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <circle cx="28" cy="26" r="13" fill="#F8FAFC"/>
+      <text x="28" y="30.5" text-anchor="middle" fill="#4285F4" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="900">G</text>
+      <text x="50" y="29.5" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11.5" font-weight="700">Avaliação 5.0 no Google</text>
+      <text x="238" y="29.5" fill="#16A34A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11.5" font-weight="700">★ ★ ★ ★ ★</text>
+    </g>
+
+    <!-- Selo de Confiança e Agilidade -->
+    <g transform="translate(30, 488)">
+      <rect x="0" y="0" width="320" height="76" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <circle cx="34" cy="38" r="18" fill="#ECFDF5"/>
+      <path d="M 27 38 L 32 43 L 41 33" fill="none" stroke="#059669" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="64" y="33" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="800">Entrega Completa em 5 Dias</text>
+      <text x="64" y="51" fill="#64748B" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11.5" font-weight="500">Domínio, hospedagem e suporte incluso</text>
+    </g>
+
+    <!-- Barra Inferior de Atendimento -->
+    <g transform="translate(30, 626)">
+      <rect x="0" y="0" width="320" height="50" rx="14" fill="#0F2942"/>
+      <circle cx="26" cy="25" r="13" fill="#25D366"/>
+      <path d="M 26 19 C 23 19 20.5 21.5 20.5 24.5 C 20.5 25.6 20.8 26.5 21.3 27.3 L 20.7 29.8 L 23.3 29.1 C 24.1 29.7 25 30 26 30 C 29 30 31.5 27.5 31.5 24.5 C 31.5 21.5 29 19 26 19 Z" fill="#FFFFFF"/>
+      <text x="48" y="29" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11.5" font-weight="700">Dúvidas? Fale Conosco Online</text>
+      <text x="290" y="29" text-anchor="middle" fill="#93C5FD" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700">→</text>
+    </g>
+
+    <!-- Indicador da Barra de Início do iPhone -->
+    <rect x="125" y="746" width="130" height="4.5" rx="2.5" fill="#0F172A" opacity="0.3"/>
+  </g>
+</svg>

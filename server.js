@@ -66,6 +66,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor rodando em: http://localhost:${PORT}/`);
+  console.log(`Acesso na rede local / celular: http://192.168.1.209:${PORT}/`);
 });

@@ -1,128 +1,115 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 780" width="100%" height="100%">
   <defs>
-    <linearGradient id="clinicHeader" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#0F2942"/>
-      <stop offset="100%" stop-color="#071524"/>
+    <linearGradient id="phoneCardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
     </linearGradient>
+    <linearGradient id="clinicHeaderGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0F2942"/>
+      <stop offset="100%" stop-color="#0A1C2E"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.06"/>
+    </filter>
   </defs>
 
-  <!-- Phone Shell -->
-  <rect x="5" y="5" width="370" height="770" rx="42" fill="#09131d" stroke="#142334" stroke-width="4"/>
-  <rect x="8" y="8" width="364" height="764" rx="39" fill="none" stroke="#1a2e45" stroke-width="1.5"/>
+  <!-- Outer Phone Chassis -->
+  <rect x="5" y="5" width="370" height="770" rx="42" fill="#09131d" stroke="#1e2e42" stroke-width="4"/>
+  <rect x="8" y="8" width="364" height="764" rx="39" fill="none" stroke="#283a52" stroke-width="1.5"/>
 
   <!-- Screen Area -->
-  <g clip-path="url(#screenClipClinic)">
-    <clipPath id="screenClipClinic">
+  <g clip-path="url(#phoneScreenClip)">
+    <clipPath id="phoneScreenClip">
       <rect x="15" y="15" width="350" height="750" rx="32" fill="#fff"/>
     </clipPath>
 
-    <!-- Screen Background -->
-    <rect x="15" y="15" width="350" height="750" fill="#F4F7FA"/>
+    <!-- Screen Background (Clean Modern Soft Slate) -->
+    <rect x="15" y="15" width="350" height="750" fill="#F1F5F9"/>
 
-    <!-- Status Bar -->
-    <text x="42" y="38" fill="#1e293b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">14:15</text>
-    <rect x="135" y="24" width="110" height="24" rx="12" fill="#000"/>
-    <circle cx="225" cy="36" r="4" fill="#1b2430"/>
-    <path d="M 315 28 h 14 a 2 2 0 0 1 2 2 v 8 a 2 2 0 0 1 -2 2 h -14 a 2 2 0 0 1 -2 -2 v -8 a 2 2 0 0 1 2 -2 z" fill="none" stroke="#1e293b" stroke-width="1.5"/>
-    <rect x="317" y="30" width="10" height="8" rx="1" fill="#25D366"/>
-    <path d="M 333 32 h 2 v 4 h -2 z" fill="#1e293b"/>
+    <!-- Status Bar (Minimal Apple Style) -->
+    <text x="44" y="42" fill="#0F172A" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">14:15</text>
+    <!-- Dynamic Island -->
+    <rect x="135" y="27" width="110" height="25" rx="12.5" fill="#000000"/>
+    <circle cx="228" cy="39" r="4.5" fill="#1b2430"/>
+    <!-- Battery & Signal -->
+    <path d="M 312 32 h 15 a 2 2 0 0 1 2 2 v 9 a 2 2 0 0 1 -2 2 h -15 a 2 2 0 0 1 -2 -2 v -9 a 2 2 0 0 1 2 -2 z" fill="none" stroke="#0F172A" stroke-width="1.5"/>
+    <rect x="314" y="34" width="10" height="9" rx="1" fill="#25D366"/>
+    <path d="M 330 36 h 2 v 5 h -2 z" fill="#0F172A"/>
 
-    <!-- Clinic Header Navy -->
-    <rect x="15" y="58" width="350" height="60" fill="url(#clinicHeader)"/>
-    <circle cx="46" cy="88" r="17" fill="#ffffff" opacity="0.15"/>
-    <path d="M 46 80 V 96 M 38 88 H 54" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round"/>
-    <text x="72" y="83" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold">CLÍNICA VIVER BEM</text>
-    <text x="72" y="98" fill="#CADBE9" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="600">Nota 4.9 no Google • CRM/CRO Ativo</text>
-    <rect x="290" y="73" width="60" height="26" rx="6" fill="#25D366"/>
-    <text x="320" y="89" text-anchor="middle" fill="#fff" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="bold">CONTATO</text>
+    <!-- App / Site Header -->
+    <rect x="15" y="66" width="350" height="66" fill="url(#clinicHeaderGrad)"/>
+    <!-- Cross/Health Icon Badge -->
+    <circle cx="48" cy="99" r="16" fill="#ffffff" opacity="0.12"/>
+    <path d="M 48 91 V 107 M 40 99 H 56" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+    <text x="74" y="95" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="14" font-weight="800" letter-spacing="-0.2">CLÍNICA VIVER BEM</text>
+    <!-- Active Status -->
+    <circle cx="78" cy="108" r="3.5" fill="#25D366"/>
+    <text x="86" y="112" fill="#93C5FD" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="600">Aberto agora • CRM Ativo</text>
+    <!-- Quick Contact Pill -->
+    <rect x="272" y="85" width="76" height="28" rx="8" fill="#25D366"/>
+    <text x="310" y="103" text-anchor="middle" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="800">CONTATO</text>
 
-    <!-- Hero Card Clinic -->
-    <g transform="translate(25, 128)">
-      <rect x="0" y="0" width="330" height="175" rx="16" fill="#ffffff" stroke="#dbe3eb" stroke-width="1"/>
-      <rect x="14" y="14" width="115" height="20" rx="10" fill="#E4ECF4"/>
-      <text x="71" y="27" text-anchor="middle" fill="#0F2942" font-family="'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700">ESPECIALIDADES</text>
+    <!-- Main Hero Card (Clean, focused, high contrast) -->
+    <g transform="translate(28, 150)">
+      <rect x="0" y="0" width="324" height="210" rx="18" fill="url(#phoneCardGrad)" stroke="#CBD5E1" stroke-width="1" filter="url(#subtleShadow)"/>
       
-      <text x="14" y="60" fill="#0F172A" font-family="'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800">Cuidado e Confiança</text>
-      <text x="14" y="80" fill="#0F2942" font-family="'Segoe UI', Roboto, sans-serif" font-size="17" font-weight="800">Para Toda a Sua Família</text>
-      <text x="14" y="100" fill="#64748B" font-family="'Segoe UI', Roboto, sans-serif" font-size="11">Atendimento humanizado, exames no mesmo dia e equipe qualificada.</text>
+      <!-- Category Badge -->
+      <rect x="16" y="16" width="112" height="22" rx="11" fill="#E0F2FE"/>
+      <text x="72" y="31" text-anchor="middle" fill="#0369A1" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="800" letter-spacing="0.5">ESPECIALIDADES</text>
+      
+      <!-- Headline -->
+      <text x="16" y="66" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="800">Cuidado e Confiança</text>
+      <text x="16" y="88" fill="#0F2942" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="800">Para Sua Família</text>
+      
+      <!-- Subtitle -->
+      <text x="16" y="112" fill="#64748B" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11.5" font-weight="500">Atendimento humanizado e equipe qualificada.</text>
 
       <!-- Primary CTA button -->
-      <g transform="translate(14, 118)">
-        <rect x="0" y="0" width="302" height="42" rx="10" fill="#25D366"/>
-        <text x="151" y="26" text-anchor="middle" fill="#ffffff" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="bold">AGENDAR CONSULTA VIA WHATSAPP</text>
+      <g transform="translate(16, 136)">
+        <rect x="0" y="0" width="292" height="48" rx="12" fill="#25D366"/>
+        <!-- WhatsApp Icon inside button -->
+        <g transform="translate(24, 15) scale(0.75)">
+          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z" fill="#FFFFFF"/>
+        </g>
+        <text x="156" y="30" text-anchor="middle" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12.5" font-weight="800" letter-spacing="0.2">AGENDAR VIA WHATSAPP</text>
       </g>
     </g>
 
-    <!-- Trust Badges -->
-    <g transform="translate(25, 314)">
-      <rect x="0" y="0" width="104" height="42" rx="8" fill="#ffffff" stroke="#dbe3eb"/>
-      <path d="M 52 14 L 60 17 L 60 23 C 60 28 52 31 52 31 C 52 31 44 28 44 23 L 44 17 Z" fill="none" stroke="#0F2942" stroke-width="1.5"/>
-      <text x="52" y="36" text-anchor="middle" fill="#0F2942" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="bold">Credenciados</text>
-
-      <rect x="113" y="0" width="104" height="42" rx="8" fill="#ffffff" stroke="#dbe3eb"/>
-      <path d="M 166 14 L 160 22 H 168 L 164 30" stroke="#0F2942" stroke-width="1.8" fill="none" stroke-linejoin="round"/>
-      <text x="165" y="36" text-anchor="middle" fill="#0F2942" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="bold">Sem Filas</text>
-
-      <rect x="226" y="0" width="104" height="42" rx="8" fill="#ffffff" stroke="#dbe3eb"/>
-      <rect x="270" y="16" width="16" height="12" rx="2" fill="none" stroke="#0F2942" stroke-width="1.5"/>
-      <line x1="270" y1="20" x2="286" y2="20" stroke="#0F2942" stroke-width="1.5"/>
-      <text x="278" y="36" text-anchor="middle" fill="#0F2942" font-family="'Segoe UI', sans-serif" font-size="9" font-weight="bold">Facilitado</text>
+    <!-- Social Proof Minimal Pill -->
+    <g transform="translate(28, 380)">
+      <rect x="0" y="0" width="324" height="46" rx="14" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <!-- Google 'G' -->
+      <circle cx="24" cy="23" r="12" fill="#F8FAFC"/>
+      <text x="24" y="27" text-anchor="middle" fill="#4285F4" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="900">G</text>
+      <text x="44" y="26" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="700">Avaliação 4.9 no Google</text>
+      <text x="230" y="26" fill="#16A34A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11" font-weight="700">★ ★ ★ ★ ★</text>
     </g>
 
-    <!-- Services Header -->
-    <text x="28" y="380" fill="#0F172A" font-family="'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="bold">Nossos Serviços &amp; Exames</text>
-
-    <!-- Clinic Item 1 -->
-    <g transform="translate(25, 394)">
-      <rect x="0" y="0" width="330" height="66" rx="12" fill="#ffffff" stroke="#dbe3eb" stroke-width="1"/>
-      <rect x="12" y="11" width="44" height="44" rx="8" fill="#E4ECF4"/>
-      <path d="M 34 22 V 32 C 34 37 26 37 26 32 V 22" fill="none" stroke="#0F2942" stroke-width="1.8"/>
-      <circle cx="34" cy="40" r="3" fill="#0F2942"/>
-      <text x="68" y="30" fill="#0F172A" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Clínica Geral &amp; Check-up</text>
-      <text x="68" y="47" fill="#64748B" font-family="'Segoe UI', Roboto, sans-serif" font-size="11">Avaliação completa de saúde</text>
-      <rect x="250" y="20" width="68" height="26" rx="6" fill="#0F2942"/>
-      <text x="284" y="36" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold">Ver Mais</text>
+    <!-- Single Clean Featured Service (No clutter!) -->
+    <g transform="translate(28, 444)">
+      <rect x="0" y="0" width="324" height="84" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1"/>
+      <rect x="14" y="16" width="52" height="52" rx="12" fill="#E4ECF4"/>
+      <path d="M 40 32 V 44 C 40 50 30 50 30 44 V 32" fill="none" stroke="#0F2942" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="40" cy="52" r="3.5" fill="#0F2942"/>
+      
+      <text x="78" y="38" fill="#0F172A" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13.5" font-weight="800">Atendimento Médico</text>
+      <text x="78" y="56" fill="#64748B" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="11">Consultas rápidas e preventivas</text>
+      
+      <circle cx="295" cy="42" r="14" fill="#F1F5F9"/>
+      <path d="M 292 37 L 297 42 L 292 47" fill="none" stroke="#0F2942" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
 
-    <!-- Clinic Item 2 -->
-    <g transform="translate(25, 470)">
-      <rect x="0" y="0" width="330" height="66" rx="12" fill="#ffffff" stroke="#dbe3eb" stroke-width="1"/>
-      <rect x="12" y="11" width="44" height="44" rx="8" fill="#FEF3C7"/>
-      <path d="M 30 24 C 27 24 26 27 26 31 C 26 38 29 44 31 44 C 33 44 34 38 34 38 C 34 38 35 44 37 44 C 39 44 42 38 42 31 C 42 27 41 24 38 24 C 35 24 34 26 34 26 C 34 26 33 24 30 24 Z" fill="none" stroke="#D97706" stroke-width="1.8"/>
-      <text x="68" y="30" fill="#0F172A" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Odontologia &amp; Estética Dental</text>
-      <text x="68" y="47" fill="#64748B" font-family="'Segoe UI', Roboto, sans-serif" font-size="11">Limpeza, clareamento e alinhador</text>
-      <rect x="250" y="20" width="68" height="26" rx="6" fill="#0F2942"/>
-      <text x="284" y="36" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold">Ver Mais</text>
+    <!-- Generous Breathing Space at Bottom -->
+    <!-- Minimalist Bottom WhatsApp Bar -->
+    <g transform="translate(28, 620)">
+      <rect x="0" y="0" width="324" height="52" rx="14" fill="#0F2942"/>
+      <circle cx="28" cy="26" r="14" fill="#25D366"/>
+      <path d="M 28 20 C 24.7 20 22 22.7 22 26 C 22 27.2 22.3 28.2 22.9 29.1 L 22.2 31.8 L 25 31.1 C 25.9 31.7 26.9 32 28 32 C 31.3 32 34 29.3 34 26 C 34 22.7 31.3 20 28 20 Z" fill="#FFFFFF"/>
+      <text x="52" y="30" fill="#FFFFFF" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700">Dúvidas? Fale Conosco</text>
+      <text x="280" y="30" text-anchor="middle" fill="#93C5FD" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="12" font-weight="700">→</text>
     </g>
 
-    <!-- Clinic Item 3 -->
-    <g transform="translate(25, 546)">
-      <rect x="0" y="0" width="330" height="66" rx="12" fill="#ffffff" stroke="#dbe3eb" stroke-width="1"/>
-      <rect x="12" y="11" width="44" height="44" rx="8" fill="#DCFCE7"/>
-      <path d="M 28 42 H 40 M 34 42 V 32 M 34 26 L 39 20" stroke="#16A34A" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="34" cy="28" r="4" fill="none" stroke="#16A34A" stroke-width="1.5"/>
-      <text x="68" y="30" fill="#0F172A" font-family="'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">Exames Laboratoriais</text>
-      <text x="68" y="47" fill="#64748B" font-family="'Segoe UI', Roboto, sans-serif" font-size="11">Resultados rápidos e online</text>
-      <rect x="250" y="20" width="68" height="26" rx="6" fill="#0F2942"/>
-      <text x="284" y="36" text-anchor="middle" fill="#fff" font-family="'Segoe UI', sans-serif" font-size="10" font-weight="bold">Ver Mais</text>
-    </g>
-
-    <!-- Location & Horário -->
-    <g transform="translate(25, 622)">
-      <rect x="0" y="0" width="330" height="58" rx="12" fill="#ffffff" stroke="#dbe3eb" stroke-width="1"/>
-      <text x="16" y="24" fill="#0F172A" font-family="'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700">Rua das Palmeiras, 120 - Sala 301</text>
-      <text x="16" y="42" fill="#25D366" font-family="'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600">Segunda a Sábado: 07:00 às 19:00</text>
-    </g>
-
-    <!-- Bottom Mobile Nav Bar -->
-    <rect x="15" y="690" width="350" height="75" fill="#ffffff" stroke="#dbe3eb" stroke-width="1"/>
-    <g transform="translate(35, 712)">
-      <text x="25" y="24" text-anchor="middle" fill="#0F2942" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold">Clínica</text>
-      <text x="105" y="24" text-anchor="middle" fill="#64748B" font-family="'Segoe UI', sans-serif" font-size="12">Serviços</text>
-      <text x="195" y="24" text-anchor="middle" fill="#64748B" font-family="'Segoe UI', sans-serif" font-size="12">Onde</text>
-      <text x="280" y="24" text-anchor="middle" fill="#25D366" font-family="'Segoe UI', sans-serif" font-size="12" font-weight="bold">WhatsApp</text>
-    </g>
-    <!-- Home Bar Indicator -->
-    <rect x="125" y="746" width="130" height="4" rx="2" fill="#000000" opacity="0.3"/>
+    <!-- iOS Home Bar Indicator -->
+    <rect x="125" y="746" width="130" height="4" rx="2" fill="#0F172A" opacity="0.3"/>
   </g>
 </svg>
