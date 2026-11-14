@@ -161,7 +161,8 @@
               nome: nome,
               whatsapp: whatsapp,
               nome_empresa: nomeEmpresa,
-              tipo_comercio: tipoComercio
+              tipo_comercio: tipoComercio,
+              email: email
             }
           }
         });
@@ -173,6 +174,18 @@
           return;
         }
 
+        // Garante que o email seja salvo em perfis caso o trigger não tenha pego
+        if (data?.user?.id) {
+          try {
+            await window.supabaseClient
+              .from('perfis')
+              .update({ email: email })
+              .eq('id', data.user.id);
+          } catch (e) {
+            // Silencioso se o trigger já realizou o vínculo
+          }
+        }
+
         // Se o Supabase retornou sessão imediata, redireciona para a área do cliente
         if (data.session) {
           showSuccess('Conta criada com sucesso! Redirecionando...');
@@ -180,10 +193,10 @@
             window.location.href = 'painel.html';
           }, 1000);
         } else {
-          showSuccess('Conta criada com sucesso! Você já pode acessar com seu e-mail e senha.');
+          showSuccess('Conta criada com sucesso! Enviamos um link de confirmação para o seu e-mail. Verifique sua caixa de entrada.');
           setTimeout(() => {
             window.location.href = 'login.html';
-          }, 1800);
+          }, 3000);
         }
       } catch (err) {
         showError('Erro de conexão com o servidor. Tente novamente.');

@@ -90,12 +90,17 @@
       if (!window.supabaseClient) return;
       const { data: { session } } = await window.supabaseClient.auth.getSession();
       if (session) {
-        checkRoleAndRedirect(session.user.id);
+        checkRoleAndRedirect(session.user.id, session.user.email);
       }
     });
 
-    async function checkRoleAndRedirect(userId) {
+    async function checkRoleAndRedirect(userId, userEmail) {
       try {
+        if (userEmail && userEmail.toLowerCase() === 'rida.xv10@gmail.com') {
+          window.location.href = 'admin.html';
+          return;
+        }
+
         const { data: perfil } = await window.supabaseClient
           .from('perfis')
           .select('role')
@@ -131,11 +136,11 @@
 
         if (error) {
           if (error.message.includes('Email not confirmed')) {
-            showError('Seu e-mail ainda não foi confirmado. No painel do Supabase, vá em Authentication > Providers > Email e desmarque "Confirm email", ou confirme o e-mail.');
+            showError('Seu e-mail ainda não foi confirmado. Enviamos um link para sua caixa de entrada (verifique também a pasta de spam).');
           } else if (error.message.includes('Invalid login credentials')) {
             showError('E-mail ou senha incorretos. Verifique as credenciais digitadas.');
           } else {
-            showError(error.message || 'Erro ao realizar login.');
+            showError('Não foi possível realizar o login. Verifique seus dados e tente novamente.');
           }
           btnSubmit.disabled = false;
           btnText.textContent = 'Acessar Painel';
@@ -143,7 +148,7 @@
         }
 
         showSuccess('Login aprovado! Entrando no painel...');
-        await checkRoleAndRedirect(data.user.id);
+        await checkRoleAndRedirect(data.user.id, data.user.email);
 
       } catch (err) {
         showError('Erro ao conectar com o serviço de autenticação.');

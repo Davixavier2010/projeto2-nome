@@ -20,6 +20,7 @@
     </a>
 
     <div class="nav-user-actions">
+      <a href="admin.html" id="linkAdminArea" style="display: none; font-size: 0.8rem; color: #93C5FD; text-decoration: none; padding: 6px 12px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3); border-radius: 6px; font-weight: 600;">Painel de Gestão ↗</a>
       <div class="user-badge">
         <span id="navUserName">Carregando...</span>
         <span class="user-role-pill" id="navUserRole">CLIENTE</span>
@@ -192,7 +193,11 @@
 
       // Preencher Navbar
       document.getElementById('navUserName').textContent = perfil.nome || 'Cliente';
-      document.getElementById('navUserRole').textContent = (perfil.role || 'cliente').toUpperCase();
+      const isRidaAdmin = (user.email && user.email.toLowerCase() === 'rida.xv10@gmail.com') || perfil.role === 'admin';
+      document.getElementById('navUserRole').textContent = isRidaAdmin ? 'ADMIN' : (perfil.role || 'cliente').toUpperCase();
+      if (isRidaAdmin) {
+        document.getElementById('linkAdminArea').style.display = 'inline-block';
+      }
 
       // Preencher Cabeçalho
       document.getElementById('welcomeTitle').textContent = `Olá, ${perfil.nome}!`;

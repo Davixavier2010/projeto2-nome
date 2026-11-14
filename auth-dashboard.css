@@ -799,3 +799,60 @@ body.light-theme .select-status {
 .btn-table-wa:hover {
   background-color: rgba(22, 163, 74, 0.25);
 }
+
+/* Badge de E-mail na Tabela */
+.client-email-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: #93C5FD;
+  font-family: var(--font-body);
+  background-color: rgba(37, 99, 235, 0.08);
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(37, 99, 235, 0.2);
+  word-break: break-all;
+}
+
+body.light-theme .client-email-badge {
+  color: #1D4ED8;
+  background-color: rgba(37, 99, 235, 0.06);
+  border-color: rgba(37, 99, 235, 0.16);
+}
+
+/* Botão Excluir Usuário */
+.btn-delete-client {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #F87171;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.btn-delete-client:hover {
+  background-color: rgba(239, 68, 68, 0.22);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #EF4444;
+  transform: translateY(-1px);
+}
+
+body.light-theme .btn-delete-client {
+  background-color: rgba(239, 68, 68, 0.08);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #DC2626;
+}
+
+body.light-theme .btn-delete-client:hover {
+  background-color: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #B91C1C;
+}
