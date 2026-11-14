@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Conta de Cliente | RIDA Sites Profissionais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth-dashboard.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-header">
+      <a href="index.html" class="auth-logo-link">
+        <img src="assets/images/logo-rida-transparent.png" alt="Logo Rida" class="auth-logo-img">
+        <span class="auth-logo-text">RIDA</span>
+      </a>
+      <p class="auth-subtitle">Criação de Sites Profissionais para Empresas e Comércios</p>
+    </div>
+
+    <div class="auth-card">
+      <h1 class="auth-card-title">Criar Conta de Cliente</h1>
+      <p class="auth-card-desc">Cadastre seu comércio para acompanhar o desenvolvimento do seu site.</p>
+
+      <div class="alert-box alert-error" id="errorBox" role="alert"></div>
+      <div class="alert-box alert-success" id="successBox" role="status"></div>
+
+      <form id="cadastroForm">
+        <div class="form-group">
+          <label class="form-label" for="nome">Seu Nome Completo</label>
+          <input type="text" id="nome" class="form-input" placeholder="Ex: Roberto Silva" required autocomplete="name">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="whatsapp">WhatsApp</label>
+            <input type="tel" id="whatsapp" class="form-input" placeholder="(11) 99999-9999" required autocomplete="tel">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="tipoComercio">Tipo de Comércio</label>
+            <select id="tipoComercio" class="form-select" required>
+              <option value="" disabled selected>Selecione...</option>
+              <option value="Loja / Varejo">Loja / Comércio</option>
+              <option value="Restaurante / Alimentação">Restaurante / Alimentação</option>
+              <option value="Oficina / Automotivo">Oficina / Automotivo</option>
+              <option value="Clínica / Saúde">Clínica / Saúde</option>
+              <option value="Estética / Beleza">Estética / Beleza</option>
+              <option value="Prestador de Serviços">Prestador de Serviços</option>
+              <option value="Outro Segmento">Outro Segmento</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="nomeEmpresa">Nome da sua Empresa ou Comércio</label>
+          <input type="text" id="nomeEmpresa" class="form-input" placeholder="Ex: Hamburgueria Dom Pedro" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">E-mail de Acesso</label>
+          <input type="email" id="email" class="form-input" placeholder="seuemail@exemplo.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Criar uma Senha</label>
+          <input type="password" id="password" class="form-input" placeholder="Mínimo de 6 caracteres" minlength="6" required autocomplete="new-password">
+        </div>
+
+        <button type="submit" class="btn-primary" id="btnSubmit">
+          <span id="btnText">Criar Minha Conta</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Já possui uma conta? <a href="login.html">Fazer login</a>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Voltar à página inicial</span>
+    </a>
+  </div>
+
+  <!-- Supabase SDK e Configuração -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config-supabase.js"></script>
+
+  <script>
+    // Máscara dinâmica de WhatsApp: (XX) 9XXXX-XXXX
+    const whatsappInput = document.getElementById('whatsapp');
+    whatsappInput.addEventListener('input', (e) => {
+      let v = e.target.value.replace(/\D/g, '');
+      if (v.length > 11) v = v.slice(0, 11);
+      if (v.length > 6) {
+        v = `(${v.slice(0, 2)}) ${v.slice(2, 7)}-${v.slice(7)}`;
+      } else if (v.length > 2) {
+        v = `(${v.slice(0, 2)}) ${v.slice(2)}`;
+      } else if (v.length > 0) {
+        v = `(${v}`;
+      }
+      e.target.value = v;
+    });
+
+    // Submissão do Formulário de Cadastro
+    const form = document.getElementById('cadastroForm');
+    const errorBox = document.getElementById('errorBox');
+    const successBox = document.getElementById('successBox');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnText = document.getElementById('btnText');
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.classList.add('is-visible');
+      successBox.classList.remove('is-visible');
+    }
+
+    function showSuccess(msg) {
+      successBox.textContent = msg;
+      successBox.classList.add('is-visible');
+      errorBox.classList.remove('is-visible');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.classList.remove('is-visible');
+      successBox.classList.remove('is-visible');
+
+      const nome = document.getElementById('nome').value.trim();
+      const whatsapp = document.getElementById('whatsapp').value.trim();
+      const nomeEmpresa = document.getElementById('nomeEmpresa').value.trim();
+      const tipoComercio = document.getElementById('tipoComercio').value;
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!tipoComercio) {
+        showError('Por favor, selecione o tipo do seu comércio.');
+        return;
+      }
+
+      btnSubmit.disabled = true;
+      btnText.textContent = 'Criando conta...';
+
+      try {
+        const { data, error } = await window.supabaseClient.auth.signUp({
+          email: email,
+          password: password,
+          options: {
+            data: {
+              nome: nome,
+              whatsapp: whatsapp,
+              nome_empresa: nomeEmpresa,
+              tipo_comercio: tipoComercio
+            }
+          }
+        });
+
+        if (error) {
+          showError(error.message || 'Erro ao realizar cadastro.');
+          btnSubmit.disabled = false;
+          btnText.textContent = 'Criar Minha Conta';
+          return;
+        }
+
+        // Se o Supabase retornou sessão imediata, redireciona para a área do cliente
+        if (data.session) {
+          showSuccess('Conta criada com sucesso! Redirecionando...');
+          setTimeout(() => {
+            window.location.href = 'painel.html';
+          }, 1000);
+        } else {
+          showSuccess('Conta criada com sucesso! Você já pode acessar com seu e-mail e senha.');
+          setTimeout(() => {
+            window.location.href = 'login.html';
+          }, 1800);
+        }
+      } catch (err) {
+        showError('Erro de conexão com o servidor. Tente novamente.');
+        btnSubmit.disabled = false;
+        btnText.textContent = 'Criar Minha Conta';
+      }
+    });
+  </script>
+</body>
+</html>

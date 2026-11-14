@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Área do Cliente | RIDA Sites Profissionais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth-dashboard.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <header class="dashboard-navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/images/logo-rida-transparent.png" alt="Logo Rida" class="nav-logo-img">
+      <span class="nav-brand-title">RIDA</span>
+    </a>
+
+    <div class="nav-user-actions">
+      <div class="user-badge">
+        <span id="navUserName">Carregando...</span>
+        <span class="user-role-pill" id="navUserRole">CLIENTE</span>
+      </div>
+      <button type="button" class="btn-logout" id="btnLogout" title="Sair da conta">Sair</button>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="dashboard-main">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title" id="welcomeTitle">Olá! Bem-vindo à sua área de cliente</h1>
+      <p class="dashboard-subtitle" id="welcomeSubtitle">Acompanhe a criação, atualizações e materiais do seu site profissional.</p>
+    </div>
+
+    <!-- Card de Status do Site -->
+    <section class="status-tracker-card">
+      <div class="tracker-header">
+        <div>
+          <h2 class="tracker-title">Status de Produção do seu Site</h2>
+          <span style="font-size: 0.84rem; color: #94A3B8;">Acompanhamento em tempo real</span>
+        </div>
+        <div id="statusBadgeWrap">
+          <span class="status-badge aguardando_informacoes" id="statusBadgeText">Aguardando Informações</span>
+        </div>
+      </div>
+
+      <!-- 4 Passos do Desenvolvimento -->
+      <div class="status-steps" id="statusStepsContainer">
+        <div class="status-step-item" id="step1">
+          <div class="step-num">Passo 1</div>
+          <div class="step-name">Envio de Dados & Fotos</div>
+        </div>
+        <div class="status-step-item" id="step2">
+          <div class="step-num">Passo 2</div>
+          <div class="step-name">Design & Programação</div>
+        </div>
+        <div class="status-step-item" id="step3">
+          <div class="step-num">Passo 3</div>
+          <div class="step-name">Revisão & Aprovação</div>
+        </div>
+        <div class="status-step-item" id="step4">
+          <div class="step-num">Passo 4</div>
+          <div class="step-name">Site Publicado & Ativo</div>
+        </div>
+      </div>
+
+      <!-- Link do Site (se já publicado) -->
+      <div id="siteLinkBox" style="display: none; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08);">
+        <p style="font-size: 0.88rem; color: #94A3B8; margin-bottom: 8px;">Seu site está no ar!</p>
+        <a href="#" id="sitePublishedLink" target="_blank" rel="noopener noreferrer" class="btn-primary" style="display: inline-flex; width: auto; padding: 10px 20px; text-decoration: none;">
+          <span>Visualizar Meu Site Online</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- Grid: Dados Cadastrais + Ações Rápidas -->
+    <div class="dashboard-grid">
+      <!-- Coluna 1: Dados do Comércio -->
+      <div class="dash-card">
+        <h2 class="dash-card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Dados do seu Cadastro</span>
+        </h2>
+
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-label">Nome do Titular:</span>
+            <span class="info-val" id="infoNome">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Empresa / Comércio:</span>
+            <span class="info-val" id="infoEmpresa">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Ramo / Atividade:</span>
+            <span class="info-val" id="infoComercio">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">WhatsApp:</span>
+            <span class="info-val" id="infoWhatsApp">-</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">E-mail:</span>
+            <span class="info-val" id="infoEmail">-</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna 2: Ações & Suporte Direto -->
+      <div class="dash-card">
+        <h2 class="dash-card-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>Atendimento & Envio de Material</span>
+        </h2>
+
+        <div class="action-cards-grid">
+          <!-- Botão Enviar Fotos/Logo via WhatsApp -->
+          <a href="#" id="btnSendMaterial" target="_blank" rel="noopener noreferrer" class="action-card-btn">
+            <div class="action-card-icon whatsapp">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/>
+              </svg>
+            </div>
+            <div class="action-card-text">
+              <strong>Enviar Fotos e Logotipo</strong>
+              <span>Envie imagens do seu comércio direto no WhatsApp dos desenvolvedores.</span>
+            </div>
+          </a>
+
+          <!-- Botão Falar com Suporte -->
+          <a href="#" id="btnSupport" target="_blank" rel="noopener noreferrer" class="action-card-btn">
+            <div class="action-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <div class="action-card-text">
+              <strong>Tirar Dúvidas com a Equipe</strong>
+              <span>Suporte técnico direto sobre seu domínio e hospedagem.</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Supabase SDK e Configuração -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config-supabase.js"></script>
+
+  <script>
+    const WA_NUMBER = "5512974070207"; // Número do Davi & Ricardo
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!window.supabaseClient) return;
+
+      // 1. Verificar sessão
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const user = session.user;
+
+      // 2. Buscar perfil na tabela do PostgreSQL
+      const { data: perfil, error } = await window.supabaseClient
+        .from('perfis')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+      if (error || !perfil) {
+        console.error('Erro ao buscar perfil:', error);
+        return;
+      }
+
+      // Preencher Navbar
+      document.getElementById('navUserName').textContent = perfil.nome || 'Cliente';
+      document.getElementById('navUserRole').textContent = (perfil.role || 'cliente').toUpperCase();
+
+      // Preencher Cabeçalho
+      document.getElementById('welcomeTitle').textContent = `Olá, ${perfil.nome}!`;
+      document.getElementById('welcomeSubtitle').textContent = `${perfil.nome_empresa} • ${perfil.tipo_comercio}`;
+
+      // Preencher Dados Cadastrais
+      document.getElementById('infoNome').textContent = perfil.nome;
+      document.getElementById('infoEmpresa').textContent = perfil.nome_empresa;
+      document.getElementById('infoComercio').textContent = perfil.tipo_comercio;
+      document.getElementById('infoWhatsApp').textContent = perfil.whatsapp || 'Não informado';
+      document.getElementById('infoEmail').textContent = user.email;
+
+      // Configurar Status do Site e Steps
+      updateStatusDisplay(perfil.status_site, perfil.link_site);
+
+      // Links WhatsApp personalizados
+      const msgMaterial = encodeURIComponent(`Olá equipe da Rida! Sou o(a) ${perfil.nome} da empresa "${perfil.nome_empresa}". Gostaria de enviar materiais e fotos para o meu site.`);
+      document.getElementById('btnSendMaterial').href = `https://wa.me/${WA_NUMBER}?text=${msgMaterial}`;
+
+      const msgSuporte = encodeURIComponent(`Olá! Sou o(a) ${perfil.nome} da empresa "${perfil.nome_empresa}" e tenho uma dúvida sobre o meu site.`);
+      document.getElementById('btnSupport').href = `https://wa.me/${WA_NUMBER}?text=${msgSuporte}`;
+    });
+
+    function updateStatusDisplay(status, linkSite) {
+      const badge = document.getElementById('statusBadgeText');
+      const step1 = document.getElementById('step1');
+      const step2 = document.getElementById('step2');
+      const step3 = document.getElementById('step3');
+      const step4 = document.getElementById('step4');
+      const linkBox = document.getElementById('siteLinkBox');
+      const publishedLink = document.getElementById('sitePublishedLink');
+
+      // Reset classes
+      [step1, step2, step3, step4].forEach(el => {
+        el.classList.remove('is-completed', 'is-current');
+      });
+
+      badge.className = 'status-badge ' + status;
+
+      if (status === 'aguardando_informacoes') {
+        badge.textContent = 'Aguardando Informações';
+        step1.classList.add('is-current');
+      } else if (status === 'em_producao') {
+        badge.textContent = 'Em Produção';
+        step1.classList.add('is-completed');
+        step2.classList.add('is-current');
+      } else if (status === 'em_revisao') {
+        badge.textContent = 'Em Revisão Final';
+        step1.classList.add('is-completed');
+        step2.classList.add('is-completed');
+        step3.classList.add('is-current');
+      } else if (status === 'publicado') {
+        badge.textContent = 'Site Publicado & Ativo';
+        step1.classList.add('is-completed');
+        step2.classList.add('is-completed');
+        step3.classList.add('is-completed');
+        step4.classList.add('is-completed');
+
+        if (linkSite) {
+          linkBox.style.display = 'block';
+          publishedLink.href = linkSite;
+        }
+      }
+    }
+
+    // Logout
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await window.supabaseClient.auth.signOut();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

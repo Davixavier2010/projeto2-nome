@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar na Área do Cliente | RIDA Sites Profissionais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth-dashboard.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body>
+
+  <div class="auth-wrapper">
+    <div class="auth-header">
+      <a href="index.html" class="auth-logo-link">
+        <img src="assets/images/logo-rida-transparent.png" alt="Logo Rida" class="auth-logo-img">
+        <span class="auth-logo-text">RIDA</span>
+      </a>
+      <p class="auth-subtitle">Criação de Sites Profissionais para Empresas e Comércios</p>
+    </div>
+
+    <div class="auth-card">
+      <h1 class="auth-card-title">Área do Cliente</h1>
+      <p class="auth-card-desc">Faça login para acompanhar o status e atualizações do seu site.</p>
+
+      <div class="alert-box alert-error" id="errorBox" role="alert"></div>
+      <div class="alert-box alert-success" id="successBox" role="status"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="email">E-mail de Acesso</label>
+          <input type="email" id="email" class="form-input" placeholder="seuemail@exemplo.com" required autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Sua Senha</label>
+          <input type="password" id="password" class="form-input" placeholder="Digite sua senha" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-primary" id="btnSubmit">
+          <span id="btnText">Acessar Painel</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        Ainda não tem conta? <a href="cadastro.html">Cadastre seu comércio</a>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+      <span>Voltar à página inicial</span>
+    </a>
+  </div>
+
+  <!-- Supabase SDK e Configuração -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config-supabase.js"></script>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const errorBox = document.getElementById('errorBox');
+    const successBox = document.getElementById('successBox');
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnText = document.getElementById('btnText');
+
+    function showError(msg) {
+      errorBox.textContent = msg;
+      errorBox.classList.add('is-visible');
+      successBox.classList.remove('is-visible');
+    }
+
+    function showSuccess(msg) {
+      successBox.textContent = msg;
+      successBox.classList.add('is-visible');
+      errorBox.classList.remove('is-visible');
+    }
+
+    // Se já estiver logado, redireciona diretamente
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!window.supabaseClient) return;
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (session) {
+        checkRoleAndRedirect(session.user.id);
+      }
+    });
+
+    async function checkRoleAndRedirect(userId) {
+      try {
+        const { data: perfil } = await window.supabaseClient
+          .from('perfis')
+          .select('role')
+          .eq('id', userId)
+          .single();
+
+        if (perfil && perfil.role === 'admin') {
+          window.location.href = 'admin.html';
+        } else {
+          window.location.href = 'painel.html';
+        }
+      } catch (e) {
+        window.location.href = 'painel.html';
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBox.classList.remove('is-visible');
+      successBox.classList.remove('is-visible');
+
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      btnSubmit.disabled = true;
+      btnText.textContent = 'Verificando...';
+
+      try {
+        const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (error) {
+          if (error.message.includes('Email not confirmed')) {
+            showError('Seu e-mail ainda não foi confirmado. No painel do Supabase, vá em Authentication > Providers > Email e desmarque "Confirm email", ou confirme o e-mail.');
+          } else if (error.message.includes('Invalid login credentials')) {
+            showError('E-mail ou senha incorretos. Verifique as credenciais digitadas.');
+          } else {
+            showError(error.message || 'Erro ao realizar login.');
+          }
+          btnSubmit.disabled = false;
+          btnText.textContent = 'Acessar Painel';
+          return;
+        }
+
+        showSuccess('Login aprovado! Entrando no painel...');
+        await checkRoleAndRedirect(data.user.id);
+
+      } catch (err) {
+        showError('Erro ao conectar com o serviço de autenticação.');
+        btnSubmit.disabled = false;
+        btnText.textContent = 'Acessar Painel';
+      }
+    });
+  </script>
+</body>
+</html>

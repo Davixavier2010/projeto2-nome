@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo | RIDA Sites Profissionais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth-dashboard.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+  <style>
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 768px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+    }
+    .kpi-card {
+      background-color: var(--card-dark);
+      border: 1px solid var(--card-border-dark);
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .kpi-num {
+      font-family: var(--font-title);
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-top: 4px;
+    }
+    .kpi-label {
+      font-size: 0.82rem;
+      color: var(--text-muted-dark);
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .search-input {
+      max-width: 320px;
+      padding: 9px 14px;
+      background-color: var(--card-dark);
+      border: 1px solid var(--card-border-dark);
+      border-radius: 8px;
+      color: #F8FAFC;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: var(--accent-blue);
+    }
+    .btn-edit-link {
+      background: none;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      color: #93C5FD;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      cursor: pointer;
+      margin-top: 4px;
+      display: inline-block;
+    }
+    .btn-edit-link:hover {
+      border-color: #60A5FA;
+      background-color: rgba(37, 99, 235, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <header class="dashboard-navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="assets/images/logo-rida-transparent.png" alt="Logo Rida" class="nav-logo-img">
+      <span class="nav-brand-title">RIDA Gestão</span>
+    </a>
+
+    <div class="nav-user-actions">
+      <div class="user-badge">
+        <span id="adminName">Administrador</span>
+        <span class="user-role-pill" style="background-color: rgba(239, 68, 68, 0.15); color: #FCA5A5; border-color: rgba(239, 68, 68, 0.3);">ADMIN</span>
+      </div>
+      <a href="painel.html" style="font-size: 0.82rem; color: #94A3B8; text-decoration: none;">Visão do Cliente</a>
+      <button type="button" class="btn-logout" id="btnLogout" title="Sair da conta">Sair</button>
+    </div>
+  </header>
+
+  <main class="dashboard-main" style="max-width: 1200px;">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Painel de Clientes & Sites</h1>
+      <p class="dashboard-subtitle">Gerencie os comércios cadastrados e atualize os status de produção em tempo real.</p>
+    </div>
+
+    <!-- Indicadores Rápidos -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Total de Clientes</div>
+        <div class="kpi-num" id="kpiTotal">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Sites em Produção</div>
+        <div class="kpi-num" id="kpiProducao" style="color: #60A5FA;">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Sites Publicados</div>
+        <div class="kpi-num" id="kpiPublicados" style="color: #34D399;">0</div>
+      </div>
+    </div>
+
+    <!-- Controles da Tabela -->
+    <div class="table-controls">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar por cliente, empresa ou ramo...">
+      <button type="button" class="btn-primary" id="btnRefresh" style="width: auto; padding: 9px 16px; margin: 0; font-size: 0.84rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+        <span>Atualizar Lista</span>
+      </button>
+    </div>
+
+    <!-- Tabela de Clientes -->
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Cliente / Titular</th>
+            <th>Empresa & Comércio</th>
+            <th>WhatsApp</th>
+            <th>Status do Site</th>
+            <th>Link do Site</th>
+            <th>Cadastro</th>
+          </tr>
+        </thead>
+        <tbody id="clientsTableBody">
+          <tr>
+            <td colspan="6" style="text-align: center; color: #64748B; padding: 32px;">
+              Carregando clientes do banco de dados...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <!-- Supabase SDK e Configuração -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config-supabase.js"></script>
+
+  <script>
+    let allClients = [];
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      if (!window.supabaseClient) return;
+
+      // 1. Verificar se o usuário está autenticado e é admin
+      const { data: { session } } = await window.supabaseClient.auth.getSession();
+      if (!session) {
+        window.location.href = 'login.html';
+        return;
+      }
+
+      const { data: perfil } = await window.supabaseClient
+        .from('perfis')
+        .select('nome, role')
+        .eq('id', session.user.id)
+        .single();
+
+      if (!perfil || perfil.role !== 'admin') {
+        alert('Acesso restrito apenas aos administradores (Davi & Ricardo).');
+        window.location.href = 'painel.html';
+        return;
+      }
+
+      document.getElementById('adminName').textContent = perfil.nome || 'Admin';
+
+      // 2. Carregar todos os clientes
+      await loadClients();
+
+      // Busca rápida
+      document.getElementById('searchInput').addEventListener('input', (e) => {
+        filterClients(e.target.value.toLowerCase());
+      });
+
+      // Botão atualizar
+      document.getElementById('btnRefresh').addEventListener('click', loadClients);
+    });
+
+    async function loadClients() {
+      const tbody = document.getElementById('clientsTableBody');
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #64748B; padding: 24px;">Atualizando lista...</td></tr>`;
+
+      const { data: clientes, error } = await window.supabaseClient
+        .from('perfis')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #EF4444; padding: 24px;">Erro ao carregar dados: ${error.message}</td></tr>`;
+        return;
+      }
+
+      allClients = clientes || [];
+      updateKPIs(allClients);
+      renderTable(allClients);
+    }
+
+    function updateKPIs(clients) {
+      document.getElementById('kpiTotal').textContent = clients.length;
+      document.getElementById('kpiProducao').textContent = clients.filter(c => c.status_site === 'em_producao' || c.status_site === 'aguardando_informacoes').length;
+      document.getElementById('kpiPublicados').textContent = clients.filter(c => c.status_site === 'publicado').length;
+    }
+
+    function filterClients(query) {
+      if (!query) {
+        renderTable(allClients);
+        return;
+      }
+      const filtered = allClients.filter(c => 
+        (c.nome && c.nome.toLowerCase().includes(query)) ||
+        (c.nome_empresa && c.nome_empresa.toLowerCase().includes(query)) ||
+        (c.tipo_comercio && c.tipo_comercio.toLowerCase().includes(query)) ||
+        (c.whatsapp && c.whatsapp.includes(query))
+      );
+      renderTable(filtered);
+    }
+
+    function renderTable(clients) {
+      const tbody = document.getElementById('clientsTableBody');
+      if (clients.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: #64748B; padding: 32px;">Nenhum cliente cadastrado no momento.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = clients.map(client => {
+        const rawWa = (client.whatsapp || '').replace(/\D/g, '');
+        const waLink = rawWa ? `https://wa.me/55${rawWa.replace(/^55/, '')}` : '#';
+        const dateStr = client.created_at ? new Date(client.created_at).toLocaleDateString('pt-BR') : '-';
+
+        return `
+          <tr>
+            <td>
+              <strong style="color: #FFFFFF; font-size: 0.92rem;">${escapeHtml(client.nome)}</strong>
+              <div style="font-size: 0.75rem; color: #94A3B8;">${client.role === 'admin' ? '<span style="color:#F87171;">Admin</span>' : 'Cliente'}</div>
+            </td>
+            <td>
+              <div style="font-weight: 600; color: #E2E8F0;">${escapeHtml(client.nome_empresa)}</div>
+              <div style="font-size: 0.78rem; color: #94A3B8;">${escapeHtml(client.tipo_comercio)}</div>
+            </td>
+            <td>
+              <a href="${waLink}" target="_blank" rel="noopener noreferrer" class="btn-table-wa">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                  <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/>
+                </svg>
+                <span>${escapeHtml(client.whatsapp || 'WhatsApp')}</span>
+              </a>
+            </td>
+            <td>
+              <select class="select-status" onchange="updateClientStatus('${client.id}', this.value)">
+                <option value="aguardando_informacoes" ${client.status_site === 'aguardando_informacoes' ? 'selected' : ''}>Aguardando Dados</option>
+                <option value="em_producao" ${client.status_site === 'em_producao' ? 'selected' : ''}>Em Produção</option>
+                <option value="em_revisao" ${client.status_site === 'em_revisao' ? 'selected' : ''}>Em Revisão</option>
+                <option value="publicado" ${client.status_site === 'publicado' ? 'selected' : ''}>Publicado & Ativo</option>
+              </select>
+            </td>
+            <td>
+              ${client.link_site ? `
+                <a href="${escapeHtml(client.link_site)}" target="_blank" style="color: #60A5FA; text-decoration: none; font-size: 0.82rem; display: block;">Ver Site ↗</a>
+                <button type="button" class="btn-edit-link" onclick="promptLink('${client.id}', '${escapeHtml(client.link_site)}')">Alterar</button>
+              ` : `
+                <button type="button" class="btn-edit-link" onclick="promptLink('${client.id}', '')">+ Adicionar URL</button>
+              `}
+            </td>
+            <td style="color: #94A3B8; font-size: 0.82rem;">${dateStr}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function updateClientStatus(clientId, newStatus) {
+      try {
+        const { error } = await window.supabaseClient
+          .from('perfis')
+          .update({ status_site: newStatus, updated_at: new Date().toISOString() })
+          .eq('id', clientId);
+
+        if (error) {
+          alert('Erro ao atualizar status: ' + error.message);
+          return;
+        }
+
+        // Atualiza na memória e KPIs
+        const item = allClients.find(c => c.id === clientId);
+        if (item) item.status_site = newStatus;
+        updateKPIs(allClients);
+      } catch (err) {
+        alert('Erro ao conectar ao banco.');
+      }
+    }
+
+    async function promptLink(clientId, currentLink) {
+      const newUrl = prompt('Digite o endereço do site do cliente (ex: https://padariaexemplo.com.br):', currentLink);
+      if (newUrl === null) return;
+
+      try {
+        const { error } = await window.supabaseClient
+          .from('perfis')
+          .update({ link_site: newUrl.trim() || null, updated_at: new Date().toISOString() })
+          .eq('id', clientId);
+
+        if (error) {
+          alert('Erro ao salvar URL: ' + error.message);
+          return;
+        }
+
+        await loadClients();
+      } catch (err) {
+        alert('Erro ao salvar URL.');
+      }
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    document.getElementById('btnLogout').addEventListener('click', async () => {
+      await window.supabaseClient.auth.signOut();
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

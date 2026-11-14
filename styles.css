@@ -3367,6 +3367,60 @@ body.dark-mode .cta-banner-content p {
   box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45) !important;
 }
 
+.process-cta-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-create-account-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background-color: #2563EB;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.btn-create-account-step:hover {
+  background-color: #1D4ED8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37, 99, 235, 0.45);
+}
+
+body.dark-mode .btn-create-account-step {
+  background-color: #2563EB;
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+body.dark-mode .btn-create-account-step:hover {
+  background-color: #3B82F6;
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.45);
+}
+
+@media (max-width: 600px) {
+  .process-cta-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-create-account-step,
+  .process-cta-banner .btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
 .btn-hide-sphere-panel {
   background: #0B192C;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -4463,6 +4517,90 @@ body.dark-mode .theme-icon-moon {
   display: none;
 }
 
+/* ==========================================================================
+   ESTILOS DO BOTÃO ÁREA DO CLIENTE (HARMONIZADO COM O BOTÃO DE TEMA E WHATSAPP)
+   ========================================================================== */
+.btn-client-area {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-cream-card, #FFFDF8);
+  color: var(--navy-primary, #0B192C);
+  border: var(--border-black, 1px solid #0B192C);
+  box-shadow: var(--shadow-neo-sm, 2px 2px 0px #0B192C);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-main, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.btn-client-area:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-neo, 3px 3px 0px #0B192C);
+  background-color: #FFFFFF;
+}
+
+.btn-client-area:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0px var(--black-line, #0B192C);
+}
+
+.client-area-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+  color: var(--navy-primary, #0B192C);
+}
+
+.client-area-icon-wrap svg {
+  stroke: currentColor;
+}
+
+/* Modo Escuro ativo no Botão Área do Cliente (Idêntico ao Modo Claro) */
+body.dark-mode .btn-client-area {
+  background-color: #16202e;
+  color: #F8FAFC;
+  border-color: #384a60;
+  box-shadow: 2px 2px 0px #030407;
+}
+
+body.dark-mode .btn-client-area:hover {
+  background-color: #1f2c3f;
+  border-color: #60A5FA;
+  box-shadow: 3px 3px 0px #030407;
+  color: #93C5FD;
+}
+
+body.dark-mode .client-area-icon-wrap {
+  color: #60A5FA;
+}
+
+.mobile-only-nav-item {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-only-nav-item {
+    display: block;
+    margin-top: 6px;
+  }
+  .mobile-only-nav-item .nav-link {
+    color: #60A5FA !important;
+    font-weight: 700;
+  }
+}
+
 /* Item de alternância dentro do menu mobile drawer */
 .mobile-only-theme-item {
   display: none;
@@ -5040,6 +5178,18 @@ body.dark-mode .section-tag {
   }
 
   .header-actions .btn-whatsapp-sm span:not(.whatsapp-icon-circle) {
+    display: none;
+  }
+
+  .header-actions .btn-client-area {
+    padding: 0;
+    width: 38px;
+    height: 38px;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+  }
+
+  .header-actions .btn-client-area span:not(.client-area-icon-wrap) {
     display: none;
   }
 
