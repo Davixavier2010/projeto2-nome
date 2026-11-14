@@ -453,110 +453,315 @@ body.light-theme .tracker-title {
   color: #0F172A;
 }
 
+/* ================= NOVO STEP TRACKER (MINIMALISMO SUÍÇO / LINEAR) ================= */
+.status-tracker-card {
+  background-color: var(--card-dark);
+  border: 1px solid var(--card-border-dark);
+  border-radius: 14px;
+  padding: 26px 28px;
+  margin-bottom: 28px;
+}
+
+body.light-theme .status-tracker-card {
+  background-color: var(--card-light);
+  border-color: var(--card-border-light);
+}
+
+.tracker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.tracker-title {
+  font-family: var(--font-title);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  letter-spacing: -0.01em;
+}
+
+body.light-theme .tracker-title {
+  color: #0F172A;
+}
+
+/* Badge de Status Sóbrio & Preciso */
 .status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   padding: 4px 12px;
-  border-radius: 100px;
-  font-size: 0.78rem;
-  font-weight: 700;
+  border-radius: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #E2E8F0;
+  transition: all 0.2s ease;
+}
+
+body.light-theme .status-badge {
+  background-color: rgba(15, 23, 42, 0.03);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #334155;
+}
+
+.status-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #94A3B8;
+}
+
+.status-badge.aguardando_informacoes::before {
+  background-color: #CBD5E1;
+}
+
+.status-badge.em_producao::before {
+  background-color: #3B82F6;
+}
+
+.status-badge.em_revisao::before {
+  background-color: #93C5FD;
+}
+
+.status-badge.publicado::before {
+  background-color: #10B981;
+}
+
+/* Barra de Progresso Arquitetural */
+.progress-bar-container {
+  margin-bottom: 22px;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.progress-label {
+  font-size: 0.74rem;
   text-transform: uppercase;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.06em;
+  color: var(--text-muted-dark);
+  font-weight: 700;
 }
 
-.status-badge.aguardando_informacoes {
-  background-color: rgba(245, 158, 11, 0.12);
-  color: #FBBF24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+body.light-theme .progress-label {
+  color: var(--text-muted-light);
 }
 
-.status-badge.em_producao {
-  background-color: rgba(59, 130, 246, 0.12);
-  color: #60A5FA;
-  border: 1px solid rgba(59, 130, 246, 0.3);
+.progress-percent {
+  font-size: 0.78rem;
+  font-family: monospace;
+  color: #F8FAFC;
+  font-weight: 600;
 }
 
-.status-badge.em_revisao {
-  background-color: rgba(139, 92, 246, 0.12);
-  color: #A78BFA;
-  border: 1px solid rgba(139, 92, 246, 0.3);
+body.light-theme .progress-percent {
+  color: #0F172A;
 }
 
-.status-badge.publicado {
-  background-color: rgba(16, 185, 129, 0.12);
-  color: #34D399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+.progress-track {
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
-/* Steps visual */
+body.light-theme .progress-track {
+  background-color: rgba(15, 23, 42, 0.08);
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.light-theme .progress-fill {
+  background-color: #0F172A;
+}
+
+/* Grid de Passos */
 .status-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   position: relative;
-  margin-top: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .status-steps {
     grid-template-columns: 1fr;
   }
 }
 
+/* Card Individual de Passo */
 .status-step-item {
-  background-color: #07090E;
+  background-color: #080A0F;
   border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 16px 18px;
   position: relative;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, opacity 0.2s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 body.light-theme .status-step-item {
-  background-color: #F8FAFC;
+  background-color: #FFFFFF;
   border-color: rgba(15, 23, 42, 0.08);
 }
 
-.status-step-item.is-completed {
-  border-color: rgba(16, 185, 129, 0.3);
-  background-color: rgba(16, 185, 129, 0.04);
-}
-
-.status-step-item.is-current {
-  border-color: rgba(37, 99, 235, 0.5);
-  background-color: rgba(37, 99, 235, 0.06);
-  box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .step-num {
-  font-size: 0.72rem;
-  font-weight: 800;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  font-family: var(--font-body);
   color: var(--text-muted-dark);
-  margin-bottom: 6px;
-  text-transform: uppercase;
 }
 
 body.light-theme .step-num {
   color: var(--text-muted-light);
 }
 
-.status-step-item.is-completed .step-num {
-  color: #34D399;
+.step-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted-dark);
 }
 
-.status-step-item.is-current .step-num {
-  color: #60A5FA;
+body.light-theme .step-indicator {
+  color: var(--text-muted-light);
 }
 
 .step-name {
   font-size: 0.88rem;
   font-weight: 600;
   color: #FFFFFF;
+  margin-bottom: 4px;
 }
 
 body.light-theme .step-name {
   color: #0F172A;
+}
+
+.step-desc {
+  font-size: 0.74rem;
+  color: var(--text-muted-dark);
+  line-height: 1.4;
+  margin-top: auto;
+}
+
+body.light-theme .step-desc {
+  color: var(--text-muted-light);
+}
+
+/* Estado: CONCLUÍDO (Sóbrio, sem pintar o card todo de verde) */
+.status-step-item.is-completed {
+  border-color: rgba(255, 255, 255, 0.09);
+  background-color: #080A0F;
+}
+
+body.light-theme .status-step-item.is-completed {
+  border-color: rgba(15, 23, 42, 0.1);
+  background-color: #FFFFFF;
+}
+
+.status-step-item.is-completed .step-num {
+  color: #A1A1AA;
+}
+
+.status-step-item.is-completed .step-indicator {
+  color: #A1A1AA;
+}
+
+body.light-theme .status-step-item.is-completed .step-num,
+body.light-theme .status-step-item.is-completed .step-indicator {
+  color: #64748B;
+}
+
+/* Estado: ATIVO / EM ANDAMENTO (Foco limpo, acento superior sutil de 2px, sem néon) */
+.status-step-item.is-current {
+  border-color: rgba(255, 255, 255, 0.2);
+  background-color: #0D1017;
+}
+
+body.light-theme .status-step-item.is-current {
+  border-color: rgba(15, 23, 42, 0.25);
+  background-color: #FAFAFA;
+}
+
+.status-step-item.is-current::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background-color: #3B82F6;
+  border-radius: 1px;
+}
+
+body.light-theme .status-step-item.is-current::before {
+  background-color: #2563EB;
+}
+
+.status-step-item.is-current .step-num {
+  color: #FFFFFF;
+}
+
+body.light-theme .status-step-item.is-current .step-num {
+  color: #0F172A;
+}
+
+.status-step-item.is-current .step-indicator {
+  color: #93C5FD;
+}
+
+body.light-theme .status-step-item.is-current .step-indicator {
+  color: #2563EB;
+}
+
+.status-step-item.is-current .step-indicator-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #3B82F6;
+}
+
+/* Estado: PENDENTE / FUTURO (Atenuado com elegância) */
+.status-step-item.is-pending {
+  opacity: 0.42;
+}
+
+.status-step-item.is-pending .step-name {
+  color: var(--text-muted-dark);
+}
+
+body.light-theme .status-step-item.is-pending .step-name {
+  color: var(--text-muted-light);
 }
 
 /* Grid de Informações do Cliente */
@@ -855,67 +1060,6 @@ body.light-theme .btn-delete-client:hover {
   background-color: rgba(239, 68, 68, 0.16);
   border-color: rgba(239, 68, 68, 0.4);
   color: #B91C1C;
-}
-
-/* Indicadores dos Passos e Barra de Progresso */
-.step-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
-.step-desc {
-  font-size: 0.74rem;
-  color: var(--text-muted-dark);
-  margin-top: 4px;
-  line-height: 1.35;
-}
-
-body.light-theme .step-desc {
-  color: var(--text-muted-light);
-}
-
-.step-tag {
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #94A3B8;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-body.light-theme .step-tag {
-  background-color: rgba(15, 23, 42, 0.04);
-  color: #64748B;
-  border-color: rgba(15, 23, 42, 0.08);
-}
-
-.status-step-item.is-completed {
-  border-color: rgba(16, 185, 129, 0.45);
-  background-color: rgba(16, 185, 129, 0.08);
-}
-
-.status-step-item.is-completed .step-tag {
-  background-color: rgba(16, 185, 129, 0.18);
-  color: #34D399;
-  border-color: rgba(16, 185, 129, 0.35);
-}
-
-.status-step-item.is-current {
-  border-color: #3B82F6 !important;
-  background-color: rgba(37, 99, 235, 0.12) !important;
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.22), inset 0 0 0 1px rgba(59, 130, 246, 0.45) !important;
-}
-
-.status-step-item.is-current .step-tag {
-  background-color: rgba(37, 99, 235, 0.25);
-  color: #93C5FD;
-  border-color: rgba(59, 130, 246, 0.6);
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
 /* Toast de Notificação Rápida */

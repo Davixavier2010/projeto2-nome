@@ -48,53 +48,66 @@
         </div>
       </div>
 
-      <!-- Barra de Progresso Geral -->
-      <div class="progress-bar-container" style="margin-bottom: 22px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span style="font-size: 0.82rem; color: #94A3B8; font-weight: 600;">Progresso do Desenvolvimento:</span>
-          <span id="progressPercentText" style="font-size: 0.84rem; color: #60A5FA; font-weight: 700;">25%</span>
+      <!-- Barra de Progresso Arquitetural (Minimalismo Linear / Stripe) -->
+      <div class="progress-bar-container">
+        <div class="progress-info">
+          <span class="progress-label">Fluxo de Entrega</span>
+          <span class="progress-percent" id="progressPercentText">25%</span>
         </div>
-        <div style="height: 7px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden;">
-          <div id="progressBarFill" style="height: 100%; width: 25%; background: linear-gradient(90deg, #2563EB, #38BDF8); border-radius: 999px; transition: width 0.4s ease;"></div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressBarFill" style="width: 25%;"></div>
         </div>
       </div>
 
-      <!-- 4 Passos do Desenvolvimento -->
+      <!-- 4 Passos do Desenvolvimento (Linha do Tempo Minimalista) -->
       <div class="status-steps" id="statusStepsContainer">
+        <!-- Passo 1 -->
         <div class="status-step-item" id="step1">
           <div class="step-header">
-            <span class="step-num">Passo 1</span>
-            <span class="step-tag" id="stepTag1">Em Andamento</span>
+            <span class="step-num">ETAPA 01</span>
+            <span class="step-indicator" id="stepTag1">
+              <span class="step-indicator-dot"></span>
+              <span class="step-indicator-text">Em andamento</span>
+            </span>
           </div>
-          <div class="step-name">Envio de Dados & Fotos</div>
-          <div class="step-desc">Coleta de informações e fotos do comércio</div>
+          <div class="step-name">Envio de Conteúdo</div>
+          <div class="step-desc">Fotos, logotipo e dados do seu comércio</div>
         </div>
 
-        <div class="status-step-item" id="step2">
+        <!-- Passo 2 -->
+        <div class="status-step-item is-pending" id="step2">
           <div class="step-header">
-            <span class="step-num">Passo 2</span>
-            <span class="step-tag" id="stepTag2">Aguardando</span>
+            <span class="step-num">ETAPA 02</span>
+            <span class="step-indicator" id="stepTag2">
+              <span class="step-indicator-text">Pendente</span>
+            </span>
           </div>
-          <div class="step-name">Design & Programação</div>
-          <div class="step-desc">Criação da estrutura e visual do seu site</div>
+          <div class="step-name">Design & Código</div>
+          <div class="step-desc">Criação da interface e programação técnica</div>
         </div>
 
-        <div class="status-step-item" id="step3">
+        <!-- Passo 3 -->
+        <div class="status-step-item is-pending" id="step3">
           <div class="step-header">
-            <span class="step-num">Passo 3</span>
-            <span class="step-tag" id="stepTag3">Aguardando</span>
+            <span class="step-num">ETAPA 03</span>
+            <span class="step-indicator" id="stepTag3">
+              <span class="step-indicator-text">Pendente</span>
+            </span>
           </div>
-          <div class="step-name">Revisão & Aprovação</div>
-          <div class="step-desc">Ajustes finais e validação do cliente</div>
+          <div class="step-name">Revisão Final</div>
+          <div class="step-desc">Ajustes refinados e aprovação com você</div>
         </div>
 
-        <div class="status-step-item" id="step4">
+        <!-- Passo 4 -->
+        <div class="status-step-item is-pending" id="step4">
           <div class="step-header">
-            <span class="step-num">Passo 4</span>
-            <span class="step-tag" id="stepTag4">Aguardando</span>
+            <span class="step-num">ETAPA 04</span>
+            <span class="step-indicator" id="stepTag4">
+              <span class="step-indicator-text">Pendente</span>
+            </span>
           </div>
-          <div class="step-name">Site Publicado & Ativo</div>
-          <div class="step-desc">Seu site online e indexado no Google</div>
+          <div class="step-name">Site Publicado</div>
+          <div class="step-desc">Seu endereço oficial no ar e indexado</div>
         </div>
       </div>
 
@@ -289,52 +302,103 @@
       const linkBox = document.getElementById('siteLinkBox');
       const publishedLink = document.getElementById('sitePublishedLink');
 
-      // Reset de classes e tags
+      // Helper para renderizar indicador de status limpo sem cara de IA
+      const renderIndicator = (el, type) => {
+        if (!el) return;
+        if (type === 'completed') {
+          el.innerHTML = `
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Concluído</span>
+          `;
+        } else if (type === 'current') {
+          el.innerHTML = `
+            <span class="step-indicator-dot"></span>
+            <span>Em andamento</span>
+          `;
+        } else {
+          el.innerHTML = `<span>Pendente</span>`;
+        }
+      };
+
+      // Limpar todos os estados
       [step1, step2, step3, step4].forEach(el => {
-        el.classList.remove('is-completed', 'is-current');
+        el.classList.remove('is-completed', 'is-current', 'is-pending');
       });
-      if (tag1) tag1.textContent = 'Aguardando';
-      if (tag2) tag2.textContent = 'Aguardando';
-      if (tag3) tag3.textContent = 'Aguardando';
-      if (tag4) tag4.textContent = 'Aguardando';
 
       const currentStatus = status || 'aguardando_informacoes';
       badge.className = 'status-badge ' + currentStatus;
 
       if (currentStatus === 'aguardando_informacoes') {
         badge.textContent = 'Aguardando Informações';
+
         step1.classList.add('is-current');
-        if (tag1) tag1.textContent = 'Em Andamento';
+        renderIndicator(tag1, 'current');
+
+        step2.classList.add('is-pending');
+        renderIndicator(tag2, 'pending');
+
+        step3.classList.add('is-pending');
+        renderIndicator(tag3, 'pending');
+
+        step4.classList.add('is-pending');
+        renderIndicator(tag4, 'pending');
+
         if (progressFill) progressFill.style.width = '25%';
         if (progressText) progressText.textContent = '25%';
+
       } else if (currentStatus === 'em_producao') {
         badge.textContent = 'Em Produção';
+
         step1.classList.add('is-completed');
-        if (tag1) tag1.textContent = 'Concluído';
+        renderIndicator(tag1, 'completed');
+
         step2.classList.add('is-current');
-        if (tag2) tag2.textContent = 'Em Andamento';
+        renderIndicator(tag2, 'current');
+
+        step3.classList.add('is-pending');
+        renderIndicator(tag3, 'pending');
+
+        step4.classList.add('is-pending');
+        renderIndicator(tag4, 'pending');
+
         if (progressFill) progressFill.style.width = '50%';
         if (progressText) progressText.textContent = '50%';
+
       } else if (currentStatus === 'em_revisao') {
         badge.textContent = 'Em Revisão Final';
+
         step1.classList.add('is-completed');
-        if (tag1) tag1.textContent = 'Concluído';
+        renderIndicator(tag1, 'completed');
+
         step2.classList.add('is-completed');
-        if (tag2) tag2.textContent = 'Concluído';
+        renderIndicator(tag2, 'completed');
+
         step3.classList.add('is-current');
-        if (tag3) tag3.textContent = 'Em Andamento';
+        renderIndicator(tag3, 'current');
+
+        step4.classList.add('is-pending');
+        renderIndicator(tag4, 'pending');
+
         if (progressFill) progressFill.style.width = '75%';
         if (progressText) progressText.textContent = '75%';
+
       } else if (currentStatus === 'publicado') {
         badge.textContent = 'Site Publicado & Ativo';
+
         step1.classList.add('is-completed');
-        if (tag1) tag1.textContent = 'Concluído';
+        renderIndicator(tag1, 'completed');
+
         step2.classList.add('is-completed');
-        if (tag2) tag2.textContent = 'Concluído';
+        renderIndicator(tag2, 'completed');
+
         step3.classList.add('is-completed');
-        if (tag3) tag3.textContent = 'Concluído';
+        renderIndicator(tag3, 'completed');
+
         step4.classList.add('is-completed');
-        if (tag4) tag4.textContent = 'Publicado';
+        renderIndicator(tag4, 'completed');
+
         if (progressFill) progressFill.style.width = '100%';
         if (progressText) progressText.textContent = '100%';
 
