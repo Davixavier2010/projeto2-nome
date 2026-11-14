@@ -327,22 +327,69 @@
 
     async function updateClientStatus(clientId, newStatus) {
       try {
-        const { error } = await window.supabaseClient
-          .from('perfis')
-          .update({ status_site: newStatus, updated_at: new Date().toISOString() })
-          .eq('id', clientId);
+        let success = false;
 
-        if (error) {
-          alert('Erro ao atualizar status: ' + error.message);
-          return;
+        // 1. Tentar via função RPC update_site_status_by_admin (sem bloqueio de RLS)
+        const { data: rpcData, error: rpcError } = await window.supabaseClient.rpc('update_site_status_by_admin', {
+          target_user_id: clientId,
+          new_status: newStatus
+        });
+
+        if (!rpcError) {
+          success = true;
+        } else {
+          console.warn('RPC update_site_status_by_admin não executou, tentando update direto:', rpcError.message);
+          // 2. Fallback: update direto na tabela com verificação .select()
+          const { data, error } = await window.supabaseClient
+            .from('perfis')
+            .update({ status_site: newStatus, updated_at: new Date().toISOString() })
+            .eq('id', clientId)
+            .select();
+
+          if (!error && data && data.length > 0) {
+            success = true;
+          } else if (error) {
+            alert('Erro ao atualizar status: ' + error.message);
+            return;
+          } else {
+            alert('Atenção: O Supabase bloqueou a atualização por permissão (RLS). Execute o script SQL no painel do Supabase para liberar a alteração de status pelo Admin.');
+            return;
+          }
         }
 
-        const item = allClients.find(c => c.id === clientId);
-        if (item) item.status_site = newStatus;
-        updateKPIs(allClients);
+        if (success) {
+          const item = allClients.find(c => c.id === clientId);
+          if (item) item.status_site = newStatus;
+          updateKPIs(allClients);
+          showToast('Status atualizado para: ' + formatStatusName(newStatus));
+        }
+
       } catch (err) {
-        alert('Erro ao conectar ao banco de dados.');
+        alert('Erro ao conectar ao banco de dados: ' + err.message);
       }
+    }
+
+    function formatStatusName(status) {
+      if (status === 'aguardando_informacoes') return 'Aguardando Dados';
+      if (status === 'em_producao') return 'Em Produção';
+      if (status === 'em_revisao') return 'Em Revisão';
+      if (status === 'publicado') return 'Publicado & Ativo';
+      return status;
+    }
+
+    function showToast(message) {
+      let toast = document.getElementById('adminToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'adminToast';
+        toast.className = 'admin-toast';
+        document.body.appendChild(toast);
+      }
+      toast.textContent = message;
+      toast.classList.add('is-active');
+      setTimeout(() => {
+        toast.classList.remove('is-active');
+      }, 3000);
     }
 
     async function promptLink(clientId, currentLink) {
@@ -350,17 +397,32 @@
       if (newUrl === null) return;
 
       try {
-        const { error } = await window.supabaseClient
-          .from('perfis')
-          .update({ link_site: newUrl.trim() || null, updated_at: new Date().toISOString() })
-          .eq('id', clientId);
+        let success = false;
+        // 1. Tentar RPC
+        const { error: rpcError } = await window.supabaseClient.rpc('update_site_status_by_admin', {
+          target_user_id: clientId,
+          new_status: (allClients.find(c => c.id === clientId) || {}).status_site || 'aguardando_informacoes',
+          new_link: newUrl.trim() || null
+        });
 
-        if (error) {
-          alert('Erro ao salvar URL: ' + error.message);
-          return;
+        if (!rpcError) {
+          success = true;
+        } else {
+          // 2. Fallback direto
+          const { error } = await window.supabaseClient
+            .from('perfis')
+            .update({ link_site: newUrl.trim() || null, updated_at: new Date().toISOString() })
+            .eq('id', clientId);
+
+          if (!error) success = true;
         }
 
-        await loadClients();
+        if (success) {
+          showToast('Endereço do site salvo!');
+          await loadClients();
+        } else {
+          alert('Não foi possível salvar o endereço do site.');
+        }
       } catch (err) {
         alert('Erro ao salvar URL.');
       }

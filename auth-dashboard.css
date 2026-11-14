@@ -856,3 +856,92 @@ body.light-theme .btn-delete-client:hover {
   border-color: rgba(239, 68, 68, 0.4);
   color: #B91C1C;
 }
+
+/* Indicadores dos Passos e Barra de Progresso */
+.step-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.step-desc {
+  font-size: 0.74rem;
+  color: var(--text-muted-dark);
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+body.light-theme .step-desc {
+  color: var(--text-muted-light);
+}
+
+.step-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #94A3B8;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.light-theme .step-tag {
+  background-color: rgba(15, 23, 42, 0.04);
+  color: #64748B;
+  border-color: rgba(15, 23, 42, 0.08);
+}
+
+.status-step-item.is-completed {
+  border-color: rgba(16, 185, 129, 0.45);
+  background-color: rgba(16, 185, 129, 0.08);
+}
+
+.status-step-item.is-completed .step-tag {
+  background-color: rgba(16, 185, 129, 0.18);
+  color: #34D399;
+  border-color: rgba(16, 185, 129, 0.35);
+}
+
+.status-step-item.is-current {
+  border-color: #3B82F6 !important;
+  background-color: rgba(37, 99, 235, 0.12) !important;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.22), inset 0 0 0 1px rgba(59, 130, 246, 0.45) !important;
+}
+
+.status-step-item.is-current .step-tag {
+  background-color: rgba(37, 99, 235, 0.25);
+  color: #93C5FD;
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+}
+
+/* Toast de Notificação Rápida */
+.admin-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 20px;
+  background-color: #0F172A;
+  color: #F8FAFC;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: all 0.25s ease;
+  pointer-events: none;
+}
+
+.admin-toast.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}

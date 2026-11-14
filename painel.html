@@ -48,23 +48,53 @@
         </div>
       </div>
 
+      <!-- Barra de Progresso Geral -->
+      <div class="progress-bar-container" style="margin-bottom: 22px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+          <span style="font-size: 0.82rem; color: #94A3B8; font-weight: 600;">Progresso do Desenvolvimento:</span>
+          <span id="progressPercentText" style="font-size: 0.84rem; color: #60A5FA; font-weight: 700;">25%</span>
+        </div>
+        <div style="height: 7px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden;">
+          <div id="progressBarFill" style="height: 100%; width: 25%; background: linear-gradient(90deg, #2563EB, #38BDF8); border-radius: 999px; transition: width 0.4s ease;"></div>
+        </div>
+      </div>
+
       <!-- 4 Passos do Desenvolvimento -->
       <div class="status-steps" id="statusStepsContainer">
         <div class="status-step-item" id="step1">
-          <div class="step-num">Passo 1</div>
+          <div class="step-header">
+            <span class="step-num">Passo 1</span>
+            <span class="step-tag" id="stepTag1">Em Andamento</span>
+          </div>
           <div class="step-name">Envio de Dados & Fotos</div>
+          <div class="step-desc">Coleta de informações e fotos do comércio</div>
         </div>
+
         <div class="status-step-item" id="step2">
-          <div class="step-num">Passo 2</div>
+          <div class="step-header">
+            <span class="step-num">Passo 2</span>
+            <span class="step-tag" id="stepTag2">Aguardando</span>
+          </div>
           <div class="step-name">Design & Programação</div>
+          <div class="step-desc">Criação da estrutura e visual do seu site</div>
         </div>
+
         <div class="status-step-item" id="step3">
-          <div class="step-num">Passo 3</div>
+          <div class="step-header">
+            <span class="step-num">Passo 3</span>
+            <span class="step-tag" id="stepTag3">Aguardando</span>
+          </div>
           <div class="step-name">Revisão & Aprovação</div>
+          <div class="step-desc">Ajustes finais e validação do cliente</div>
         </div>
+
         <div class="status-step-item" id="step4">
-          <div class="step-num">Passo 4</div>
+          <div class="step-header">
+            <span class="step-num">Passo 4</span>
+            <span class="step-tag" id="stepTag4">Aguardando</span>
+          </div>
           <div class="step-name">Site Publicado & Ativo</div>
+          <div class="step-desc">Seu site online e indexado no Google</div>
         </div>
       </div>
 
@@ -213,6 +243,26 @@
       // Configurar Status do Site e Steps
       updateStatusDisplay(perfil.status_site, perfil.link_site);
 
+      // 3. Ouvir atualizações em tempo real (Supabase Realtime)
+      try {
+        window.supabaseClient
+          .channel('realtime:perfil:' + user.id)
+          .on('postgres_changes', {
+            event: 'UPDATE',
+            schema: 'public',
+            table: 'perfis',
+            filter: 'id=eq.' + user.id
+          }, (payload) => {
+            if (payload && payload.new) {
+              console.log('Status do site atualizado em tempo real:', payload.new.status_site);
+              updateStatusDisplay(payload.new.status_site, payload.new.link_site);
+            }
+          })
+          .subscribe();
+      } catch (e) {
+        console.warn('Realtime subscription error:', e);
+      }
+
       // Links WhatsApp personalizados
       const msgMaterial = encodeURIComponent(`Olá equipe da Rida! Sou o(a) ${perfil.nome} da empresa "${perfil.nome_empresa}". Gostaria de enviar materiais e fotos para o meu site.`);
       document.getElementById('btnSendMaterial').href = `https://wa.me/${WA_NUMBER}?text=${msgMaterial}`;
@@ -227,34 +277,66 @@
       const step2 = document.getElementById('step2');
       const step3 = document.getElementById('step3');
       const step4 = document.getElementById('step4');
+
+      const tag1 = document.getElementById('stepTag1');
+      const tag2 = document.getElementById('stepTag2');
+      const tag3 = document.getElementById('stepTag3');
+      const tag4 = document.getElementById('stepTag4');
+
+      const progressFill = document.getElementById('progressBarFill');
+      const progressText = document.getElementById('progressPercentText');
+
       const linkBox = document.getElementById('siteLinkBox');
       const publishedLink = document.getElementById('sitePublishedLink');
 
-      // Reset classes
+      // Reset de classes e tags
       [step1, step2, step3, step4].forEach(el => {
         el.classList.remove('is-completed', 'is-current');
       });
+      if (tag1) tag1.textContent = 'Aguardando';
+      if (tag2) tag2.textContent = 'Aguardando';
+      if (tag3) tag3.textContent = 'Aguardando';
+      if (tag4) tag4.textContent = 'Aguardando';
 
-      badge.className = 'status-badge ' + status;
+      const currentStatus = status || 'aguardando_informacoes';
+      badge.className = 'status-badge ' + currentStatus;
 
-      if (status === 'aguardando_informacoes') {
+      if (currentStatus === 'aguardando_informacoes') {
         badge.textContent = 'Aguardando Informações';
         step1.classList.add('is-current');
-      } else if (status === 'em_producao') {
+        if (tag1) tag1.textContent = 'Em Andamento';
+        if (progressFill) progressFill.style.width = '25%';
+        if (progressText) progressText.textContent = '25%';
+      } else if (currentStatus === 'em_producao') {
         badge.textContent = 'Em Produção';
         step1.classList.add('is-completed');
+        if (tag1) tag1.textContent = 'Concluído';
         step2.classList.add('is-current');
-      } else if (status === 'em_revisao') {
+        if (tag2) tag2.textContent = 'Em Andamento';
+        if (progressFill) progressFill.style.width = '50%';
+        if (progressText) progressText.textContent = '50%';
+      } else if (currentStatus === 'em_revisao') {
         badge.textContent = 'Em Revisão Final';
         step1.classList.add('is-completed');
+        if (tag1) tag1.textContent = 'Concluído';
         step2.classList.add('is-completed');
+        if (tag2) tag2.textContent = 'Concluído';
         step3.classList.add('is-current');
-      } else if (status === 'publicado') {
+        if (tag3) tag3.textContent = 'Em Andamento';
+        if (progressFill) progressFill.style.width = '75%';
+        if (progressText) progressText.textContent = '75%';
+      } else if (currentStatus === 'publicado') {
         badge.textContent = 'Site Publicado & Ativo';
         step1.classList.add('is-completed');
+        if (tag1) tag1.textContent = 'Concluído';
         step2.classList.add('is-completed');
+        if (tag2) tag2.textContent = 'Concluído';
         step3.classList.add('is-completed');
+        if (tag3) tag3.textContent = 'Concluído';
         step4.classList.add('is-completed');
+        if (tag4) tag4.textContent = 'Publicado';
+        if (progressFill) progressFill.style.width = '100%';
+        if (progressText) progressText.textContent = '100%';
 
         if (linkSite) {
           linkBox.style.display = 'block';
