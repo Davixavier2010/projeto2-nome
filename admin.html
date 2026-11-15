@@ -938,18 +938,51 @@
         btn.disabled = true;
         btn.textContent = 'Criando no Supabase...';
 
-        const { data: tenantId, error } = await window.supabaseClient.rpc('rida_criar_novo_cliente', {
-          p_nome,
-          p_slug,
-          p_plano,
-          p_whatsapp,
-          p_horarios,
-          p_endereco
-        });
+        let tenantId = null;
+        let success = false;
 
-        if (error) {
-          alert('Erro ao criar novo cliente: ' + error.message);
-          return;
+        // 1. Tenta criar via RPC no banco
+        try {
+          const { data: rpcTenantId, error: rpcErr } = await window.supabaseClient.rpc('rida_criar_novo_cliente', {
+            p_nome,
+            p_slug,
+            p_plano,
+            p_whatsapp,
+            p_horarios,
+            p_endereco
+          });
+          if (!rpcErr && rpcTenantId) {
+            tenantId = rpcTenantId;
+            success = true;
+          }
+        } catch (eRpc) {
+          console.warn('RPC rida_criar_novo_cliente indisponível, usando fallback direto:', eRpc);
+        }
+
+        // 2. Fallback: criação direta nas tabelas tenants e site_config
+        if (!success) {
+          const { data: novoT, error: tErr } = await window.supabaseClient
+            .from('tenants')
+            .insert({
+              nome: p_nome,
+              slug: p_slug,
+              plano: p_plano || 'essencial',
+              status: 'ativo'
+            })
+            .select('id')
+            .single();
+
+          if (tErr) throw tErr;
+          tenantId = novoT.id;
+
+          await window.supabaseClient
+            .from('site_config')
+            .insert({
+              tenant_id: tenantId,
+              whatsapp: p_whatsapp,
+              horarios: p_horarios || 'Seg a Sex: 08h às 18h',
+              endereco: p_endereco || ''
+            });
         }
 
         fecharModalNovoCliente();
@@ -957,7 +990,7 @@
         await loadClients();
 
       } catch (err) {
-        alert('Erro inesperado: ' + err.message);
+        alert('Erro ao cadastrar cliente: ' + err.message);
       } finally {
         btn.disabled = false;
         btn.textContent = originalText;

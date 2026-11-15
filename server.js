@@ -2,7 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -66,7 +66,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor rodando em: http://localhost:${PORT}/`);
+server.listen(PORT, () => {
+  console.log(`Servidor rodando em: http://localhost:${PORT}/ ou http://127.0.0.1:${PORT}/`);
   console.log(`Acesso na rede local / celular: http://192.168.1.209:${PORT}/`);
 });

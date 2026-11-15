@@ -55,8 +55,8 @@ const SITE_CONFIG = {
   agencyName: "Rida",
 
   // 2. Seus números de WhatsApp com DDD (apenas números)
-  whatsappNumber: "5512974070207",
-  whatsappNumber2: "5519999118817",
+  whatsappNumber: "5519999118617",
+  whatsappNumber2: "5519999118617",
 
   // 3. Mensagem padrão que o cliente vai mandar
   whatsappDefaultMessage: "Olá equipe da Rida! Gostaria de um site profissional para o meu comércio.",

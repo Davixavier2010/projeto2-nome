@@ -14,10 +14,10 @@ const SITE_CONFIG = {
 
   // Número Principal do WhatsApp (somente números, com DDD e código do país 55)
   // Exemplo: "5511999998888"
-  whatsappNumber: "5512974070207",
+  whatsappNumber: "5519999118617",
 
-  // Segundo Número de Contato (WhatsApp)
-  whatsappNumber2: "5519999118817",
+  // Segundo Número de Contato (WhatsApp - opcional)
+  whatsappNumber2: "",
 
   // Mensagem padrão ao clicar no WhatsApp
   whatsappDefaultMessage: "Olá equipe da Rida! Gostaria de um site profissional para o meu comércio.",
@@ -569,7 +569,7 @@ function initMathiasGallery() {
       }
 
       const planBadgeClass = p.plan === 'essencial' ? 'plan-tag-essencial' : 'plan-tag-personalizado';
-      const waNumber = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.whatsappNumber) ? SITE_CONFIG.whatsappNumber : '5512974070207';
+      const waNumber = (typeof SITE_CONFIG !== 'undefined' && SITE_CONFIG.whatsappNumber) ? SITE_CONFIG.whatsappNumber : '5519999118617';
       const waText = encodeURIComponent(`Olá! Gostei muito do modelo "${p.name}" (${p.categoryName} - ${p.planLabel}) na galeria de vocês. Como podemos começar?`);
 
       card.innerHTML = `

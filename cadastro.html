@@ -174,24 +174,33 @@
           return;
         }
 
-        // Garante que o email seja salvo em perfis caso o trigger não tenha pego
+        // Garante que o perfil, tenant e site_config existam mesmo se o trigger não tiver rodado
         if (data?.user?.id) {
+          const userId = data.user.id;
           try {
             await window.supabaseClient
               .from('perfis')
-              .update({ email: email })
-              .eq('id', data.user.id);
-          } catch (e) {
-            // Silencioso se o trigger já realizou o vínculo
+              .upsert({
+                id: userId,
+                email: email,
+                nome: nome,
+                whatsapp: whatsapp,
+                nome_empresa: nomeEmpresa,
+                tipo_comercio: tipoComercio,
+                role: 'cliente',
+                status_site: 'aguardando_informacoes'
+              }, { onConflict: 'id' });
+          } catch (eP) {
+            console.warn('Tentativa direta de upsert em perfis:', eP);
           }
 
           // Garante a existência do tenant e site_config logo no cadastro
           try {
             await window.supabaseClient.rpc('rida_garantir_tenant_para_perfil', {
-              p_user_id: data.user.id
+              p_user_id: userId
             });
           } catch (eT) {
-            // Silencioso se o trigger handle_new_user já fez o vínculo no banco
+            console.warn('Vínculo automático via RPC:', eT);
           }
         }
 
