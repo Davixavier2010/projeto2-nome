@@ -201,6 +201,53 @@
         </div>
       </div>
     </div>
+
+    <!-- SEÇÃO: PACIENTES & AGENDAMENTOS (RECEBIDOS PELO SITE) -->
+    <section class="dash-card" style="margin-top: 24px;" id="secAgendamentos">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+        <div>
+          <h2 class="dash-card-title" style="margin: 0; display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span>Pacientes & Agendamentos do Site</span>
+          </h2>
+          <span style="font-size: 0.84rem; color: #94A3B8;">Solicitações de consulta enviadas pelos visitantes em tempo real.</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span id="badgeTotalAgendamentos" class="user-role-pill" style="background: rgba(59, 130, 246, 0.15); color: #93C5FD; border-color: rgba(59, 130, 246, 0.3);">0 agendamentos</span>
+          <button type="button" onclick="carregarAgendamentos()" class="btn-primary" style="width: auto; padding: 6px 14px; font-size: 0.78rem; margin: 0;">
+            Atualizar
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabela de Agendamentos -->
+      <div class="admin-table-wrap" style="border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; overflow-x: auto;">
+        <table class="admin-table" style="margin: 0; min-width: 650px;">
+          <thead>
+            <tr>
+              <th>Paciente</th>
+              <th>Contato (WhatsApp)</th>
+              <th>Procedimento / Serviço</th>
+              <th>Data & Período</th>
+              <th>Status</th>
+              <th style="text-align: center;">Ação Rápida</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaAgendamentosBody">
+            <tr>
+              <td colspan="6" style="text-align: center; color: #64748B; padding: 24px;">
+                Carregando agendamentos...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 
   <!-- Supabase SDK e Configuração -->
@@ -209,6 +256,7 @@
 
   <script>
     const WA_NUMBER = "5512974070207"; // Número do Davi & Ricardo
+    let currentUserPerfil = null;
 
     window.addEventListener('DOMContentLoaded', async () => {
       if (!window.supabaseClient) return;
@@ -234,6 +282,8 @@
         return;
       }
 
+      currentUserPerfil = perfil;
+
       // Preencher Navbar
       document.getElementById('navUserName').textContent = perfil.nome || 'Cliente';
       const isRidaAdmin = (user.email && user.email.toLowerCase() === 'rida.xv10@gmail.com') || perfil.role === 'admin';
@@ -256,6 +306,9 @@
       // Configurar Status do Site e Steps
       updateStatusDisplay(perfil.status_site, perfil.link_site);
 
+      // Carregar os agendamentos de pacientes deste cliente
+      await carregarAgendamentos();
+
       // 3. Ouvir atualizações em tempo real (Supabase Realtime)
       try {
         window.supabaseClient
@@ -270,6 +323,18 @@
               console.log('Status do site atualizado em tempo real:', payload.new.status_site);
               updateStatusDisplay(payload.new.status_site, payload.new.link_site);
             }
+          })
+          .subscribe();
+
+        // Ouvir novos agendamentos em tempo real
+        window.supabaseClient
+          .channel('realtime:agendamentos')
+          .on('postgres_changes', {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'agendamentos_clinica'
+          }, () => {
+            carregarAgendamentos();
           })
           .subscribe();
       } catch (e) {
@@ -407,6 +472,105 @@
           publishedLink.href = linkSite;
         }
       }
+    }
+
+    async function carregarAgendamentos() {
+      const tbody = document.getElementById('tabelaAgendamentosBody');
+      const badgeTotal = document.getElementById('badgeTotalAgendamentos');
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#64748B; padding:24px;">Carregando agendamentos...</td></tr>`;
+
+      try {
+        let query = window.supabaseClient
+          .from('agendamentos_clinica')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (currentUserPerfil && currentUserPerfil.tenant_id) {
+          query = query.eq('tenant_id', currentUserPerfil.tenant_id);
+        }
+
+        const { data: agendamentos, error } = await query;
+
+        if (error) {
+          console.warn('Erro ao consultar agendamentos:', error.message);
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#64748B; padding:24px;">Nenhum agendamento encontrado para esta conta.</td></tr>`;
+          return;
+        }
+
+        if (!agendamentos || agendamentos.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#64748B; padding:32px;">Nenhum agendamento recebido ainda pelo site.</td></tr>`;
+          badgeTotal.textContent = '0 agendamentos';
+          return;
+        }
+
+        badgeTotal.textContent = `${agendamentos.length} ${agendamentos.length === 1 ? 'agendamento' : 'agendamentos'}`;
+
+        tbody.innerHTML = agendamentos.map(ag => {
+          const rawWa = (ag.whatsapp || '').replace(/\D/g, '');
+          const dataFormatada = ag.data_preferencial ? ag.data_preferencial.split('-').reverse().join('/') : 'A combinar';
+          const periodoTexto = ag.periodo_preferencial || 'Geral';
+          const empresaNome = currentUserPerfil ? currentUserPerfil.nome_empresa : 'Clínica';
+          
+          const msgConfirmacao = encodeURIComponent(`Olá ${ag.nome_paciente}! Aqui é da ${empresaNome}. Recebemos seu pedido de agendamento pelo nosso site para o procedimento "${ag.servico_procedimento}" no dia ${dataFormatada} (${periodoTexto}). Podemos confirmar seu horário?`);
+          const linkWa = rawWa ? `https://wa.me/55${rawWa.replace(/^55/, '')}?text=${msgConfirmacao}` : '#';
+
+          return `
+            <tr>
+              <td>
+                <strong style="color: #FFFFFF; font-size: 0.92rem; display: block;">${escapeHtml(ag.nome_paciente)}</strong>
+                ${ag.observacoes ? `<span style="font-size: 0.76rem; color: #94A3B8; display: block; margin-top: 2px;">Obs: ${escapeHtml(ag.observacoes)}</span>` : ''}
+              </td>
+              <td>
+                <span style="font-family: monospace; font-size: 0.85rem; color: #E2E8F0;">${escapeHtml(ag.whatsapp)}</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; color: #93C5FD; font-size: 0.86rem;">${escapeHtml(ag.servico_procedimento)}</span>
+              </td>
+              <td>
+                <div style="font-size: 0.84rem; color: #F1F5F9; font-weight: 600;">${dataFormatada}</div>
+                <div style="font-size: 0.74rem; color: #94A3B8;">Período: ${escapeHtml(periodoTexto)}</div>
+              </td>
+              <td>
+                <select class="select-status" onchange="atualizarStatusAgendamento('${ag.id}', this.value)" style="padding: 4px 8px; font-size: 0.78rem;">
+                  <option value="novo" ${ag.status === 'novo' ? 'selected' : ''}>Novo</option>
+                  <option value="confirmado" ${ag.status === 'confirmado' ? 'selected' : ''}>Confirmado</option>
+                  <option value="concluido" ${ag.status === 'concluido' ? 'selected' : ''}>Concluído</option>
+                  <option value="cancelado" ${ag.status === 'cancelado' ? 'selected' : ''}>Cancelado</option>
+                </select>
+              </td>
+              <td style="text-align: center;">
+                <a href="${linkWa}" target="_blank" rel="noopener noreferrer" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.35); color: #6EE7B7; padding: 6px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766 0-3.18-2.587-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.086-.177.18-.076.353.101.173.449.741.964 1.2.662.591 1.221.774 1.394.86.173.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.144.39-.086s1.011.477 1.184.564.289.13.332.202c.044.073.044.419-.1.824z"/>
+                  </svg>
+                  <span>Chamar no WhatsApp</span>
+                </a>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#EF4444; padding:24px;">Erro inesperado: ${escapeHtml(err.message)}</td></tr>`;
+      }
+    }
+
+    async function atualizarStatusAgendamento(id, novoStatus) {
+      try {
+        await window.supabaseClient
+          .from('agendamentos_clinica')
+          .update({ status: novoStatus })
+          .eq('id', id);
+      } catch (e) {
+        console.error('Erro ao atualizar status do agendamento:', e);
+      }
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
     }
 
     // Logout
