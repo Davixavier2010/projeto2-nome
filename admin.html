@@ -448,6 +448,7 @@
                 <select id="novoPlano" class="rida-form-select">
                   <option value="essencial">Essencial (R$ 497 setup + R$ 47/mês)</option>
                   <option value="personalizado">Personalizado (R$ 797 setup + R$ 77/mês)</option>
+                  <option value="pro">RIDA Pro - Site + Sistema (R$ 1097 setup + R$ 197/mês)</option>
                 </select>
               </div>
               <div class="rida-form-group">
@@ -634,7 +635,7 @@
       tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; color: #64748B; padding: 24px;">Atualizando lista do ecossistema RIDA...</td></tr>`;
 
       try {
-        // 1. Carrega os tenants (clientes do novo modelo multi-tenant)
+        // 1. Carrega os tenants (empresas com site configurado)
         const { data: tenants, error: tErr } = await window.supabaseClient
           .from('tenants')
           .select(`
@@ -649,52 +650,87 @@
           `)
           .order('created_at', { ascending: false });
 
-        // 2. Carrega perfis antigos/legados
+        // 2. Carrega todos os perfis reais cadastrados
         const { data: perfis } = await window.supabaseClient
           .from('perfis')
           .select('*')
           .order('created_at', { ascending: false });
 
         let combined = [];
-
-        // Adiciona os tenants como prioritários
+        const tenantsMap = new Map();
         if (tenants && tenants.length > 0) {
-          tenants.forEach(t => {
-            const cfg = (t.site_config && t.site_config[0]) ? t.site_config[0] : (t.site_config || {});
-            combined.push({
-              id: t.id,
-              tenant_id: t.id,
-              isTenant: true,
-              nome: t.nome,
-              email: t.slug + '@rida.sites',
-              nome_empresa: t.nome,
-              plano_label: t.plano === 'personalizado' ? 'Plano Personalizado' : 'Plano Essencial',
-              nicho_comercio: 'Comércio / Geral',
-              whatsapp: cfg.whatsapp || '',
-              status_site: t.status === 'ativo' ? 'publicado' : (t.status === 'pendente' ? 'em_producao' : t.status),
-              link_site: t.dominio_personalizado || '',
-              slug: t.slug,
-              created_at: t.created_at,
-              role: 'cliente'
-            });
-          });
+          tenants.forEach(t => tenantsMap.set(t.id, t));
         }
 
-        // Adiciona perfis legados que ainda não estão em tenants
+        // Mapeia todos os perfis de clientes reais (cadastrados via cadastro.html ou no auth)
         if (perfis && perfis.length > 0) {
           perfis.forEach(p => {
-            const jaExiste = combined.some(c => c.id === p.id || (c.nome_empresa && p.nome_empresa && c.nome_empresa.toLowerCase() === p.nome_empresa.toLowerCase()));
-            if (!jaExiste) {
-              combined.push({
-                ...p,
-                isTenant: false,
-                tenant_id: null,
-                plano_label: 'Plano Essencial',
-                nicho_comercio: p.tipo_comercio || 'Geral'
-              });
+            // Ignora a conta do próprio administrador da RIDA
+            if (p.role === 'admin' && p.email === 'rida.xv10@gmail.com') return;
+
+            // Encontra o tenant correspondente por tenant_id ou por nome da empresa
+            let matchedTenant = null;
+            if (p.tenant_id && tenantsMap.has(p.tenant_id)) {
+              matchedTenant = tenantsMap.get(p.tenant_id);
+            } else if (tenants && tenants.length > 0) {
+              matchedTenant = tenants.find(t => 
+                t.id === p.id || 
+                (p.nome_empresa && t.nome && p.nome_empresa.trim().toLowerCase() === t.nome.trim().toLowerCase())
+              );
+            }
+
+            const cfg = (matchedTenant && matchedTenant.site_config && matchedTenant.site_config[0]) 
+              ? matchedTenant.site_config[0] 
+              : (matchedTenant && matchedTenant.site_config ? matchedTenant.site_config : {});
+
+            const tenantId = matchedTenant ? matchedTenant.id : (p.tenant_id || null);
+            const slug = matchedTenant ? matchedTenant.slug : (p.slug || gerarSlugLimpo(p.nome_empresa || p.nome));
+
+            combined.push({
+              id: p.id,
+              perfil_id: p.id,
+              tenant_id: tenantId,
+              isTenant: !!tenantId,
+              nome: p.nome || (matchedTenant ? matchedTenant.nome : 'Cliente'),
+              email: p.email || (slug + '@rida.sites'),
+              nome_empresa: p.nome_empresa || (matchedTenant ? matchedTenant.nome : 'Meu Negócio'),
+              plano_label: (matchedTenant && matchedTenant.plano === 'pro') ? 'Plano RIDA Pro (Site + Sistema)' : ((matchedTenant && matchedTenant.plano === 'personalizado') ? 'Plano Personalizado' : 'Plano Essencial'),
+              nicho_comercio: p.tipo_comercio || 'Comércio / Geral',
+              whatsapp: p.whatsapp || cfg.whatsapp || '',
+              status_site: p.status_site || (matchedTenant && matchedTenant.status === 'ativo' ? 'publicado' : 'em_producao'),
+              link_site: p.link_site || (matchedTenant ? matchedTenant.dominio_personalizado : '') || '',
+              slug: slug,
+              created_at: p.created_at || (matchedTenant ? matchedTenant.created_at : new Date().toISOString()),
+              role: p.role || 'cliente'
+            });
+
+            if (matchedTenant) {
+              tenantsMap.delete(matchedTenant.id); // Evita duplicata
             }
           });
         }
+
+        // Adiciona tenants avulsos (criados direto no admin sem perfil de auth correspondente)
+        tenantsMap.forEach(t => {
+          const cfg = (t.site_config && t.site_config[0]) ? t.site_config[0] : (t.site_config || {});
+          combined.push({
+            id: t.id,
+            perfil_id: null,
+            tenant_id: t.id,
+            isTenant: true,
+            nome: t.nome,
+            email: t.slug + '@rida.sites',
+            nome_empresa: t.nome,
+            plano_label: t.plano === 'pro' ? 'Plano RIDA Pro (Site + Sistema)' : (t.plano === 'personalizado' ? 'Plano Personalizado' : 'Plano Essencial'),
+            nicho_comercio: 'Comércio / Geral',
+            whatsapp: cfg.whatsapp || '',
+            status_site: t.status === 'ativo' ? 'publicado' : (t.status === 'pendente' ? 'em_producao' : t.status),
+            link_site: t.dominio_personalizado || '',
+            slug: t.slug,
+            created_at: t.created_at,
+            role: 'cliente'
+          });
+        });
 
         allClients = combined;
         updateKPIs(allClients);
@@ -800,7 +836,7 @@
               </a>
             </td>
             <td>
-              <select class="select-status" onchange="updateClientStatus('${client.id}', this.value, ${client.isTenant})">
+              <select class="select-status" onchange="updateClientStatus('${client.id}', this.value)">
                 <option value="aguardando_informacoes" ${client.status_site === 'aguardando_informacoes' ? 'selected' : ''}>Aguardando Dados</option>
                 <option value="em_producao" ${client.status_site === 'em_producao' ? 'selected' : ''}>Em Produção</option>
                 <option value="em_revisao" ${client.status_site === 'em_revisao' ? 'selected' : ''}>Em Revisão</option>
@@ -810,34 +846,32 @@
             <td>
               ${client.link_site ? `
                 <a href="${escapeHtml(client.link_site)}" target="_blank" rel="noopener noreferrer" style="color: #60A5FA; text-decoration: none; font-size: 0.82rem; display: block; font-weight: 600;">Ver Site</a>
-                <button type="button" class="btn-edit-link" onclick="promptLink('${client.id}', '${escapeHtml(client.link_site)}', ${client.isTenant})">Alterar</button>
+                <button type="button" class="btn-edit-link" onclick="promptLink('${client.id}', '${escapeHtml(client.link_site)}')">Alterar</button>
               ` : `
-                <button type="button" class="btn-edit-link" onclick="promptLink('${client.id}', '', ${client.isTenant})">+ Adicionar URL</button>
+                <button type="button" class="btn-edit-link" onclick="promptLink('${client.id}', '')">+ Adicionar URL</button>
               `}
             </td>
             <td style="color: #94A3B8; font-size: 0.82rem;">${dateStr}</td>
             <td style="text-align: center; white-space: nowrap;">
-              ${client.isTenant ? `
-                <button type="button" class="btn-edit-content" onclick="abrirModalEdicao('${client.tenant_id}', '${escapeJs(client.nome_empresa)}', '${escapeJs(client.slug)}')">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
-                    <path d="M12 20h9"></path>
-                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                  </svg>
-                  <span>Editar Site</span>
-                </button>
-                <button type="button" class="btn-agendamentos" onclick="abrirModalAgendamentos('${client.tenant_id}', '${escapeJs(client.nome_empresa)}')" title="Ver agendamentos e leads recebidos" style="margin-left: 4px;">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
-                  <span>Agendamentos</span>
-                </button>
-              ` : ''}
+              <button type="button" class="btn-edit-content" onclick="abrirModalEdicaoCliente('${client.id}')">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                  <path d="M12 20h9"></path>
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                </svg>
+                <span>Editar Site</span>
+              </button>
+              <button type="button" class="btn-agendamentos" onclick="abrirModalAgendamentosCliente('${client.id}')" title="Ver agendamentos e leads recebidos" style="margin-left: 4px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 4px;">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                <span>Agendamentos</span>
+              </button>
 
               ${!isClientAdmin ? `
-                <button type="button" class="btn-delete-client" onclick="deleteClient('${client.id}', '${escapeJs(client.nome)}', '${escapeJs(client.email || '')}', ${client.isTenant})" title="Excluir este cliente" style="margin-left: 4px;">
+                <button type="button" class="btn-delete-client" onclick="deleteClient('${client.id}', '${escapeJs(client.nome)}', '${escapeJs(client.email || '')}')" title="Excluir este cliente" style="margin-left: 4px;">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="3 6 5 6 21 6"></polyline>
                     <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -868,18 +902,19 @@
       document.getElementById('modalNovoClienteOverlay').classList.remove('active');
     }
 
-    function gerarSlugAutomatico(nome) {
-      if (!nome) {
-        document.getElementById('novoSlug').value = '';
-        return;
-      }
+    function gerarSlugLimpo(nome) {
+      if (!nome) return 'cliente-' + Math.random().toString(36).substring(2, 7);
       const slug = nome
         .toLowerCase()
         .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
         .replace(/[^a-z0-9]/g, '-')
         .replace(/-+/g, '-')
         .replace(/^-|-$/g, '');
-      document.getElementById('novoSlug').value = slug;
+      return slug || ('cliente-' + Math.random().toString(36).substring(2, 7));
+    }
+
+    function gerarSlugAutomatico(nome) {
+      document.getElementById('novoSlug').value = nome ? gerarSlugLimpo(nome) : '';
     }
 
     async function salvarNovoCliente(e) {
@@ -932,6 +967,98 @@
     // ==============================================================
     // FUNÇÕES DO MODAL: EDITAR SITE & PREÇOS (CONCIERGE)
     // ==============================================================
+    async function abrirModalEdicaoCliente(clientId) {
+      const client = allClients.find(c => c.id === clientId || c.tenant_id === clientId || c.perfil_id === clientId);
+      if (!client) {
+        alert('Cliente não encontrado.');
+        return;
+      }
+
+      // Se já possui tenant_id, abre o modal de edição direto
+      if (client.tenant_id) {
+        abrirModalEdicao(client.tenant_id, client.nome_empresa || client.nome, client.slug || 'site');
+        return;
+      }
+
+      // Se é um cliente cadastrado que ainda não possui tenant gerado, gera na hora!
+      try {
+        showToast('Inicializando site do cliente...');
+        
+        let tenantId = null;
+        let slug = null;
+
+        // 1. Tenta via RPC backend
+        try {
+          const { data: rpcRes, error: rpcErr } = await window.supabaseClient.rpc('rida_garantir_tenant_para_perfil', {
+            p_user_id: client.id
+          });
+          if (!rpcErr && rpcRes && rpcRes.tenant_id) {
+            tenantId = rpcRes.tenant_id;
+            slug = rpcRes.slug || client.slug;
+          }
+        } catch (eRpc) {
+          console.warn('RPC garantir tenant falhou, usando criação direta:', eRpc);
+        }
+
+        // 2. Se não pegou pelo RPC, cria via frontend diretamente
+        if (!tenantId) {
+          const p_nome = client.nome_empresa || client.nome || 'Meu Negócio';
+          const p_slug = client.slug || gerarSlugLimpo(p_nome);
+          const p_whatsapp = client.whatsapp || '';
+
+          const { data: novoT, error: tErr } = await window.supabaseClient
+            .from('tenants')
+            .insert({
+              nome: p_nome,
+              slug: p_slug,
+              plano: 'essencial',
+              status: 'ativo'
+            })
+            .select('id, slug')
+            .single();
+
+          if (tErr) throw tErr;
+          tenantId = novoT.id;
+          slug = novoT.slug;
+
+          await window.supabaseClient
+            .from('site_config')
+            .insert({
+              tenant_id: tenantId,
+              whatsapp: p_whatsapp,
+              horarios: 'Seg a Sex: 08h às 18h',
+              endereco: ''
+            });
+
+          await window.supabaseClient
+            .from('perfis')
+            .update({ tenant_id: tenantId })
+            .eq('id', client.id);
+        }
+
+        // Atualiza em memória
+        client.tenant_id = tenantId;
+        client.isTenant = true;
+        client.slug = slug;
+        
+        showToast('Site inicializado com sucesso!');
+        abrirModalEdicao(tenantId, client.nome_empresa || client.nome, slug);
+
+      } catch (err) {
+        alert('Erro ao inicializar o site deste cliente: ' + err.message);
+      }
+    }
+
+    async function abrirModalAgendamentosCliente(clientId) {
+      const client = allClients.find(c => c.id === clientId || c.tenant_id === clientId || c.perfil_id === clientId);
+      if (!client) return;
+      if (client.tenant_id) {
+        abrirModalAgendamentos(client.tenant_id, client.nome_empresa || client.nome);
+      } else {
+        await abrirModalEdicaoCliente(clientId);
+      }
+    }
+
     async function abrirModalEdicao(tenantId, nomeEmpresa, slug) {
       document.getElementById('editTenantId').value = tenantId;
       document.getElementById('editSiteNome').textContent = nomeEmpresa;
@@ -1054,6 +1181,20 @@
           })
           .eq('tenant_id', tenantId);
 
+        // Se este tenant estiver vinculado a um perfil, sincroniza o WhatsApp no perfil também
+        const clientVinculado = allClients.find(c => c.tenant_id === tenantId);
+        if (clientVinculado && clientVinculado.perfil_id) {
+          try {
+            await window.supabaseClient
+              .from('perfis')
+              .update({ whatsapp: whatsapp, updated_at: new Date().toISOString() })
+              .eq('id', clientVinculado.perfil_id);
+            clientVinculado.whatsapp = whatsapp;
+          } catch (eSync) {
+            console.warn('Sync whatsapp perfil:', eSync);
+          }
+        }
+
         // 2. Salvar produtos: apagar os antigos deste tenant e reinserir a lista atualizada
         await window.supabaseClient
           .from('produtos_servicos')
@@ -1087,22 +1228,26 @@
       }
     }
 
-    async function updateClientStatus(clientId, newStatus, isTenant) {
+    async function updateClientStatus(clientId, newStatus) {
       try {
-        if (isTenant) {
-          const tenantStatus = (newStatus === 'publicado' ? 'ativo' : (newStatus === 'em_producao' ? 'pendente' : newStatus));
+        const item = allClients.find(c => c.id === clientId || c.tenant_id === clientId || c.perfil_id === clientId);
+        const tenantStatus = (newStatus === 'publicado' ? 'ativo' : (newStatus === 'em_producao' ? 'pendente' : newStatus));
+
+        // Atualiza em tenants se existir
+        if (item && item.tenant_id) {
           await window.supabaseClient
             .from('tenants')
             .update({ status: tenantStatus, updated_at: new Date().toISOString() })
-            .eq('id', clientId);
-        } else {
-          await window.supabaseClient
-            .from('perfis')
-            .update({ status_site: newStatus, updated_at: new Date().toISOString() })
-            .eq('id', clientId);
+            .eq('id', item.tenant_id);
         }
 
-        const item = allClients.find(c => c.id === clientId);
+        // Atualiza em perfis se existir
+        const perfilId = (item && item.perfil_id) ? item.perfil_id : (item ? item.id : clientId);
+        await window.supabaseClient
+          .from('perfis')
+          .update({ status_site: newStatus, updated_at: new Date().toISOString() })
+          .eq('id', perfilId);
+
         if (item) item.status_site = newStatus;
         updateKPIs(allClients);
         showToast('Status atualizado para: ' + formatStatusName(newStatus));
@@ -1135,52 +1280,59 @@
       }, 3500);
     }
 
-    async function promptLink(clientId, currentLink, isTenant) {
-      const newUrl = prompt('Digite o endereço do site do cliente (ex: https://sorveteriavale.com.br):', currentLink);
+    async function promptLink(clientId, currentLink) {
+      const newUrl = prompt('Digite o endereço do site do cliente (ex: https://sorveteriavale.com.br):', currentLink || '');
       if (newUrl === null) return;
 
       try {
-        if (isTenant) {
+        const item = allClients.find(c => c.id === clientId || c.tenant_id === clientId || c.perfil_id === clientId);
+        const urlToSave = newUrl.trim() || null;
+
+        if (item && item.tenant_id) {
           await window.supabaseClient
             .from('tenants')
-            .update({ dominio_personalizado: newUrl.trim() || null })
-            .eq('id', clientId);
-        } else {
-          await window.supabaseClient
-            .from('perfis')
-            .update({ link_site: newUrl.trim() || null, updated_at: new Date().toISOString() })
-            .eq('id', clientId);
+            .update({ dominio_personalizado: urlToSave })
+            .eq('id', item.tenant_id);
         }
 
-        showToast('Endereço do site salvo!');
-        await loadClients();
+        const perfilId = (item && item.perfil_id) ? item.perfil_id : (item ? item.id : clientId);
+        await window.supabaseClient
+          .from('perfis')
+          .update({ link_site: urlToSave, updated_at: new Date().toISOString() })
+          .eq('id', perfilId);
+
+        if (item) item.link_site = urlToSave;
+        renderTable(allClients);
+        showToast(urlToSave ? 'Endereço do site salvo!' : 'Endereço do site removido.');
+
       } catch (err) {
-        alert('Erro ao salvar URL.');
+        alert('Erro ao salvar URL: ' + err.message);
       }
     }
 
-    async function deleteClient(clientId, clientName, clientEmail, isTenant) {
+    async function deleteClient(clientId, clientName, clientEmail) {
       const displayLabel = clientEmail ? `${clientName} (${clientEmail})` : clientName;
       const confirmed = confirm(`Tem certeza que deseja excluir o cliente:\n"${displayLabel}"?\n\nEsta ação apagará o site, configurações e produtos.`);
       if (!confirmed) return;
 
       try {
-        if (isTenant) {
-          const { error } = await window.supabaseClient
+        const item = allClients.find(c => c.id === clientId || c.tenant_id === clientId || c.perfil_id === clientId);
+
+        if (item && item.tenant_id) {
+          await window.supabaseClient
             .from('tenants')
             .delete()
-            .eq('id', clientId);
+            .eq('id', item.tenant_id);
+        }
 
-          if (error) throw error;
-        } else {
-          const { error: rpcError } = await window.supabaseClient.rpc('delete_user_by_admin', { target_user_id: clientId });
-          if (rpcError) {
-            await window.supabaseClient.from('perfis').delete().eq('id', clientId);
-          }
+        const targetId = (item && item.perfil_id) ? item.perfil_id : clientId;
+        const { error: rpcError } = await window.supabaseClient.rpc('delete_user_by_admin', { target_user_id: targetId });
+        if (rpcError) {
+          await window.supabaseClient.from('perfis').delete().eq('id', targetId);
         }
 
         alert(`Cliente "${clientName}" excluído com sucesso!`);
-        allClients = allClients.filter(c => c.id !== clientId);
+        allClients = allClients.filter(c => c.id !== clientId && c.perfil_id !== clientId && c.tenant_id !== clientId);
         updateKPIs(allClients);
         renderTable(allClients);
 

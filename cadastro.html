@@ -184,6 +184,15 @@
           } catch (e) {
             // Silencioso se o trigger já realizou o vínculo
           }
+
+          // Garante a existência do tenant e site_config logo no cadastro
+          try {
+            await window.supabaseClient.rpc('rida_garantir_tenant_para_perfil', {
+              p_user_id: data.user.id
+            });
+          } catch (eT) {
+            // Silencioso se o trigger handle_new_user já fez o vínculo no banco
+          }
         }
 
         // Se o Supabase retornou sessão imediata, redireciona para a área do cliente
