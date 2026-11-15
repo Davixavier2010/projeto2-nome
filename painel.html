@@ -306,6 +306,28 @@
       // Configurar Status do Site e Steps
       updateStatusDisplay(perfil.status_site, perfil.link_site);
 
+      // Auto-vincular tenant_id pelo nome da empresa se ainda não estiver preenchido
+      if (!perfil.tenant_id && perfil.nome_empresa && !isRidaAdmin) {
+        try {
+          const { data: t } = await window.supabaseClient
+            .from('tenants')
+            .select('id')
+            .ilike('nome', `%${perfil.nome_empresa.trim()}%`)
+            .maybeSingle();
+
+          if (t && t.id) {
+            perfil.tenant_id = t.id;
+            currentUserPerfil.tenant_id = t.id;
+            await window.supabaseClient
+              .from('perfis')
+              .update({ tenant_id: t.id })
+              .eq('id', user.id);
+          }
+        } catch (errAuto) {
+          console.warn('Auto-vínculo tenant:', errAuto);
+        }
+      }
+
       // Carregar os agendamentos de pacientes deste cliente
       await carregarAgendamentos();
 
