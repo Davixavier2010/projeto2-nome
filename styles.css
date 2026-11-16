@@ -2813,13 +2813,13 @@ body.dark-mode .pricing-grid {
 /* Blocos de Preço Internos (Setup e Mensalidade) */
 .price-block {
   text-align: center;
-  padding: 12px 6px;
+  padding: 14px 8px;
   background-color: #F8FAFC;
   border: 1px solid rgba(15, 23, 42, 0.07);
   border-radius: 16px;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
   box-sizing: border-box;
-  min-height: 172px;
+  min-height: 182px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2836,7 +2836,7 @@ body.dark-mode .price-block {
   align-items: center;
   justify-content: center;
   min-height: 28px;
-  font-size: 0.70rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: #0F172A;
   margin-bottom: 6px;
@@ -2853,12 +2853,12 @@ body.dark-mode .price-label {
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 1px;
+  gap: 2px;
   margin-bottom: 6px;
 }
 
 .price-value .currency {
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #0F172A;
   margin-right: 2px;
@@ -2869,10 +2869,11 @@ body.dark-mode .price-value .currency {
 }
 
 .price-value .amount {
-  font-size: 1.65rem;
+  font-size: 2.15rem;
   font-weight: 900;
   color: #0F172A;
   line-height: 1;
+  letter-spacing: -0.02em;
 }
 
 body.dark-mode .price-value .amount {
@@ -2880,7 +2881,7 @@ body.dark-mode .price-value .amount {
 }
 
 .price-value .cents {
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   font-weight: 800;
   color: #0F172A;
 }
@@ -2890,10 +2891,10 @@ body.dark-mode .price-value .cents {
 }
 
 .price-value .period {
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: #64748B;
-  margin-left: 2px;
+  margin-left: 3px;
   white-space: nowrap;
 }
 
